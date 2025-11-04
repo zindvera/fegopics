@@ -1,0 +1,148 @@
+body {
+  background-color: #eef3f5;
+  /* subtle very light blue */
+  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.poster {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.platform-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.available-on {
+  margin-bottom: 0.5rem;
+}
+
+.logo-name {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.platform-logo {
+  height: 40px;
+}
+
+.logo-name h6 {
+  margin-left: 0.5rem;
+  margin-bottom: 0;
+}
+
+.note-text {
+  text-align: start;
+  margin-bottom: 1rem;
+}
+
+/* Custom watch button styling */
+.watch-btn {
+  padding: 6px 14px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 6px;
+  border: none;
+  /* blue border */
+  background-color: #2a72d8;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  user-select: none;
+}
+
+.watch-btn:hover {
+  background-color: #1b5cb6;
+  color: #f5f9fc;
+}
+
+.movie-card {
+  margin-bottom: 30px;
+}
+
+/* Pagination controls container */
+.pagination-controls {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.pagination-controls button {
+  background-color: #2a72d8;
+  /* blue */
+  color: #f8f8f8;
+  margin: 0 6px;
+  min-width: 100px;
+  font-weight: 700;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.pagination-controls button:hover {
+  background-color: #115bc2;
+  color: #fafafa;
+}
+
+.more-less-link {
+  color: #2a72d8;
+  /* blue */
+  cursor: pointer;
+  user-select: none;
+}
+
+
+
+.custom-search-wrapper {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  /* vertically center input and button */
+}
+
+.custom-search-wrapper input[type="text"] {
+  outline: none;
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: none;
+  font-size: 1em;
+  outline-offset: 2px;
+  font-family: inherit;
+}
+
+
+.custom-search-wrapper button {
+  outline: none;
+  /* Remove default outline */
+  padding: 8px 18px;
+  background-color: #2a72d8;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  white-space: nowrap;
+  /* prevent button text wrap */
+}
+
+.custom-search-wrapper button:hover {
+  background-color: #1b63c7;
+  color: #f5f9fc;
+}

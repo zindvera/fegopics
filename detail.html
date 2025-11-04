@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="detail.css">
+
+</head>
+
+<body>
+
+
+    <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in;">
+        <img style="height: 60px;" id="logopic"
+            src="https://latestlogo.com/wp-content/uploads/2023/12/microsoft-365-2022-logo.png" alt="">
+    </div>
+
+    <!-- Search Box and Button -->
+    <div class="container">
+
+
+        <div class="search-container my-3 col-lg-4 col-md-5 col-11 mx-auto">
+            <div class="custom-search-wrapper">
+                <input type="text" id="searchMovieKeyword" placeholder="Search Movies" autocomplete="off"
+                    autocorrect="off" autocapitalize="off" spellcheck="false">
+                <button type="button" id="searchBtn">Search</button>
+            </div>
+        </div>
+
+        <div class="container py-4" id="search-movies-container">
+            <h4 class="mb-3">Search Results</h4>
+            <div class="row search-results"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-4 mb-4 mb-md-0 mb-lg-0 d-flex justify-content-center">
+                <div class="col-7 col-lg-6 col-md-6 offset-md-6 offset-lg-6">
+                    <img id="poster" class="poster" alt="Movie Poster" />
+                </div>
+            </div>
+            <div class="col-12 col-md-8 ps-lg-8 ps-md-4">
+                <div class="col-lg-10 col-md-10 col-12">
+                    <h2 class="pb-3" id="title"></h2>
+                    <p id="description"></p>
+                    <p><strong>Genres:</strong> <span id="genres"></span></p><br />
+                    <p id="release-year" style="display:none;"><strong>Release:</strong> <span id="release"></span></p>
+                    <br />
+
+                    <h5>Free To Watch Here</h5><br />
+                    <div id="platforms"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4" id="related-container">
+        <h4 class="mb-3">🎬 Related by Genre</h4>
+        <div class="row" id="related-grid"></div>
+    </div>
+
+    <div class="container py-4" id="more-movies-container">
+        <h4 class="mb-3">🎞️ More Movies</h4>
+        <div class="row" id="poster-grid"></div>
+        <div class="pagination-controls">
+            <button id="prevBtn" class="btn btn-outline-secondary me-2" style="display:none;">← Previous</button>
+            <button id="nextBtn" class="btn btn-outline-primary" style="display:none;">Next →</button>
+        </div>
+    </div>
+
+    <script src="predefined-platform.js"></script>
+    <!-- Load your search-movies.js -->
+    <script src="search-movies.js"></script>
+    <script>
+        const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
+        const maxMoviesPerPage = 4;
+        const MAX_MOVIES_PER_FILE = 50;
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const rawId = urlParams.get("id") || "";
+        const platformID = urlParams.get("platformID") || "";
+        const rawName = urlParams.get("name") || "";
+        const movieId = rawId;
+        const movieIdNumber = parseInt(rawId.replace(/[^\d]/g, ""), 10);
+        const movieName = rawName.replace(/\+/g, " ");
+        let currentPage = parseInt(sessionStorage.getItem("currentPage")) || 1;
+
+        async function fetchMovie(platform, movieIdFull, movieName) {
+            const movieIdNum = parseInt(movieIdFull.replace(/[^\d]/g, ""), 10);
+            if (isNaN(movieIdNum)) return null;
+            const fileNum = Math.ceil(movieIdNum / MAX_MOVIES_PER_FILE);
+            try {
+                const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
+                if (!res.ok) return null;
+                const data = await res.json();
+                return data.find(m => m.id === movieIdFull && m.title.toLowerCase() === movieName.toLowerCase()) || null;
+            } catch {
+                return null;
+            }
+        }
+
+        async function fetchMoviesForPlatform(platform, startIndex, count) {
+            const collected = [];
+            let fileNum = Math.floor(startIndex / MAX_MOVIES_PER_FILE) + 1;
+            let skip = startIndex % MAX_MOVIES_PER_FILE;
+            while (collected.length < count) {
+                try {
+                    const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
+                    if (!res.ok) break;
+                    const data = await res.json();
+                    let injectedData = data.map(m => ({ ...m, platform }));
+                    if (skip >= injectedData.length) {
+                        skip -= injectedData.length;
+                        fileNum++;
+                        continue;
+                    }
+                    const available = injectedData.length - skip;
+                    const toTake = Math.min(available, count - collected.length);
+                    collected.push(...injectedData.slice(skip, skip + toTake));
+                    skip = 0;
+                    if (collected.length >= count) break;
+                    fileNum++;
+                } catch { break; }
+            }
+            return collected;
+        }
+
+        async function getAvailablePlatforms() {
+            const platformsWithData = [];
+            for (const platform of platforms) {
+                const movies = await fetchMoviesForPlatform(platform, 0, 1);
+                if (movies.length > 0) platformsWithData.push(platform);
+            }
+            return platformsWithData;
+        }
+
+        function getMoviesPerPlatform(maxMoviesPerPage, platformsWithData) {
+            const base = Math.floor(maxMoviesPerPage / platformsWithData.length);
+            const remainder = maxMoviesPerPage % platformsWithData.length;
+            return platformsWithData.map((_, idx) => base + (idx < remainder ? 1 : 0));
+        }
+
+        async function fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage) {
+            const platformsWithData = await getAvailablePlatforms();
+            if (platformsWithData.length === 0) return [];
+            const perPlatformCounts = getMoviesPerPlatform(maxMoviesPerPage, platformsWithData);
+            const allMovies = [];
+            for (let i = 0; i < platformsWithData.length; i++) {
+                let moviesSkipped = 0;
+                for (let pg = 1; pg < currentPage; pg++) {
+                    const alloc = getMoviesPerPlatform(maxMoviesPerPage, platformsWithData);
+                    moviesSkipped += alloc[i];
+                }
+                const movies = await fetchMoviesForPlatform(platformsWithData[i], moviesSkipped, perPlatformCounts[i]);
+                allMovies.push(...movies);
+            }
+            return allMovies;
+        }
+
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) return text;
+            return text.slice(0, maxLength);
+        }
+
+        function renderDescription(description) {
+            const descElement = document.getElementById("description");
+            const maxLength = 200;
+            if (description.length <= maxLength) {
+                descElement.textContent = description;
+                return;
+            }
+            const truncated = truncateText(description, maxLength);
+            descElement.innerHTML = `
+    <span class="short-text">${truncated}...</span>
+    <span class="full-text d-none">${description}</span>
+    <span class="more-less-link" id="toggleDesc">Show more</span>
+  `;
+            const toggleLink = document.getElementById("toggleDesc");
+            toggleLink.addEventListener("click", () => {
+                const shortText = descElement.querySelector(".short-text");
+                const fullText = descElement.querySelector(".full-text");
+                if (fullText.classList.contains("d-none")) {
+                    fullText.classList.remove("d-none");
+                    shortText.classList.add("d-none");
+                    toggleLink.textContent = "Show less";
+                } else {
+                    fullText.classList.add("d-none");
+                    shortText.classList.remove("d-none");
+                    toggleLink.textContent = "Show more";
+                }
+            });
+        }
+
+        function renderMovie(movie) {
+            document.title = `${movie.title} | Fegopics`;
+            document.getElementById("title").textContent = movie.title;
+            document.getElementById("poster").src = movie.posterImg;
+            renderDescription(movie.description);
+            document.getElementById("genres").textContent = movie.genres;
+            const platformsDiv = document.getElementById("platforms");
+
+            platformsDiv.innerHTML = "";
+
+            const releaseYearElement = document.getElementById("release-year");
+            const releaseSpan = document.getElementById("release");
+            if (movie.releaseYear && movie.releaseYear.trim() !== "") {
+                releaseSpan.textContent = movie.releaseYear;
+                releaseYearElement.style.display = "block";
+            } else {
+                releaseYearElement.style.display = "none";
+            }
+
+
+            if (movie.platforms && movie.platforms.length) {
+                movie.platforms.forEach((p) => {
+                    const platformId = p.platformId;
+                    const platformData = PLATFORM_INFO && PLATFORM_INFO[platformId] ? PLATFORM_INFO[platformId] : { name: platformId, url: "#", defaultNote: "No additional info available." };
+                    const logoPath = `data/platforms/${platformId}.png`;
+                    const link = p.watchLink?.trim() ? p.watchLink : platformData.url;
+                    const note = p.note?.trim() ? p.note : platformData.defaultNote;
+                    platformsDiv.innerHTML += `
+        <div class="platform-entry mb-5 text-center">
+          <h6 class="available-on mb-3">Available on</h6>
+          <div class="logo-name d-inline-flex align-items-center mb-4">
+            <img src="${logoPath}" alt="${platformData.name}" class="platform-logo" />
+          </div>
+          <p class="note-text mx-auto mb-4">${note}</p>
+          <a href="${link}" target="_blank" class="btn btn-primary btn-md watch-btn">Watch Now</a>
+        </div>`;
+                });
+            }
+        }
+
+        async function loadMoreMovies(currentMovie) {
+            // Fetch EXACTLY what index.html fetches for this page - no more, no less
+            let movies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage);
+
+            // Remove ONLY the current movie
+            movies = movies.filter(m => !(m.id === currentMovie.id && m.platform === platformID));
+
+
+            const container = document.getElementById("more-movies-container");
+            const grid = document.getElementById("poster-grid");
+
+            if (movies.length === 0) {
+                container.style.display = "none";
+                grid.innerHTML = "";
+                return;
+            }
+
+            container.style.display = "block";
+            grid.innerHTML = "";
+            movies.forEach(m => {
+                const titleForUrl = m.title.replace(/\s+/g, "+");
+                grid.innerHTML += `
+      <div class="col-6 col-md-3 col-lg-2 movie-card">
+        <a href="detail.html?name=${titleForUrl}&id=${m.id}&platformID=${m.platform}" class="text-decoration-none text-dark">
+          <img src="${m.posterImg}" alt="${m.title}" class="poster" />
+          <h5 class="mt-2">${m.title}</h5>
+          <p class="text-muted">${m.genres}</p>
+        </a>
+      </div>
+    `;
+            });
+
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            prevBtn.style.display = currentPage > 1 ? "inline-block" : "none";
+            nextBtn.style.display = "inline-block";
+
+            const nextPageMovies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage + 1);
+
+            if (nextPageMovies.length === 0) {
+                nextBtn.onclick = () => {
+                    sessionStorage.setItem("currentPage", 1);
+                    window.location.href = `index.html?page=1`;
+                };
+            } else {
+                nextBtn.onclick = () => {
+                    sessionStorage.setItem("currentPage", currentPage + 1);
+                    window.location.href = `index.html?page=${currentPage + 1}`;
+                };
+            }
+
+            prevBtn.onclick = () => {
+                const newPage = Math.max(1, currentPage - 1);
+                sessionStorage.setItem("currentPage", newPage);
+                window.location.href = `index.html?page=${newPage}`;
+            };
+        }
+
+        function getGenreKey(genres) {
+            return genres.split(",").map(g => g.trim()).sort().join(",");
+        }
+
+        function getShownMoviesForGenre(genreKey) {
+            const stored = sessionStorage.getItem("relatedMoviesShown");
+            if (!stored) return [];
+            const allShown = JSON.parse(stored);
+            return allShown[genreKey] || [];
+        }
+
+        function saveShownMoviesForGenre(genreKey, movieIds) {
+            const stored = sessionStorage.getItem("relatedMoviesShown");
+            const allShown = stored ? JSON.parse(stored) : {};
+            allShown[genreKey] = movieIds;
+            sessionStorage.setItem("relatedMoviesShown", JSON.stringify(allShown));
+        }
+
+        async function fetchFromCurrentPlatform(currentMovie, currentGenres, excludeIds, maxCount) {
+            const collected = new Map();
+            const currentIdNum = parseInt(currentMovie.id.replace(/[^\d]/g, ""), 10);
+            const baseFileNum = Math.ceil(currentIdNum / MAX_MOVIES_PER_FILE);
+
+            const fileOffsets = [0];
+            for (let i = 1; collected.size < maxCount && i < 10; i++) {
+                fileOffsets.push(i, -i);
+            }
+
+            for (const offset of fileOffsets) {
+                const fileNum = baseFileNum + offset;
+                if (fileNum < 1) continue;
+                try {
+                    const res = await fetch(`./data/movies/${platformID}/movies-${fileNum}.json`);
+                    if (!res.ok) continue;
+                    const data = await res.json();
+                    const injectedData = data.map(m => ({ ...m, platform: platformID }));
+                    const filtered = injectedData.filter(m =>
+                        m.id !== currentMovie.id &&
+                        !excludeIds.includes(m.id) &&
+                        m.genres.split(",").some(g => currentGenres.includes(g.trim()))
+                    );
+                    for (const movie of shuffleArray(filtered)) {
+                        if (collected.size >= maxCount) break;
+                        if (!collected.has(movie.id)) collected.set(movie.id, movie);
+                    }
+                    if (collected.size >= maxCount) break;
+                } catch { }
+            }
+            return Array.from(collected.values());
+        }
+
+        async function fetchFromOtherPlatforms(currentMovie, currentGenres, excludeIds, maxCount) {
+            const otherPlatforms = platforms.filter(p => p !== platformID);
+            const collected = [];
+            const perPlatformTarget = Math.ceil(maxCount / otherPlatforms.length);
+
+            for (const platform of otherPlatforms) {
+                let fileNum = 1;
+                let platformCount = 0;
+
+                while (platformCount < perPlatformTarget && fileNum <= 20) {
+                    try {
+                        const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
+                        if (!res.ok) break;
+                        const data = await res.json();
+                        const injectedData = data.map(m => ({ ...m, platform }));
+                        const filtered = injectedData.filter(m =>
+                            m.id !== currentMovie.id &&
+                            !excludeIds.includes(m.id) &&
+                            !collected.some(existing => existing.id === m.id) &&
+                            m.genres.split(",").some(g => currentGenres.includes(g.trim()))
+                        );
+
+                        for (const movie of filtered) {
+                            if (platformCount >= perPlatformTarget) break;
+                            collected.push(movie);
+                            platformCount++;
+                        }
+
+                        fileNum++;
+                    } catch { break; }
+                }
+
+                if (collected.length >= maxCount) break;
+            }
+
+            return collected.slice(0, maxCount);
+        }
+
+        async function loadRelatedByGenre(currentMovie) {
+            if (!currentMovie.genres) {
+                document.getElementById("related-container").style.display = "none";
+                return;
+            }
+
+            const relatedContainer = document.getElementById("related-container");
+            const currentGenres = currentMovie.genres.split(",").map(g => g.trim());
+            const genreKey = getGenreKey(currentMovie.genres);
+            const shownMovieIds = getShownMoviesForGenre(genreKey);
+
+            const maxFromCurrent = 3;
+            const maxFromOthers = 3;
+            const totalMax = 6;
+
+            let currentPlatformMovies = await fetchFromCurrentPlatform(currentMovie, currentGenres, shownMovieIds, maxFromCurrent);
+            let otherPlatformMovies = await fetchFromOtherPlatforms(currentMovie, currentGenres, shownMovieIds, maxFromOthers);
+
+            if (currentPlatformMovies.length < maxFromCurrent) {
+                const repeatMovies = await fetchFromCurrentPlatform(currentMovie, currentGenres, [], maxFromCurrent);
+                currentPlatformMovies = repeatMovies.slice(0, maxFromCurrent);
+            }
+
+            if (otherPlatformMovies.length < maxFromOthers) {
+                const repeatMovies = await fetchFromOtherPlatforms(currentMovie, currentGenres, [], maxFromOthers);
+                otherPlatformMovies = repeatMovies.slice(0, maxFromOthers);
+            }
+
+            let allRelatedMovies = [...currentPlatformMovies, ...otherPlatformMovies];
+            allRelatedMovies = shuffleArray(allRelatedMovies).slice(0, totalMax);
+
+            if (allRelatedMovies.length === 0) {
+                relatedContainer.style.display = "none";
+                return;
+            }
+
+            const newShownIds = [...shownMovieIds, ...allRelatedMovies.map(m => m.id)];
+            saveShownMoviesForGenre(genreKey, newShownIds);
+
+            relatedContainer.style.display = "block";
+            const grid = document.getElementById("related-grid");
+            grid.innerHTML = "";
+
+            allRelatedMovies.forEach(m => {
+                const titleForUrl = m.title.replace(/\s+/g, "+");
+                grid.innerHTML += `
+      <div class="col-6 col-md-3 col-lg-2 movie-card">
+        <a href="detail.html?name=${titleForUrl}&id=${m.id}&platformID=${m.platform}" class="text-decoration-none text-dark">
+          <img src="${m.posterImg}" alt="${m.title}" class="poster" />
+          <h5 class="mt-2">${m.title}</h5>
+          <p class="text-muted">${m.genres}</p>
+        </a>
+      </div>
+    `;
+            });
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        async function main() {
+            if (!platformID || !movieId || !movieName) {
+                document.body.innerHTML = "<p>Missing required parameters.</p>";
+                return;
+            }
+            const movie = await fetchMovie(platformID, movieId, movieName);
+            if (!movie) {
+                document.body.innerHTML = "<p>Movie not found.</p>";
+                return;
+            }
+            renderMovie(movie);
+            await loadMoreMovies(movie);
+            await loadRelatedByGenre(movie);
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

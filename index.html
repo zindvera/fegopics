@@ -1,1 +1,343 @@
-Connecting to fegopics.online 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fegopics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div class="container py-4">
+
+    <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in;">
+      <img style="height: 60px;" id="logopic"
+        src="https://latestlogo.com/wp-content/uploads/2023/12/microsoft-365-2022-logo.png" alt="">
+    </div>
+
+    <div class="main-heading" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+      <h1 style="font-size: 30px;">Free Movies Library with Streaming Links</h1>
+    </div>
+
+    <div class="sub-heading"
+      style="display: flex; justify-content: center; align-items: center; text-align: center; margin-bottom: 0.35in;">
+      <p id="toggleText" style="padding-top: 0.25in; font-size: 17px;">
+        Browse and watch free movies collected from multiple legal streaming sites. We provide direct links to movies
+        available with ads, free signup, or no signup required—making it easy to enjoy films safely and freely.
+      </p>
+
+    </div>
+
+
+    <div class="search-container my-3 col-lg-4 col-md-5 col-11 mx-auto">
+      <div class="custom-search-wrapper">
+        <input type="text" id="searchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
+          autocapitalize="off" spellcheck="false">
+        <button type="button" id="searchBtn">Search</button>
+      </div>
+    </div>
+
+
+    <div class="container" id="search-movies-container">
+      <h4 class="mb-3">Search Results</h4>
+      <div class="row search-results"></div>
+    </div>
+
+
+    <div class="genre-scroll-wrapper mb-2">
+      <button class="scroll-arrow scroll-left" onclick="scrollGenres(-200)" aria-label="Scroll left">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <div class="genre-scroll" id="genre-list"></div>
+      <button class="scroll-arrow scroll-right" onclick="scrollGenres(200)" aria-label="Scroll right">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+      <div class="reset-container mt-5 text-end">
+        <button class="reset-btn" id="resetBtn" title="Reset Genres Filter">RESET</button>
+      </div>
+    </div>
+
+
+    <!-- Selected genres container -->
+    <div class="selected-genres mt-2 mb-4" id="selectedGenereContainer"></div>
+
+    <div class="row" id="movie-grid"></div>
+    <div class="pagination-controls">
+      <button id="prevBtn" class="btn btn-outline-secondary me-2" style="display:none;">← Previous</button>
+      <button id="nextBtn" class="btn btn-outline-primary" style="display:none;">Next →</button>
+    </div>
+  </div>
+
+  <script src="./genres.js"></script>
+  <script src="predefined-platform.js"></script>
+  <script src="search-movies.js"></script>
+
+  <script>
+    // Platforms and pagination
+    const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
+    const maxMoviesPerPage = 4;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    // Get multiple genres split by comma, trimming spaces
+    const selectedGenres = urlParams.get("genres") ?
+      urlParams.get("genres").split(",").map(g => g.trim()).filter(g => g.length > 0) : [];
+    const currentPage = parseInt(urlParams.get("page")) || 1;
+
+    // Save current filters & reload page
+    function saveGenreFilters() {
+      const params = new URLSearchParams(window.location.search);
+      if (selectedGenres.length > 0) {
+        params.set("genres", selectedGenres.join(","));
+      } else {
+        params.delete("genres");
+      }
+      // Keep current page intact
+      params.set("page", currentPage);
+      window.location.search = params.toString();
+    }
+
+    // Toggle a genre selection and update URL
+    function toggleGenre(genre) {
+      const index = selectedGenres.indexOf(genre);
+      if (index > -1) {
+        selectedGenres.splice(index, 1);
+      } else {
+        selectedGenres.push(genre);
+      }
+      saveGenreFilters();
+    }
+
+    // Remove a selected genre via the 'x' on selected genres list
+    function removeGenre(genre) {
+      const index = selectedGenres.indexOf(genre);
+      if (index > -1) {
+        selectedGenres.splice(index, 1);
+        saveGenreFilters();
+      }
+    }
+
+    // Reset button clears only 'genres' param but keeps others & reloads
+    function resetFilters() {
+      const params = new URLSearchParams(window.location.search);
+      params.delete("genres");
+      window.location.search = params.toString();
+    }
+
+    // Render the top genre button list (excluding selected)
+    function renderGenres() {
+      const genreList = document.getElementById("genre-list");
+      genreList.innerHTML = "";
+      GENRES.forEach(genre => {
+        if (!selectedGenres.includes(genre)) {
+          genreList.innerHTML += `<a href="javascript:void(0);" class="btn btn-sm btn-outline-primary genre-btn" onclick='toggleGenre("${genre}")'>${genre}</a>`;
+        }
+      });
+      updateArrowVisibility();
+    }
+
+    // Display currently selected genres below, with clickable remove (x)
+    function renderSelectedGenres() {
+      const container = document.getElementById("selectedGenereContainer");
+      container.innerHTML = "";
+      selectedGenres.forEach(g => {
+        const item = document.createElement("div");
+        item.className = "selected-item";
+        item.innerHTML = `${g} <span onclick='removeGenre("${g}")' title="Remove genre">&times;</span>`;
+        container.appendChild(item);
+      });
+    }
+
+    // Fetch per platform with filtering by selected genres
+    async function fetchMoviesForPlatform(platform, startIndex, count) {
+      const collected = [];
+      let fileNum = 1;
+      let skip = startIndex;
+
+      while (collected.length < count) {
+        try {
+          const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
+          if (!res.ok) break;
+
+          const data = await res.json();
+          let injectedData = data.map(m => ({ ...m, platform }));
+
+          // Filter to include movies that have at least one selected genre (case-insensitive)
+          if (selectedGenres.length > 0) {
+            injectedData = injectedData.filter(m => {
+              const genresArr = m.genres.split(",").map(g => g.trim().toLowerCase());
+              return selectedGenres.some(gen => genresArr.includes(gen.toLowerCase()));
+            });
+          }
+
+          if (skip >= injectedData.length) {
+            skip -= injectedData.length;
+            fileNum++;
+            continue;
+          }
+          const available = injectedData.length - skip;
+          const toTake = Math.min(available, count - collected.length);
+          collected.push(...injectedData.slice(skip, skip + toTake));
+          skip = 0;
+          if (collected.length >= count) break;
+          fileNum++;
+        } catch { break }
+      }
+      return collected;
+    }
+
+    // Platform availability based on filtered content
+    async function getAvailablePlatforms() {
+      const platformsWithData = [];
+      for (const platform of platforms) {
+        const movies = await fetchMoviesForPlatform(platform, 0, 1);
+        if (movies.length > 0) platformsWithData.push(platform);
+      }
+      return platformsWithData;
+    }
+
+    // Distribute the maxMoviesPerPage quota among available platforms evenly
+    function getMoviesPerPlatform(maxMoviesPerPage, platformsWithData) {
+      const base = Math.floor(maxMoviesPerPage / platformsWithData.length);
+      const remainder = maxMoviesPerPage % platformsWithData.length;
+      return platformsWithData.map((_, idx) => base + (idx < remainder ? 1 : 0));
+    }
+
+    // Fetch all movies combined from platforms for current page
+    async function fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage) {
+      const platformsWithData = await getAvailablePlatforms();
+      if (platformsWithData.length === 0) return [];
+      const perPlatformCounts = getMoviesPerPlatform(maxMoviesPerPage, platformsWithData);
+      const allMovies = [];
+      for (let i = 0; i < platformsWithData.length; i++) {
+        let moviesSkipped = 0;
+        for (let pg = 1; pg < currentPage; pg++) {
+          const alloc = getMoviesPerPlatform(maxMoviesPerPage, platformsWithData);
+          moviesSkipped += alloc[i];
+        }
+        const movies = await fetchMoviesForPlatform(platformsWithData[i], moviesSkipped, perPlatformCounts[i]);
+        allMovies.push(...movies);
+      }
+      return allMovies;
+    }
+
+    async function loadMovies() {
+      const movies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage);
+      renderGenres();
+      renderSelectedGenres();
+
+      const grid = document.getElementById("movie-grid");
+      if (movies.length === 0) {
+        grid.innerHTML = `
+      <div class="alert alert-warning text-center" role="alert" style="width:100%;">
+        No movies found for the selected genre(s).
+      </div>
+    `;
+      } else {
+        renderMovies(movies);
+      }
+
+      document.getElementById("prevBtn").style.display = currentPage > 1 ? "inline-block" : "none";
+
+      const nextPageMovies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage + 1);
+      const nextPageAvailable = nextPageMovies.length > 0;
+      document.getElementById("nextBtn").style.display = nextPageAvailable ? "inline-block" : "none";
+
+      document.getElementById("prevBtn").onclick = () => {
+        const params = new URLSearchParams(window.location.search);
+        params.set("page", currentPage - 1);
+        window.location.search = params.toString();
+      };
+      document.getElementById("nextBtn").onclick = () => {
+        const params = new URLSearchParams(window.location.search);
+        params.set("page", currentPage + 1);
+        window.location.search = params.toString();
+      };
+    }
+
+    function renderMovies(movies) {
+      const grid = document.getElementById("movie-grid");
+      grid.innerHTML = "";
+      sessionStorage.setItem("currentPage", currentPage);
+      movies.forEach(movie => {
+        const titleForUrl = movie.title.replace(/\s+/g, "+");
+        grid.innerHTML += `
+          <div class="col-6 col-md-3 col-lg-2 movie-card">
+            <a href="detail.html?name=${titleForUrl}&id=${movie.id}&platformID=${movie.platform}" class="text-decoration-none text-dark">
+              <img src="${movie.posterImg}" alt="${movie.title}" class="poster" />
+              <h5 class="mt-2">${movie.title}</h5>
+              <p class="text-muted">${movie.genres}</p>
+            </a>
+          </div>
+        `;
+      });
+    }
+
+    function scrollGenres(amount) {
+      const genreList = document.getElementById("genre-list");
+      genreList.scrollBy({ left: amount, behavior: "smooth" });
+    }
+
+    function updateArrowVisibility() {
+      const genreList = document.getElementById("genre-list");
+      const leftArrow = document.querySelector(".scroll-left");
+      const rightArrow = document.querySelector(".scroll-right");
+      const scrollLeft = genreList.scrollLeft;
+      const maxScrollLeft = genreList.scrollWidth - genreList.clientWidth;
+      leftArrow.style.display = scrollLeft <= 5 ? "none" : "block";
+      rightArrow.style.display = scrollLeft >= maxScrollLeft - 5 ? "none" : "block";
+    }
+
+    document.getElementById("resetBtn").addEventListener("click", resetFilters);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderSelectedGenres();
+      const genreList = document.getElementById("genre-list");
+      genreList.addEventListener("scroll", updateArrowVisibility);
+      loadMovies();
+    });
+
+
+    const paragraph = document.getElementById('toggleText');
+    const fullText = paragraph.textContent.trim();
+    const words = fullText.split(' ');
+    const limit = 15;
+
+    if (words.length > limit) {
+      const visibleText = words.slice(0, limit).join(' ');
+      const hiddenText = words.slice(limit).join(' ');
+
+      paragraph.innerHTML = `
+      ${visibleText} <span id="dots">...</span><span id="moreText" style="display:none"> ${hiddenText}</span>
+      <a href="#" id="toggleBtn" style="color: blue; cursor: pointer; text-decoration: underline; margin-left: 5px;">Read more</a>
+    `;
+
+      const toggleBtn = document.getElementById('toggleBtn');
+      const moreText = document.getElementById('moreText');
+      const dots = document.getElementById('dots');
+
+      toggleBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (moreText.style.display === 'none') {
+          moreText.style.display = 'inline';
+          dots.style.display = 'none';
+          toggleBtn.textContent = 'Show less';
+        } else {
+          moreText.style.display = 'none';
+          dots.style.display = 'inline';
+          toggleBtn.textContent = 'Read more';
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

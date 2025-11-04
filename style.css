@@ -1,0 +1,232 @@
+/* Body with subtle very light blue background and dark text */
+body {
+  background-color: #eef3f5;
+  /* very light blue */
+  color: #222;
+  /* dark text for readability */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Poster images */
+.poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.custom-search-wrapper {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  /* vertically center input and button */
+}
+
+.custom-search-wrapper input[type="text"] {
+  outline: none;
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: none;
+  font-size: 1em;
+  outline-offset: 2px;
+  font-family: inherit;
+}
+
+
+.custom-search-wrapper button {
+  outline: none;
+  /* Remove default outline */
+  padding: 8px 18px;
+  background-color: #2a72d8;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  white-space: nowrap;
+  /* prevent button text wrap */
+}
+
+.custom-search-wrapper button:hover {
+  background-color: #1b63c7;
+  color: #f5f9fc;
+}
+
+
+/* Remove Bootstrap button styles and create minimal custom buttons */
+.genre-btn,
+.reset-btn,
+.pagination-controls button {
+  background-color: transparent;
+  border: 2px solid transparent;
+  padding: 6px 14px;
+  font-size: 0.95em;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #222;
+  text-align: center;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Genre buttons with blue outline and subtle fill on hover */
+.genre-btn {
+  border-color: #e2e8f1;
+  /* blue */
+  color: #000000;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.genre-btn:hover {
+  background-color: #2a72d8;
+  color: #f5f9fc;
+}
+
+/* Reset button with green border and subtle fill on hover */
+.reset-btn {
+  color: #000000;
+  background-color: #e7e1c4;
+  font-weight: 700;
+}
+
+.reset-btn:hover {
+  background-color: #dbd4b0;
+  color: #000000;
+}
+
+/* Pagination buttons with orange border */
+.pagination-controls button {
+  background-color: #2a72d8;
+  color: #f8f8f8;
+  margin: 0 6px;
+  min-width: 100px;
+  font-weight: 700;
+  border: none;
+}
+
+.pagination-controls button:hover {
+  background-color: #115bc2;
+  color: #fafafa;
+  border: none;
+}
+
+/* Movie cards styling */
+.movie-card {
+  margin-bottom: 30px;
+}
+
+/* Genre scroll and wrapper with subtle background */
+.genre-scroll-wrapper {
+  position: relative;
+  padding: 12px 0;
+  border-radius: 6px;
+}
+
+/* Horizontal scroll styling */
+.genre-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0 20px 10px 20px;
+  scroll-behavior: smooth;
+  scrollbar-color: #c9d6e5 #e5eff8;
+  scrollbar-width: thin;
+  background-color: transparent;
+}
+
+.genre-scroll::-webkit-scrollbar {
+  height: 6px;
+  background-color: #e5eff8;
+}
+
+.genre-scroll::-webkit-scrollbar-thumb {
+  background-color: #c9d6e5;
+  border-radius: 3px;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  background-color: #d3d3d3;
+  /* light grey circle */
+  border: none;
+  /* no border */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: none;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.scroll-arrow:hover {
+  background-color: #b0b0b0;
+  /* slightly darker grey on hover */
+}
+
+.scroll-left {
+  left: 5px;
+}
+
+.scroll-right {
+  right: 5px;
+}
+
+
+@media (max-width: 768px) {
+  .scroll-arrow {
+    display: none;
+  }
+}
+
+/* Selected genres styled with subtle green background and text */
+.selected-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.selected-item {
+  background-color: #2a72d8;
+  /* very light green */
+  color: #ffffff;
+  /* green */
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.selected-item span {
+  cursor: pointer;
+  margin-left: 8px;
+  font-weight: 700;
+  color: #ffffff;
+  user-select: none;
+  font-size: 15px;
+}
+
+/* Pagination controls container */
+.pagination-controls {
+  text-align: center;
+  margin-top: 30px;
+}
