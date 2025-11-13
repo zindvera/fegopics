@@ -81,7 +81,7 @@
     <script src="search-movies.js"></script>
     <script>
         const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
-        const maxMoviesPerPage = 4;
+        const maxMoviesPerPage = 18;
         const MAX_MOVIES_PER_FILE = 50;
         const urlParams = new URLSearchParams(window.location.search);
 
@@ -148,6 +148,26 @@
             return platformsWithData.map((_, idx) => base + (idx < remainder ? 1 : 0));
         }
 
+
+
+        // Helper: Round-robin interleave movie arrays
+        function interleaveMovieArrays(arrays, maxItems) {
+            const result = [];
+            let idx = 0;
+            let added;
+            do {
+                added = false;
+                for (const arr of arrays) {
+                    if (idx < arr.length && result.length < maxItems) {
+                        result.push(arr[idx]);
+                        added = true;
+                    }
+                }
+                idx++;
+            } while (added && result.length < maxItems);
+            return result;
+        }
+
         async function fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage) {
             const platformsWithData = await getAvailablePlatforms();
             if (platformsWithData.length === 0) return [];
@@ -162,8 +182,14 @@
                 const movies = await fetchMoviesForPlatform(platformsWithData[i], moviesSkipped, perPlatformCounts[i]);
                 allMovies.push(...movies);
             }
-            return allMovies;
+            // Group movies by platform
+            const moviesByPlatform = platformsWithData.map(platform =>
+                allMovies.filter(m => m.platform === platform)
+            );
+            // Interleave grouped arrays for round-robin sequence
+            return interleaveMovieArrays(moviesByPlatform, maxMoviesPerPage);
         }
+
 
         function truncateText(text, maxLength) {
             if (text.length <= maxLength) return text;
