@@ -230,3 +230,45 @@ body {
   text-align: center;
   margin-top: 30px;
 }
+
+#searchMovieKeyword{
+  height: 50px;
+}
+
+#searchBtn{
+  height: 48px;
+}
+
+/* Phone view: width 100% (less than 600px) */
+@media (max-width: 599px) {
+  #logopic {
+    height: 40px;
+  }
+
+  #main-heading {
+    font-size: 25px;
+  }
+}
+
+
+/* Tablet view: width 95% (600px to 1199px) */
+@media (min-width: 600px) and (max-width: 1199px) {
+  #logopic {
+    height: 45px;
+  }
+
+  #main-heading {
+    font-size: 34px;
+  }
+}
+
+/* Desktop view: width 90% (1200px and above) */
+@media (min-width: 1200px) {
+  #logopic {
+    height: 50px;
+  }
+
+  #main-heading {
+    font-size: 36px;
+  }
+}
