@@ -188,6 +188,44 @@ body {
 }
 
 
+.scroll-search {
+  display: none;
+  /* Hidden by default */
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fsearch-container {
+  display: flex;
+  align-items: center;
+}
+
+.fcustom-search-wrapper {
+  display: flex;
+  width: 40%;
+}
+
+#fsearchMovieKeyword {
+  flex-grow: 1;
+  height: 36px;
+  padding: 6px 12px;
+}
+
+
+.fsearch-results {
+  max-height: 80vh;
+  /* or any suitable max height */
+  overflow-y: auto;
+}
+
+
+
 @media (max-width: 768px) {
   .scroll-arrow {
     display: none;
@@ -231,13 +269,16 @@ body {
   margin-top: 30px;
 }
 
-#searchMovieKeyword{
+#searchMovieKeyword {
   height: 50px;
 }
 
-#searchBtn{
+#searchBtn {
   height: 48px;
 }
+
+
+
 
 /* Phone view: width 100% (less than 600px) */
 @media (max-width: 599px) {
@@ -248,6 +289,64 @@ body {
   #main-heading {
     font-size: 25px;
   }
+
+
+  .genre-scroll-wrapper {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+
+  .sub-heading {
+    width: 95vw;
+    margin: auto;
+  }
+
+
+
+  /* Stack logo and the search container vertically, centered */
+  .scroll-search>div.d-flex.align-items-center {
+    flex-direction: column !important;
+    /* vertical stacking */
+    align-items: center !important;
+    /* horizontally center */
+  }
+
+  /* Margin below logo */
+  .scroll-search>div.d-flex.align-items-center img {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    /* override right margin */
+  }
+
+  /* Center search container with max width */
+  .fsearch-container {
+    width: 100% !important;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  /* Keep input and button side-by-side */
+  .fcustom-search-wrapper {
+    flex-direction: row;
+    /* horizontal */
+    gap: 8px;
+    /* spacing */
+    width: 100%;
+  }
+
+  .fcustom-search-wrapper input,
+  .fcustom-search-wrapper button {
+    width: auto;
+    /* natural width */
+  }
+
+  /* Let input grow to fill available space */
+  .fcustom-search-wrapper input {
+    flex-grow: 1;
+  }
+
 }
 
 
@@ -260,6 +359,26 @@ body {
   #main-heading {
     font-size: 34px;
   }
+
+
+  .genre-scroll-wrapper {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+
+  .sub-heading {
+    width: 70vw;
+    margin: auto;
+  }
+
+
+
+  .fcustom-search-wrapper {
+    width: 40%;
+  }
+
+
 }
 
 /* Desktop view: width 90% (1200px and above) */
@@ -271,4 +390,23 @@ body {
   #main-heading {
     font-size: 36px;
   }
+
+
+  .genre-scroll-wrapper {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+
+  .sub-heading {
+    width: 65vw;
+    margin: auto;
+  }
+
+  
+.fcustom-search-wrapper {
+  width: 35%;
+}
+
+
 }

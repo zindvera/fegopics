@@ -11,27 +11,26 @@
 </head>
 
 <body>
-  <div class="container py-4">
-
-    <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in;">
-      <img id="logopic"
-        src="media/fegopics-logo.png" alt="">
-    </div>
-
-    <div class="main-heading" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-      <h1>Free Movies Library with Streaming Links</h1>
-    </div>
-
-    <div class="sub-heading"
-      style="display: flex; justify-content: center; align-items: center; text-align: center; margin-bottom: 0.35in;">
-      <p id="toggleText" style="padding-top: 0.25in; font-size: 17px;">
-        Browse and watch free movies collected from multiple legal streaming sites. We provide direct links to movies
-        available with ads, free signup, or no signup required—making it easy to enjoy films safely and freely.
-      </p>
-
-    </div>
 
 
+  <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in; margin-top: 0.5in;">
+    <img id="logopic" src="media/fegopics-logo.png" alt="">
+  </div>
+
+  <div class="main-heading" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+    <h1>Free Movies Library with Streaming Links</h1>
+  </div>
+
+  <div class="sub-heading"
+    style="display: flex; justify-content: center; align-items: center; text-align: center; margin-bottom: 0.35in;">
+    <p id="toggleText" style="padding-top: 0.25in; font-size: 17px;">
+      Browse and watch free movies collected from multiple legal streaming sites. We provide direct links to movies
+      available with ads, free signup, or no signup required—making it easy to enjoy films safely and freely.
+    </p>
+
+  </div>
+
+  <div class="static-search">
     <div class="search-container my-3 col-lg-4 col-md-5 col-11 mx-auto">
       <div class="custom-search-wrapper">
         <input type="text" id="searchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
@@ -39,43 +38,71 @@
         <button type="button" id="searchBtn">Search</button>
       </div>
     </div>
-
-
-    <div class="container" id="search-movies-container">
-      <h4 class="mb-3">Search Results</h4>
+    <div class="container-fluid" id="search-movies-container">
+      <h4 class="mt-4">Search Results</h4>
       <div class="row search-results"></div>
     </div>
+  </div>
 
 
-    <div class="genre-scroll-wrapper mb-2">
-      <button class="scroll-arrow scroll-left" onclick="scrollGenres(-200)" aria-label="Scroll left">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-      <div class="genre-scroll" id="genre-list"></div>
-      <button class="scroll-arrow scroll-right" onclick="scrollGenres(200)" aria-label="Scroll right">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-      <div class="reset-container mt-5 text-end">
-        <button class="reset-btn" id="resetBtn" title="Reset Genres Filter">RESET</button>
+
+
+
+  <div class="scroll-search"
+    style="display:none; width: 100vw; position: fixed; top: 0; left: 0; background: white; z-index: 1000; padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <div class="d-flex align-items-center">
+      <img id="flogo" src="media/fegopics-logo.png" alt="Logo" style="height: 35px; margin-right: 10px;">
+      <div class="fsearch-container flex-grow-1">
+        <div class="fcustom-search-wrapper">
+          <input type="text" id="fsearchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
+            autocapitalize="off" spellcheck="false" class="form-control" />
+          <button type="button" id="fsearchBtn" class="btn btn-primary ms-2">Search</button>
+        </div>
       </div>
     </div>
-
-
-    <!-- Selected genres container -->
-    <div class="selected-genres mt-2 mb-4" id="selectedGenereContainer"></div>
-
-    <div class="row" id="movie-grid"></div>
-    <div class="pagination-controls">
-      <button id="prevBtn" class="btn btn-outline-secondary me-2" style="display:none;">← Previous</button>
-      <button id="nextBtn" class="btn btn-outline-primary" style="display:none;">Next →</button>
+    <div class="mt-2 mx-0 px-0" id="fsearch-movies-container">
+      <h4 class="mt-4">Search Results</h4>
+      <div class="row fsearch-results"></div>
     </div>
   </div>
+
+
+
+
+  <div class="genre-scroll-wrapper mb-2">
+    <button class="scroll-arrow scroll-left" onclick="scrollGenres(-200)" aria-label="Scroll left">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"
+        stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="genre-scroll" id="genre-list"></div>
+    <button class="scroll-arrow scroll-right" onclick="scrollGenres(200)" aria-label="Scroll right">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"
+        stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    <div class="reset-container mt-5 text-end">
+      <button class="reset-btn" id="resetBtn" title="Reset Genres Filter">RESET</button>
+    </div>
+  </div>
+
+
+  <!-- Selected genres container -->
+  <div class="selected-genres mt-2 mb-4" id="selectedGenereContainer"></div>
+
+  <div class="container">
+    <div class="row" id="movie-grid"></div>
+  </div>
+
+
+
+  <div class="pagination-controls">
+    <button id="prevBtn" class="btn btn-outline-secondary me-2" style="display:none;">← Previous</button>
+    <button id="nextBtn" class="btn btn-outline-primary" style="display:none;">Next →</button>
+  </div>
+
 
   <script src="./genres.js"></script>
   <script src="predefined-platform.js"></script>
@@ -86,6 +113,12 @@
     const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
 
     const maxMoviesPerPage = 18;
+
+    fsearchBtn = document.getElementById('fsearchBtn');
+    fsearchBtn.addEventListener('click', function (event) {
+      document.body.style.overflowY = 'hidden';
+    });
+
 
     const urlParams = new URLSearchParams(window.location.search);
     // Get multiple genres split by comma, trimming spaces
@@ -368,6 +401,26 @@
         }
       });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const staticSearch = document.querySelector('.static-search');
+      const scrollSearch = document.querySelector('.scroll-search');
+
+      function checkStaticSearchVisibility() {
+        const rect = staticSearch.getBoundingClientRect();
+        // If static-search is fully above viewport or partially out of view at top
+        if (rect.bottom < 0) {
+          scrollSearch.style.display = 'block';
+        } else {
+          scrollSearch.style.display = 'none';
+        }
+      }
+
+      window.addEventListener('scroll', checkStaticSearchVisibility);
+      checkStaticSearchVisibility(); // init on page load
+    });
+
+
   </script>
 </body>
 
