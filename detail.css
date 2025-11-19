@@ -5,6 +5,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .poster {
@@ -47,8 +48,8 @@ body {
 
 /* Custom watch button styling */
 .watch-btn {
-  padding: 6px 14px;
-  font-size: 1rem;
+  padding: 8px 18px;
+  font-size: 19px;
   line-height: 1.5;
   border-radius: 6px;
   border: none;
@@ -145,4 +146,111 @@ body {
 .custom-search-wrapper button:hover {
   background-color: #1b63c7;
   color: #f5f9fc;
+}
+
+
+
+.scroll-search {
+  width: 100vw;
+  background: white;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fsearch-container {
+  display: flex;
+  align-items: center;
+}
+
+.fcustom-search-wrapper {
+  display: flex;
+  width: 40%;
+}
+
+#fsearchMovieKeyword {
+  flex-grow: 1;
+  height: 36px;
+  padding: 6px 12px;
+}
+
+
+.fsearch-results {
+  max-height: 80vh;
+  /* or any suitable max height */
+  overflow-y: auto;
+}
+
+
+
+
+/* Phone view: width 100% (less than 600px) */
+@media (max-width: 599px) {
+
+  /* Stack logo and the search container vertically, centered */
+  .scroll-search>div.d-flex.align-items-center {
+    flex-direction: column !important;
+    /* vertical stacking */
+    align-items: center !important;
+    /* horizontally center */
+  }
+
+  /* Margin below logo */
+  .scroll-search>div.d-flex.align-items-center img {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    /* override right margin */
+  }
+
+  /* Center search container with max width */
+  .fsearch-container {
+    width: 100% !important;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  /* Keep input and button side-by-side */
+  .fcustom-search-wrapper {
+    flex-direction: row;
+    /* horizontal */
+    gap: 8px;
+    /* spacing */
+    width: 100%;
+  }
+
+  .fcustom-search-wrapper input,
+  .fcustom-search-wrapper button {
+    width: auto;
+    /* natural width */
+  }
+
+  /* Let input grow to fill available space */
+  .fcustom-search-wrapper input {
+    flex-grow: 1;
+  }
+
+}
+
+
+
+
+
+/* Tablet view: width 95% (600px to 1199px) */
+@media (min-width: 600px) and (max-width: 1199px) {
+
+
+  .fcustom-search-wrapper {
+    width: 40%;
+  }
+
+}
+
+
+
+/* Desktop view: width 90% (1200px and above) */
+@media (min-width: 1200px) {
+  .fcustom-search-wrapper {
+    width: 35%;
+  }
 }

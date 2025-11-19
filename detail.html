@@ -13,29 +13,44 @@
 <body>
 
 
-    <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in;">
-        <img style="height: 60px;" id="logopic"
-            src="https://latestlogo.com/wp-content/uploads/2023/12/microsoft-365-2022-logo.png" alt="">
-    </div>
-
-    <!-- Search Box and Button -->
-    <div class="container">
 
 
-        <div class="search-container my-3 col-lg-4 col-md-5 col-11 mx-auto">
-            <div class="custom-search-wrapper">
-                <input type="text" id="searchMovieKeyword" placeholder="Search Movies" autocomplete="off"
-                    autocorrect="off" autocapitalize="off" spellcheck="false">
-                <button type="button" id="searchBtn">Search</button>
+    <div class="static-search"
+        style="width: 100vw; background: white;padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <div class="d-flex align-items-center">
+            <img id="logo" src="media/fegopics-logo.png" alt="Logo" style="height: 35px; margin-right: 10px;">
+            <div class="search-container flex-grow-1">
+                <div class="fcustom-search-wrapper">
+                    <input type="text" id="searchMovieKeyword" placeholder="Search Movies" autocomplete="off"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" />
+                    <button type="button" id="searchBtn" class="btn btn-primary ms-2">Search</button>
+                </div>
             </div>
         </div>
-
-        <div class="container py-4" id="search-movies-container">
-            <h4 class="mb-3">Search Results</h4>
+        <div class="mt-2 mx-0 px-0" id="search-movies-container">
+            <h4 class="mt-4">Search Results</h4>
             <div class="row search-results"></div>
         </div>
     </div>
 
+
+    <div class="scroll-search"
+        style="display:none; width: 100vw; position: fixed; top: 0; left: 0; background: white; z-index: 1000; padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <div class="d-flex align-items-center">
+            <img id="flogo" src="media/fegopics-logo.png" alt="Logo" style="height: 35px; margin-right: 10px;">
+            <div class="fsearch-container flex-grow-1">
+                <div class="fcustom-search-wrapper">
+                    <input type="text" id="fsearchMovieKeyword" placeholder="Search Movies" autocomplete="off"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" />
+                    <button type="button" id="fsearchBtn" class="btn btn-primary ms-2">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2 mx-0 px-0" id="fsearch-movies-container">
+            <h4 class="mt-4">Search Results</h4>
+            <div class="row fsearch-results"></div>
+        </div>
+    </div>
 
 
 
@@ -77,13 +92,23 @@
     </div>
 
     <script src="predefined-platform.js"></script>
+    <script src="search-movies.js"></script>
+
     <!-- Load your search-movies.js -->
     <script src="search-movies.js"></script>
     <script>
+        static_search();
+        scroll_search();
         const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
         const maxMoviesPerPage = 18;
         const MAX_MOVIES_PER_FILE = 50;
         const urlParams = new URLSearchParams(window.location.search);
+
+        fsearchBtn = document.getElementById('fsearchBtn');
+        fsearchBtn.addEventListener('click', function (event) {
+            document.body.style.overflowY = 'hidden';
+        });
+
 
         const rawId = urlParams.get("id") || "";
         const platformID = urlParams.get("platformID") || "";
@@ -494,6 +519,27 @@
         }
 
         main();
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const staticSearch = document.querySelector('.static-search');
+            const scrollSearch = document.querySelector('.scroll-search');
+
+            function checkStaticSearchVisibility() {
+                const rect = staticSearch.getBoundingClientRect();
+                // If static-search is fully above viewport or partially out of view at top
+                if (rect.bottom < 0) {
+                    scrollSearch.style.display = 'block';
+                } else {
+                    scrollSearch.style.display = 'none';
+                }
+            }
+
+            window.addEventListener('scroll', checkStaticSearchVisibility);
+            checkStaticSearchVisibility(); // init on page load
+        });
+
     </script>
 </body>
 
