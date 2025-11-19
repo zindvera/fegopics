@@ -158,6 +158,16 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+
+.static-search {
+  width: 100vw;
+  background: white;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
 .fsearch-container {
   display: flex;
   align-items: center;
@@ -201,6 +211,23 @@ body {
     margin-right: 0;
     /* override right margin */
   }
+
+    /* Stack logo and the search container vertically, centered */
+  .static-search>div.d-flex.align-items-center {
+    flex-direction: column !important;
+    /* vertical stacking */
+    align-items: center !important;
+    /* horizontally center */
+  }
+
+  /* Margin below logo */
+  .static-search>div.d-flex.align-items-center img {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    /* override right margin */
+  }
+
+
 
   /* Center search container with max width */
   .fsearch-container {

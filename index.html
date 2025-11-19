@@ -13,6 +13,8 @@
 <body>
 
 
+
+
   <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in; margin-top: 0.5in;">
     <img id="logopic" src="media/fegopics-logo.png" alt="">
   </div>
@@ -51,7 +53,7 @@
   <div class="scroll-search"
     style="display:none; width: 100vw; position: fixed; top: 0; left: 0; background: white; z-index: 1000; padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <div class="d-flex align-items-center">
-      <img id="flogo" src="media/fegopics-logo.png" alt="Logo" style="height: 35px; margin-right: 10px;">
+      <img id="flogo" src="media/fegopics-logo.png" alt="Logo" style="height: 30px; margin-right: 10px;">
       <div class="fsearch-container flex-grow-1">
         <div class="fcustom-search-wrapper">
           <input type="text" id="fsearchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
@@ -109,6 +111,12 @@
   <script src="search-movies.js"></script>
 
   <script>
+
+    static_search();
+    scroll_search();
+
+
+
     // Platforms and pagination
     const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
 
