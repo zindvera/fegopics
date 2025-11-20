@@ -13,6 +13,26 @@ body {
   border-radius: 8px;
 }
 
+ 
+  /* Footer styles */
+  footer {
+    background-color: #e1f2f8;
+    color: rgb(6, 96, 138);
+    padding: 1rem 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+  }
+  footer a {
+    color: #272727;
+    margin: 0 1rem;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+
 .platform-entry {
   display: flex;
   flex-direction: column;
