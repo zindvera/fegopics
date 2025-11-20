@@ -120,7 +120,6 @@ body {
   outline: none;
   flex-grow: 1;
   padding: 8px 12px;
-  border: none;
   font-size: 1em;
   outline-offset: 2px;
   font-family: inherit;
@@ -212,7 +211,7 @@ body {
     /* override right margin */
   }
 
-    /* Stack logo and the search container vertically, centered */
+  /* Stack logo and the search container vertically, centered */
   .static-search>div.d-flex.align-items-center {
     flex-direction: column !important;
     /* vertical stacking */
@@ -257,6 +256,42 @@ body {
     flex-grow: 1;
   }
 
+  .custom-search-wrapper {
+    width: 100%;
+  }
+
+
+  
+  /* Center search container with max width */
+  .search-container {
+    width: 100% !important;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  /* Keep input and button side-by-side */
+  .custom-search-wrapper {
+    flex-direction: row;
+    /* horizontal */
+    gap: 8px;
+    /* spacing */
+    width: 100%;
+  }
+
+  .custom-search-wrapper input,
+  .custom-search-wrapper button {
+    width: auto;
+    /* natural width */
+  }
+
+  /* Let input grow to fill available space */
+  .custom-search-wrapper input {
+    flex-grow: 1;
+  }
+
+
+
 }
 
 
@@ -271,6 +306,10 @@ body {
     width: 40%;
   }
 
+  .custom-search-wrapper {
+    width: 40%;
+  }
+
 }
 
 
@@ -278,6 +317,10 @@ body {
 /* Desktop view: width 90% (1200px and above) */
 @media (min-width: 1200px) {
   .fcustom-search-wrapper {
+    width: 35%;
+  }
+
+  .custom-search-wrapper {
     width: 35%;
   }
 }
