@@ -50,9 +50,9 @@
   <div class="scroll-search"
     style="display:none; width: 100vw; position: fixed; top: 0; left: 0; background: white; z-index: 1000; padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <div class="d-flex align-items-center">
-          <a href="index.html" style="text-decoration: none;">
-              <img id="logo" src="media/fegopics-logo.png" alt="Logo" style="height: 35px; margin-right: 10px;">
-            </a>
+      <a href="index.html" style="text-decoration: none;">
+        <img id="logo" src="media/fegopics-logo.png" alt="Logo" style="height: 35px; margin-right: 10px;">
+      </a>
       <div class="fsearch-container flex-grow-1">
         <div class="fcustom-search-wrapper">
           <input type="text" id="fsearchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
@@ -107,17 +107,49 @@
   <br><br>
 
   <footer>
-  <a href="privacy.html">Privacy Policy</a>
-  <a href="cookies.html">Cookies Policy</a>
-  <a href="terms.html">Terms of Use</a>
-  <a href="contact.html">Contact Us</a>
-</footer>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="cookies.html">Cookies Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="contact.html">Contact Us</a>
+  </footer>
 
   <script src="./genres.js"></script>
   <script src="predefined-platform.js"></script>
   <script src="search-movies.js"></script>
 
   <script>
+
+
+
+    function makeCanonical() {
+      const params = new URLSearchParams(window.location.search);
+
+      const page = params.get('page');
+      const genres = params.get('genres');
+
+      const newParams = new URLSearchParams();
+
+      // Add page first if present
+      if (page) newParams.set('page', page);
+
+      // Add genres second if present
+      if (genres) newParams.set('genres', genres);
+
+      // Build canonical URL with only page and genres parameters
+      const canonicalUrl = window.location.origin + window.location.pathname +
+        (newParams.toString() ? '?' + newParams.toString() : '');
+
+      let link = document.querySelector('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', canonicalUrl);
+      console.log('Canonical set to:', canonicalUrl);
+    }
+
+    makeCanonical();
 
     static_search();
     scroll_search();
@@ -441,5 +473,3 @@
 
 
 </html>
-
-
