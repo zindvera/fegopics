@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <hr> 
+    <hr>
     <div class="container py-4" id="related-container">
         <h4 class="mb-3">🎬 Related by Genre</h4>
         <div class="row" id="related-grid"></div>
@@ -109,9 +109,60 @@
     <script src="predefined-platform.js"></script>
     <script src="search-movies.js"></script>
 
-    <!-- Load your search-movies.js -->
-    <script src="search-movies.js"></script>
     <script>
+
+        function setDynamicCanonical() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const platformID = urlParams.get("platformID");
+            const id = urlParams.get("id");
+            const name = urlParams.get("name");
+
+            if (!platformID || !id || !name) {
+                // Missing required params, set canonical to detail.html without extra parameters
+                setCanonicalURL(window.location.origin + window.location.pathname);
+                return;
+            }
+
+            // Construct expected movie file name
+            const fileName = `${platformID}-${id}-${name}.html`;
+            const moviePath = `./movie/${fileName}`;
+
+            // Construct canonical URL with strictly ordered and only these 3 parameters
+            const canonicalQuery = `?name=${encodeURIComponent(name)}&id=${encodeURIComponent(id)}&platformID=${encodeURIComponent(platformID)}`;
+            const canonicalDetailURL = window.location.origin + window.location.pathname + canonicalQuery;
+
+            fetch(moviePath, { method: 'HEAD' })
+                .then(res => {
+                    if (res.ok) {
+                        // File exists, canonical points to movie folder URL with correct params order
+                        const canonicalURL = window.location.origin + `/movie/${fileName}`;
+                        setCanonicalURL(canonicalURL);
+                    } else {
+                        // File not exists, canonical set to detail page with correct param order
+                        setCanonicalURL(canonicalDetailURL);
+                    }
+                })
+                .catch(() => {
+                    // On error, fallback to detail page with correct param order
+                    setCanonicalURL(canonicalDetailURL);
+                });
+        }
+
+        function setCanonicalURL(url) {
+            let link = document.querySelector("link[rel='canonical']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'canonical';
+                document.head.appendChild(link);
+            }
+            link.href = url;
+        }
+
+        setDynamicCanonical();
+
+
+
+
         static_search();
         scroll_search();
         const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
@@ -147,31 +198,41 @@
             }
         }
 
+
+
+
         async function fetchMoviesForPlatform(platform, startIndex, count) {
             const collected = [];
             let fileNum = Math.floor(startIndex / MAX_MOVIES_PER_FILE) + 1;
             let skip = startIndex % MAX_MOVIES_PER_FILE;
+
             while (collected.length < count) {
                 try {
-                    const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
-                    if (!res.ok) break;
+                    const res = await fetch(`../data/movies/${platform}/movies-${fileNum}.json`);
+                    if (!res.ok) break;  // Stop fetching if file does not exist (404)
+
                     const data = await res.json();
                     let injectedData = data.map(m => ({ ...m, platform }));
+
                     if (skip >= injectedData.length) {
                         skip -= injectedData.length;
                         fileNum++;
                         continue;
                     }
+
                     const available = injectedData.length - skip;
                     const toTake = Math.min(available, count - collected.length);
                     collected.push(...injectedData.slice(skip, skip + toTake));
                     skip = 0;
-                    if (collected.length >= count) break;
                     fileNum++;
-                } catch { break; }
+                } catch {
+                    break;  // Stop fetching on fetch errors
+                }
             }
+
             return collected;
         }
+
 
         async function getAvailablePlatforms() {
             const platformsWithData = [];
@@ -397,7 +458,7 @@
                 if (fileNum < 1) continue;
                 try {
                     const res = await fetch(`./data/movies/${platformID}/movies-${fileNum}.json`);
-                    if (!res.ok) continue;
+                    if (!res.ok) break;
                     const data = await res.json();
                     const injectedData = data.map(m => ({ ...m, platform: platformID }));
                     const filtered = injectedData.filter(m =>
@@ -415,6 +476,8 @@
             return Array.from(collected.values());
         }
 
+
+
         async function fetchFromOtherPlatforms(currentMovie, currentGenres, excludeIds, maxCount) {
             const otherPlatforms = platforms.filter(p => p !== platformID);
             const collected = [];
@@ -426,7 +489,7 @@
 
                 while (platformCount < perPlatformTarget && fileNum <= 20) {
                     try {
-                        const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
+                        const res = await fetch(`../data/movies/${platform}/movies-${fileNum}.json`);
                         if (!res.ok) break;
                         const data = await res.json();
                         const injectedData = data.map(m => ({ ...m, platform }));
@@ -452,6 +515,7 @@
 
             return collected.slice(0, maxCount);
         }
+
 
         async function loadRelatedByGenre(currentMovie) {
             if (!currentMovie.genres) {
