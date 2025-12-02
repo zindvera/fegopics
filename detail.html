@@ -15,6 +15,9 @@
 
 <body>
 
+    <div id="loader-overlay">
+        <div class="loader"></div>
+    </div>
 
 
 
@@ -114,42 +117,45 @@
 
     <script>
 
+
         function setDynamicCanonical() {
             const urlParams = new URLSearchParams(window.location.search);
             const platformID = urlParams.get("platformID");
             const id = urlParams.get("id");
             const name = urlParams.get("name");
+            const sanitizedName = name ? name.replace(/\s+/g, '-') : '';
 
             if (!platformID || !id || !name) {
-                // Missing required params, set canonical to detail.html without extra parameters
-                setCanonicalURL(window.location.origin + window.location.pathname);
+                // Missing required params, set canonical to absolute detail.html without parameters
+                setCanonicalURL(`https://fegopics.online${window.location.pathname}`);
                 return;
             }
 
             // Construct expected movie file name
-            const fileName = `${platformID}-${id}-${name}.html`;
+            const fileName = `${platformID}-${id}-${sanitizedName}.html`;
             const moviePath = `./movie/${fileName}`;
 
-            // Construct canonical URL with strictly ordered and only these 3 parameters
-            const canonicalQuery = `?name=${encodeURIComponent(name)}&id=${encodeURIComponent(id)}&platformID=${encodeURIComponent(platformID)}`;
-            const canonicalDetailURL = window.location.origin + window.location.pathname + canonicalQuery;
+            // Construct canonical URL with strictly ordered & sanitized params
+            const canonicalQuery = `?name=${encodeURIComponent(sanitizedName)}&id=${encodeURIComponent(id)}&platformID=${encodeURIComponent(platformID)}`;
+            const canonicalDetailURL = `https://fegopics.online${window.location.pathname}${canonicalQuery}`;
 
             fetch(moviePath, { method: 'HEAD' })
                 .then(res => {
                     if (res.ok) {
-                        // File exists, canonical points to movie folder URL with correct params order
-                        const canonicalURL = window.location.origin + `/movie/${fileName}`;
+                        // File exists, canonical points to movie folder URL
+                        const canonicalURL = `https://fegopics.online/movie/${fileName}`;
                         setCanonicalURL(canonicalURL);
                     } else {
-                        // File not exists, canonical set to detail page with correct param order
+                        // File does not exist, canonical set to detail page with correct params
                         setCanonicalURL(canonicalDetailURL);
                     }
                 })
                 .catch(() => {
-                    // On error, fallback to detail page with correct param order
+                    // On error, fallback to detail page with correct params
                     setCanonicalURL(canonicalDetailURL);
                 });
         }
+
 
         function setCanonicalURL(url) {
             let link = document.querySelector("link[rel='canonical']");
@@ -596,6 +602,13 @@
                 return;
             }
             renderMovie(movie);
+          
+            const loader = document.getElementById('loader-overlay');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        
+
             await loadMoreMovies(movie);
             await loadRelatedByGenre(movie);
         }

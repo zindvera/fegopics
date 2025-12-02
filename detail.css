@@ -211,6 +211,30 @@ body {
 }
 
 
+#loader-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader {
+  border: 6px solid #cce4ff; /* Light blue background */
+  border-top: 6px solid #007bff; /* Blue spinner color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 
 
 /* Phone view: width 100% (less than 600px) */
