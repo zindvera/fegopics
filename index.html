@@ -15,7 +15,9 @@
 
 <body>
 
-
+   <div id="loader-overlay">
+        <div class="loader"></div>
+    </div>
 
 
   <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in; margin-top: 0.5in;">
@@ -470,6 +472,12 @@
       window.addEventListener('scroll', checkStaticSearchVisibility);
       checkStaticSearchVisibility(); // init on page load
     });
+   window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-overlay');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        });
 
 
   </script>
