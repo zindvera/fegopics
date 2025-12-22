@@ -282,7 +282,11 @@ body {
 
 /* Phone view: width 100% (less than 600px) */
 @media (max-width: 599px) {
-
+ 
+    .pinterest-grid {
+    column-width: 140px !important;
+  }
+  
   /* Stack logo and the search container vertically, centered */
   .scroll-search>div.d-flex.align-items-center {
     flex-direction: column !important;
