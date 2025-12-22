@@ -162,27 +162,60 @@
 
 
 
+    // Platforms and pagination - now dynamic based on country
+    let platforms = ["MXPlayer", "JioHotstar", "Zee5", "Fawesome", "Filmzie", "FreeMoviesPlus"];
 
-    let platforms = [
-      "MXPlayer",
-      "JioHotstar",
-      "Zee5",
-      "Fawesome",
-      "Filmzie",
-      "FreeMoviesPlus"
-    ];
+    // Cookie functions
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
 
+    function setCookie(name, value, days = 365) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`;
+    }
 
-    // Simple check and update
-    (async () => {
+    // Country detection with cookie fallback
+    async function detectUserCountry() {
+      // Check cookie first (instant, no network)
+      const cachedCountry = getCookie('userCountry');
+      if (cachedCountry) {
+        alert(`Using cached country: ${cachedCountry}`);
+        return cachedCountry;
+      }
+
       try {
-        const res = await fetch('https://country.is');
-        const data = await res.json();
-        if (data.country !== 'IN') {
-          platforms = platforms.filter(p => !["MXPlayer", "JioHotstar", "Zee5"].includes(p));
-        }
-      } catch (e) { }
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        const country = data.country_code || 'US';
+
+        // Cache for 365 days
+        setCookie('userCountry', country, 365);
+        alert(`Detected & cached country: ${country}`);
+        return country;
+      } catch (error) {
+        console.log('Country detection failed, caching IN as fallback');
+        setCookie('userCountry', 'IN', 365);
+        return 'IN';
+      }
+    }
+
+    // Filter platforms based on country before loading movies
+    (async () => {
+      const userCountry = await detectUserCountry();
+      if (userCountry !== 'IN') {
+        platforms = platforms.filter(p => p !== 'MXPlayer');
+        alert(userCountry + ` detected - MXPlayer removed for ${userCountry} users`);
+      } else {
+        alert(userCountry + ' detected - keeping MXPlayer');
+      }
     })();
+
+
+
 
     const maxMoviesPerPage = 18;
 
