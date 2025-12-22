@@ -9,11 +9,38 @@ body {
   padding: 0;
 }
 
+/* Pinterest-style layout ONLY for the movie grid */
+.pinterest-grid {
+  column-width: 180px;
+  /* target card width; adjust if needed */
+  column-gap: 20px;
+}
+
+/* Each card becomes a block inside the column-flow */
+.pinterest-grid .movie-card,
+.pinterest-grid .ad-space {
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+}
+
+/* Optional: ad styling (does not touch movie cards) */
+.ad-space {
+  background-color: #e7e1c4;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+
 
 #loader-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: white;
   display: flex;
   align-items: center;
@@ -22,8 +49,10 @@ body {
 }
 
 .loader {
-  border: 6px solid #cce4ff; /* Light blue background */
-  border-top: 6px solid #007bff; /* Blue spinner color */
+  border: 6px solid #cce4ff;
+  /* Light blue background */
+  border-top: 6px solid #007bff;
+  /* Blue spinner color */
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -31,28 +60,32 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 
 
-  /* Footer styles */
-  footer {
-    background-color: #e1f2f8;
-    color: rgb(6, 96, 138);
-    padding: 1rem 0;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-  }
-  footer a {
-    color: #272727;
-    margin: 0 1rem;
-    text-decoration: none;
-  }
-  footer a:hover {
-    text-decoration: underline;
-  }
+/* Footer styles */
+footer {
+  background-color: #e1f2f8;
+  color: rgb(6, 96, 138);
+  padding: 1rem 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #272727;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
 
 
 /* Poster images */
@@ -328,6 +361,10 @@ body {
 
 /* Phone view: width 100% (less than 600px) */
 @media (max-width: 599px) {
+  .pinterest-grid {
+    column-width: 140px !important;
+  }
+
   #logopic {
     height: 40px;
   }
@@ -449,10 +486,10 @@ body {
     margin: auto;
   }
 
-  
-.fcustom-search-wrapper {
-  width: 35%;
-}
+
+  .fcustom-search-wrapper {
+    width: 35%;
+  }
 
 
 }

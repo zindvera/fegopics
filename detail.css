@@ -8,6 +8,31 @@ body {
   overflow-x: hidden;
 }
 
+/* Pinterest-style layout ONLY for the movie grid */
+.pinterest-grid {
+  column-width: 180px;
+  /* target card width; adjust if needed */
+  column-gap: 20px;
+}
+
+/* Each card becomes a block inside the column-flow */
+.pinterest-grid .movie-card,
+.pinterest-grid .ad-space {
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+}
+
+/* Optional: ad styling (does not touch movie cards) */
+.ad-space {
+  background-color: #e7e1c4;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+
 .poster {
   width: 100%;
   border-radius: 8px;

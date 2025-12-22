@@ -101,7 +101,7 @@
 
     <div class="container py-4" id="more-movies-container">
         <h4 class="mb-3">🎞️ More Movies</h4>
-        <div class="row" id="poster-grid">
+        <div  class="pinterest-grid" id="poster-grid">
             <div class="col-12 text-center py-5">
                 <div class="more-movies-loader blue-loader"></div>
                 <p class="mt-3 text-muted">Loading more movies...</p>
@@ -468,7 +468,7 @@
             movies.forEach(m => {
                 const titleForUrl = m.title.replace(/\s+/g, "+");
                 grid.innerHTML += `
-      <div class="col-6 col-md-3 col-lg-2 movie-card">
+      <div class="movie-card">
         <a href="detail.html?name=${titleForUrl}&id=${m.id}&platformID=${m.platform}" class="text-decoration-none text-dark">
           <img src="${m.posterImg}" alt="${m.title}" class="poster" loading="lazy" />
           <h5 class="mt-2">${m.title}</h5>
