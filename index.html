@@ -15,9 +15,9 @@
 
 <body>
 
-   <div id="loader-overlay">
-        <div class="loader"></div>
-    </div>
+  <div id="loader-overlay">
+    <div class="loader"></div>
+  </div>
 
 
   <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in; margin-top: 0.5in;">
@@ -162,8 +162,27 @@
 
 
 
-    // Platforms and pagination
-    const platforms = ["MXPlayer", "JioHotstar", "Zee5"];
+
+    let platforms = [
+      "MXPlayer",
+      "JioHotstar",
+      "Zee5",
+      "Fawesome",
+      "Filmzie",
+      "FreeMoviesPlus"
+    ];
+
+
+    // Simple check and update
+    (async () => {
+      try {
+        const res = await fetch('https://country.is');
+        const data = await res.json();
+        if (data.country !== 'IN') {
+          platforms = platforms.filter(p => !["MXPlayer", "JioHotstar", "Zee5"].includes(p));
+        }
+      } catch (e) { }
+    })();
 
     const maxMoviesPerPage = 18;
 
@@ -472,12 +491,12 @@
       window.addEventListener('scroll', checkStaticSearchVisibility);
       checkStaticSearchVisibility(); // init on page load
     });
-   window.addEventListener('load', () => {
-            const loader = document.getElementById('loader-overlay');
-            if (loader) {
-                loader.style.display = 'none';
-            }
-        });
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader-overlay');
+      if (loader) {
+        loader.style.display = 'none';
+      }
+    });
 
 
   </script>

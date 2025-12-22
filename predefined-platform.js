@@ -1,4 +1,4 @@
-const PLATFORM_INFO = {
+const PLATFORM_INFO = { 
   "JioHotstar": {
     name: "JioHotstar",
     url: "https://www.jiocinema.com",
@@ -13,5 +13,20 @@ const PLATFORM_INFO = {
     name: "MX Player",
     url: "https://www.mxplayer.in",
     defaultNote: "Free to watch with ads. No signup required. No app install required."
+  },
+  "Fawesome": {
+    name: "Fawesome",
+    url: "https://fawesome.tv",
+    defaultNote: "Free to watch with ads. No signup required. No app install required."
+  },
+  "Filmzie": {
+    name: "Filmzie",
+    url: "https://filmzie.com",
+    defaultNote: "Free to watch with ads. Signup optional. No app install required."
+  },
+  "FreeMoviesPlus": {
+    name: "Free Movies Plus",
+    url: "https://www.freemoviesplus.com",
+    defaultNote: "Free to watch with ads. No signup required. No app install required."
   }
-}; 
+};
