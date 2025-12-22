@@ -91,12 +91,22 @@
     <hr>
     <div class="container py-4" id="related-container">
         <h4 class="mb-3">🎬 Related by Genre</h4>
-        <div class="row" id="related-grid"></div>
+        <div class="row" id="related-grid">
+            <div class="col-12 text-center py-5">
+                <div class="related-loader blue-loader"></div>
+                <p class="mt-3 text-muted">Loading related movies...</p>
+            </div>
+        </div>
     </div>
 
     <div class="container py-4" id="more-movies-container">
         <h4 class="mb-3">🎞️ More Movies</h4>
-        <div class="row" id="poster-grid"></div>
+        <div class="row" id="poster-grid">
+            <div class="col-12 text-center py-5">
+                <div class="more-movies-loader blue-loader"></div>
+                <p class="mt-3 text-muted">Loading more movies...</p>
+            </div>
+        </div>
         <div class="pagination-controls">
             <button id="prevBtn" class="btn btn-outline-secondary me-2" style="display:none;">← Previous</button>
             <button id="nextBtn" class="btn btn-outline-primary" style="display:none;">Next →</button>
@@ -217,7 +227,7 @@
             if (userCountry !== 'IN') {
                 platforms = platforms.filter(p => !indiaOnlyPlatforms.includes(p));
                 console.log(`Detail page: Filtered for ${userCountry}:`, platforms);
-            } 
+            }
             countryLoaded = true;
         }
 
@@ -428,13 +438,13 @@
             }
         }
 
+
         async function loadMoreMovies(currentMovie) {
             // Fetch EXACTLY what index.html fetches for this page - no more, no less
             let movies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage);
 
             // Remove ONLY the current movie
             movies = movies.filter(m => !(m.id === currentMovie.id && m.platform === platformID));
-
 
             const container = document.getElementById("more-movies-container");
             const grid = document.getElementById("poster-grid");
@@ -445,14 +455,22 @@
                 return;
             }
 
+            // ✅ LOADER REMOVAL + RENDERING (replaces your existing rendering)
+            // Remove more-movies loader
+            const moreMoviesLoader = grid.querySelector('.more-movies-loader');
+            if (moreMoviesLoader) {
+                moreMoviesLoader.parentElement.remove();
+            }
+
             container.style.display = "block";
             grid.innerHTML = "";
+
             movies.forEach(m => {
                 const titleForUrl = m.title.replace(/\s+/g, "+");
                 grid.innerHTML += `
       <div class="col-6 col-md-3 col-lg-2 movie-card">
         <a href="detail.html?name=${titleForUrl}&id=${m.id}&platformID=${m.platform}" class="text-decoration-none text-dark">
-          <img src="${m.posterImg}" alt="${m.title}" class="poster" />
+          <img src="${m.posterImg}" alt="${m.title}" class="poster" loading="lazy" />
           <h5 class="mt-2">${m.title}</h5>
           <p class="text-muted">${m.genres}</p>
         </a>
@@ -486,6 +504,7 @@
                 window.location.href = `index.html?page=${newPage}`;
             };
         }
+
 
         function getGenreKey(genres) {
             return genres.split(",").map(g => g.trim()).sort().join(",");
@@ -618,8 +637,16 @@
             const newShownIds = [...shownMovieIds, ...allRelatedMovies.map(m => m.id)];
             saveShownMoviesForGenre(genreKey, newShownIds);
 
-            relatedContainer.style.display = "block";
+            // ✅ LOADER REMOVAL + RENDERING (replaces your last 12 lines)
             const grid = document.getElementById("related-grid");
+
+            // Remove related loader
+            const relatedLoader = grid.querySelector('.related-loader');
+            if (relatedLoader) {
+                relatedLoader.parentElement.remove();
+            }
+
+            relatedContainer.style.display = "block";
             grid.innerHTML = "";
 
             allRelatedMovies.forEach(m => {
@@ -627,7 +654,7 @@
                 grid.innerHTML += `
       <div class="col-6 col-md-3 col-lg-2 movie-card">
         <a href="detail.html?name=${titleForUrl}&id=${m.id}&platformID=${m.platform}" class="text-decoration-none text-dark">
-          <img src="${m.posterImg}" alt="${m.title}" class="poster" />
+          <img src="${m.posterImg}" alt="${m.title}" class="poster" loading="lazy" />
           <h5 class="mt-2">${m.title}</h5>
           <p class="text-muted">${m.genres}</p>
         </a>
@@ -635,6 +662,7 @@
     `;
             });
         }
+
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
