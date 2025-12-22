@@ -1,4 +1,4 @@
-const PLATFORM_INFO = { 
+const PLATFORM_INFO = {
   "JioHotstar": {
     name: "JioHotstar",
     url: "https://www.jiocinema.com",
@@ -30,3 +30,11 @@ const PLATFORM_INFO = {
     defaultNote: "Free to watch with ads. No signup required. No app install required."
   }
 };
+
+
+
+// Platforms and pagination - dynamic based on country (SAME as index.html)
+let platforms = ["MXPlayer", "JioHotstar", "Zee5", "Fawesome", "Filmzie", "FreeMoviesPlus"];
+
+// INDIA-ONLY platforms
+const indiaOnlyPlatforms = ["JioHotstar"];

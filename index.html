@@ -161,12 +161,6 @@
     scroll_search();
 
 
-    // Platforms and pagination - now dynamic based on country
-    let platforms = ["MXPlayer", "JioHotstar", "Zee5", "Fawesome", "Filmzie", "FreeMoviesPlus"];
-
-    // INDIA-ONLY platforms
-    const indiaOnlyPlatforms = ["MXPlayer"];
-
     // Cookie functions
     function getCookie(name) {
       const value = `; ${document.cookie}`;
@@ -186,7 +180,7 @@
     async function detectUserCountry() {
       const cachedCountry = getCookie('userCountry');
       if (cachedCountry) {
-        alert(`Using cached country: ${cachedCountry}`);
+        // alert(`Using cached country: ${cachedCountry}`);
         return cachedCountry;
       }
       try {
@@ -194,7 +188,7 @@
         const data = await response.json();
         const country = data.country_code || 'US';
         setCookie('userCountry', country, 365);
-        alert(`Detected & cached: ${country}`);
+        // alert(`Detected & cached: ${country}`);
         return country;
       } catch {
         setCookie('userCountry', 'IN', 365);
@@ -207,8 +201,8 @@
       const userCountry = await detectUserCountry();
       if (userCountry !== 'IN') {
         platforms = platforms.filter(p => !indiaOnlyPlatforms.includes(p));
-      }
-      alert(`user country; ` + userCountry);
+      } 
+      // alert(`user country; ` + userCountry);
       countryLoaded = true;
       loadMovies(); // ← Works with mutated platforms!
     }
