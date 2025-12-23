@@ -18,19 +18,10 @@ body {
 
 /* Each card becomes a block inside the column-flow */
 .pinterest-grid .movie-card,
-.pinterest-grid .ad-space {
+.pinterest-grid {
   display: inline-block;
   width: 100%;
   break-inside: avoid;
-}
-
-/* Optional: ad styling (does not touch movie cards) */
-.ad-space {
-  background-color: #e7e1c4;
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-weight: 700;
-  text-align: center;
 }
 
 
