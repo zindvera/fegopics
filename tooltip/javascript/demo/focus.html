@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FegoPics Tooltips - Live Interactive Demo</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           FEGOPICS MINIMALIST BRANDING
+           ========================================= */
+        :root {
+            --primary-color: #2563eb;
+            --navbar-height: 60px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            padding-top: var(--navbar-height);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            height: var(--navbar-height);
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Demo Page Specific Styles */
+        .hero-section {
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            mb-3;
+        }
+
+        .demo-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-card h5 {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* The visual style for words that trigger tooltips */
+        .demo-trigger {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.15rem;
+        }
+
+        .demo-trigger:hover {
+            color: #1e40af;
+            text-decoration-style: solid;
+        }
+
+        /* Mobile Nav Override */
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                background: #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container h-100 align-items-center">
+            <span class="navbar-brand d-flex align-items-center h-100">
+                <img src="https://zindvera.github.io/fegopics/media/fegopics-logo.png" height="24" alt="FegoPics"
+                    style="margin-right: 10px;">
+                <span style="font-weight: 600; color: #0f172a; font-size: 1.1rem;">Tooltip</span>
+            </span>
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container hero-section">
+        <h1 class="hero-title">Interactive Demo</h1>
+        <p class="fs-5 text-muted mx-auto" style="max-width: 600px;">
+            Hover or click the highlighted text below to see the FegoPics tooltip engine in action.
+        </p>
+    </div>
+
+    <!-- Interactive Playground Grid (USING DX-ATTRIBUTES FOR LIVE PREVIEW SECURITY) -->
+    <div class="container mb-5 pb-5">
+        <div class="row g-4">
+
+            <!-- Demo 1: Basic Text -->
+            <div class="col-lg-4 col-md-6">
+                <div class="demo-card">
+                    <h5>Basic Hover Context</h5>
+                    <span>Improve your <span class="demo-trigger"
+                            data-dx-tooltip="Search Engine Optimization helps your website rank higher on Google."
+                            data-dx-bg="#ffffff" data-dx-color="#334155" data-dx-close-icon="true"
+                            data-dx-close-color="#94a3b8" data-dx-gap="8" data-dx-pt="16px" data-dx-pb="16px"
+                            data-dx-pl="20px" data-dx-pr="20px">SEO</span> rankings.</span>
+                </div>
+            </div>
+
+            <!-- Demo 2: Gradient Premium -->
+            <div class="col-lg-4 col-md-6">
+                <div class="demo-card">
+                    <h5>CSS Gradient Integration</h5>
+                    <span>Hit limits? Click <span class="demo-trigger"
+                            data-dx-tooltip="<div style='text-align:center; min-width: 160px; margin-top:8px;'><b style='font-size:16px; color:#fff;'>Unlock Pro Features</b><br><span style='font-size:13px; color:#ffe4e6;'>Get access to advanced analytics.</span></div>"
+                            data-dx-bg="linear-gradient(135deg, #f59e0b, #e11d48)" data-dx-color="#ffffff"
+                            data-dx-close-icon="true" data-dx-close-color="#ffffff" data-dx-gap="8" data-dx-pt="16px"
+                            data-dx-pb="20px" data-dx-pl="20px" data-dx-pr="20px">Upgrade Plan</span>.</span>
+                </div>
+            </div>
+
+            <!-- Demo 3: Click Trigger Menu -->
+            <div class="col-lg-4 col-md-6">
+                <div class="demo-card">
+                    <h5>Click Navigation Menu</h5>
+                    <span>Welcome back. Go to <span class="demo-trigger"
+                            data-dx-tooltip="<div style='display:flex; flex-direction:column; gap:10px; min-width: 140px; text-align:left;'><b style='padding-bottom:8px; border-bottom:1px solid #e2e8f0; color:#0f172a; margin-right:15px;'>Account Menu</b><a href='#' style='color:#475569; text-decoration:none; font-size:14px;'>Profile Settings</a><a href='#' style='color:#ef4444; text-decoration:none; font-size:14px;'>Sign Out</a></div>"
+                            data-dx-trigger="click" data-dx-bg="#f8fafc" data-dx-color="#0f172a"
+                            data-dx-close-icon="true" data-dx-close-color="#64748b" data-dx-gap="8" data-dx-pt="18px"
+                            data-dx-pb="18px" data-dx-pl="20px" data-dx-pr="20px">My Account</span>.</span>
+                </div>
+            </div>
+
+            <!-- Demo 4: HTML Product Card -->
+            <div class="col-lg-6">
+                <div class="demo-card py-5">
+                    <h5>Rich HTML Product Card</h5>
+                    <span>Ready to upgrade your gear? <span class="demo-trigger"
+                            data-dx-tooltip="<div style='display:flex; gap:15px; align-items:center; margin-right:12px;'><img src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&h=100&fit=crop' style='border-radius:8px; width:60px; height:60px; object-fit:cover;' alt='Shoe'><div style='text-align:left;'><b style='font-size:16px; color:#0f172a'>Nike Air Max</b><br><span style='font-size:13px; color:#64748b'>Running Shoe</span><br><b style='color:#10b981;'>$129.99</b></div></div>"
+                            data-dx-bg="#f8fafc" data-dx-close-icon="true" data-dx-close-color="#94a3b8" data-dx-gap="8"
+                            data-dx-pt="16px" data-dx-pb="16px" data-dx-pl="16px" data-dx-pr="16px">Buy Now</span> to
+                        see details.</span>
+                </div>
+            </div>
+
+            <!-- Demo 5: Custom Padding / Profile -->
+            <div class="col-lg-6">
+                <div class="demo-card py-5">
+                    <h5>Custom Padding (Avatar Profile)</h5>
+                    <span>This article was written by our team. <span class="demo-trigger"
+                            data-dx-tooltip="<div style='text-align:center;'><img src='https://i.pravatar.cc/50?img=11' style='border-radius:50%; display:block; width:46px; height:46px; margin:0 auto 10px auto;' alt='Avatar'><b style='color:#0f172a; font-size:16px;'>Alex Smith</b><br><span style='color:#64748b; font-size:13px;'>Lead UX Designer</span></div>"
+                            data-dx-pos="bottom" data-dx-bg="#ffffff" data-dx-color="#0f172a" data-dx-close-icon="true"
+                            data-dx-close-color="#94a3b8" data-dx-gap="12" data-dx-pt="20px" data-dx-pb="20px"
+                            data-dx-pl="40px" data-dx-pr="40px">View Author</span> here.</span>
+                </div>
+            </div>
+
+            <!-- Demo 6: Explicit Hover Trigger -->
+            <div class="col-lg-12">
+                <div class="demo-card py-5">
+                    <h5>Financial Data Breakdown (Hover)</h5>
+                    <span>Your overall crypto portfolio is currently <span class="demo-trigger"
+                            style="color: #10b981; text-decoration-color: #10b981;"
+                            data-dx-tooltip="<div style='min-width: 180px; text-align: left;'><b style='color:#f8fafc; font-size:15px; display:block; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid #334155;'>Today's Movers</b><div style='display:flex; justify-content:space-between; margin-bottom:8px;'><span style='color:#94a3b8; font-size:13px;'>BTC/USD</span><span style='color:#10b981; font-size:13px; font-weight:600;'>+3.4%</span></div><div style='display:flex; justify-content:space-between; margin-bottom:8px;'><span style='color:#94a3b8; font-size:13px;'>ETH/USD</span><span style='color:#10b981; font-size:13px; font-weight:600;'>+1.2%</span></div><div style='display:flex; justify-content:space-between;'><span style='color:#94a3b8; font-size:13px;'>SOL/USD</span><span style='color:#ef4444; font-size:13px; font-weight:600;'>-0.8%</span></div></div>"
+                            data-dx-trigger="hover" data-dx-bg="#0f172a" data-dx-color="#f8fafc"
+                            data-dx-close-icon="true" data-dx-close-color="#64748b" data-dx-gap="12" data-dx-pt="16px"
+                            data-dx-pb="16px" data-dx-pl="20px" data-dx-pr="20px">up +5.2% today</span>.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top py-5 mt-5">
+        <div class="container text-center">
+            <img src="https://zindvera.github.io/fegopics/media/fegopics-logo.png" height="24" alt="FegoPics"
+                class="mb-3 opacity-75">
+            <p class="text-muted mb-0">© 2026 FegoPics. All rights reserved.</p>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Embedded UI Engine -->
+    <script>
+        (function () {
+            const style = document.createElement('style');
+            style.textContent = `
+        .dx-wrap {
+            position: absolute; z-index: 99999; opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; transform: translateY(5px);
+            max-width: calc(100vw - 30px); box-sizing: border-box;
+        }
+        .dx-wrap.dx-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .dx-main { position: relative; transition: clip-path 0.2s ease; max-width: 100%; box-sizing: border-box; }
+        .dx-body { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 1.4; word-wrap: break-word; max-width: 100%; box-sizing: border-box; }
+        .dx-x-btn { position: absolute; top: 6px; right: 6px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; font-weight: 500; border: none; padding: 4px 8px; line-height: 1; z-index: 10; opacity: 0.6; transition: opacity 0.2s; }
+        .dx-x-btn:hover { opacity: 1; }
+    `;
+            document.head.appendChild(style);
+
+            class DxPreview {
+                constructor(el) {
+                    this.trig = el;
+                    this.vis = false;
+                    this.trig.__dxTooltip = this;
+                    this.init();
+                    this.bind();
+                }
+
+                v(name) {
+                    const w = document.documentElement.clientWidth;
+                    let p = '';
+                    if (w < 768) p = 'phone-';
+                    else if (w < 1024) p = 'tablet-';
+                    else p = 'desktop-';
+                    return this.trig.getAttribute(`${p}data-dx-${name}`) || this.trig.getAttribute(`data-dx-${name}`);
+                }
+
+                init() {
+                    this.wrap = document.createElement('div');
+                    this.wrap.className = 'dx-wrap';
+                    this.shape = document.createElement('div');
+                    this.shape.className = 'dx-main';
+                    this.content = document.createElement('div');
+                    this.content.className = 'dx-body';
+                    this.shape.appendChild(this.content);
+
+                    if (this.v('close-icon') === 'true') {
+                        this.xBtn = document.createElement('button');
+                        this.xBtn.className = 'dx-x-btn dx-close';
+                        this.xBtn.innerHTML = '&times;';
+                        this.shape.appendChild(this.xBtn);
+                    }
+                    this.wrap.appendChild(this.shape);
+                    document.body.appendChild(this.wrap);
+                }
+
+                upd() {
+                    this.content.innerHTML = this.trig.getAttribute('data-dx-tooltip') || '';
+                    this.shape.style.background = this.v('bg') || '#1a1a1a';
+                    this.content.style.color = this.v('color') || '#ffffff';
+                    if (this.v('size')) this.content.style.width = this.v('size');
+
+                    const z = this.v('z');
+                    if (z) this.wrap.style.zIndex = z;
+
+                    const sh = this.v('shadow');
+                    this.wrap.style.filter = sh ? `drop-shadow(${sh})` : `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`;
+
+                    if (this.xBtn) {
+                        const cx = this.v('close-color');
+                        this.xBtn.style.color = cx ? cx : 'inherit';
+                    }
+
+                    this.content.style.paddingTop = this.v('pt') || '10px';
+                    this.content.style.paddingBottom = this.v('pb') || '10px';
+                    this.content.style.paddingLeft = this.v('pl') || '15px';
+
+                    const basePr = this.v('pr') || '15px';
+                    if (this.v('close-icon') === 'true') {
+                        this.content.style.paddingRight = `calc(${basePr} + 24px)`;
+                    } else {
+                        this.content.style.paddingRight = basePr;
+                    }
+                }
+
+                bind() {
+                    const m = this.v('trigger') || 'show';
+                    const vp = this.v('viewport') === 'true';
+
+                    if (vp) {
+                        const obs = new IntersectionObserver((entries) => {
+                            entries.forEach(en => {
+                                if (en.isIntersecting) {
+                                    if (this.vpTo) clearTimeout(this.vpTo);
+                                    this.vpTo = setTimeout(() => this.show(), parseInt(this.v('delay')) || 0);
+                                } else {
+                                    if (this.vpTo) clearTimeout(this.vpTo);
+                                    this.hide();
+                                }
+                            });
+                        }, { threshold: 0.1 });
+                        obs.observe(this.trig);
+                    }
+
+                    if (m === 'show' && !vp) {
+                        setTimeout(() => this.show(), parseInt(this.v('delay')) || 0);
+                    } else if (m === 'hover') {
+                        this.trig.addEventListener('mouseenter', () => {
+                            if (this.hTo) clearTimeout(this.hTo);
+                            if (this.oTo) clearTimeout(this.oTo);
+                            this.hTo = setTimeout(() => this.show(), parseInt(this.v('delay')) || 0);
+                        });
+                        this.trig.addEventListener('mouseleave', () => {
+                            if (this.hTo) clearTimeout(this.hTo);
+                            this.oTo = setTimeout(() => this.hide(), 100);
+                        });
+                        this.wrap.addEventListener('mouseenter', () => { if (this.oTo) clearTimeout(this.oTo); });
+                        this.wrap.addEventListener('mouseleave', () => { this.oTo = setTimeout(() => this.hide(), 100); });
+                    } else if (m === 'click') {
+                        this.trig.addEventListener('click', (e) => {
+                            e.preventDefault(); e.stopPropagation();
+                            if (this.vis) this.hide();
+                            else {
+                                const d = parseInt(this.v('delay')) || 0;
+                                if (d > 0) setTimeout(() => this.show(), d); else this.show();
+                            }
+                        });
+                        document.addEventListener('click', (e) => {
+                            if (this.vis && !this.wrap.contains(e.target) && !this.trig.contains(e.target)) this.hide();
+                        });
+                    }
+
+                    this.wrap.addEventListener('click', (e) => {
+                        if (e.target.closest('.dx-close')) {
+                            e.stopPropagation();
+                            this.hide();
+                            setTimeout(() => {
+                                this.show();
+                            }, 1000);
+                        }
+                    });
+
+                    window.addEventListener('resize', () => { if (this.vis) { this.upd(); this.pos(); } });
+                    window.addEventListener('scroll', () => { if (this.vis) this.pos(); });
+                }
+
+                show() {
+                    this.upd(); this.pos();
+                    this.wrap.classList.add('dx-visible'); this.vis = true;
+                    const ah = parseInt(this.v('autohide'));
+                    if (ah) setTimeout(() => this.hide(), ah);
+                }
+
+                hide() {
+                    this.wrap.classList.remove('dx-visible'); this.vis = false;
+                }
+
+                pos() {
+                    const arr = this.v('arrow') !== 'false';
+                    let p = this.v('pos') || 'top';
+                    const off = parseInt(this.v('gap')) || 12;
+                    const m = 15; const az = arr ? 10 : 0;
+
+                    const vw = document.documentElement.clientWidth;
+                    const vh = document.documentElement.clientHeight;
+
+                    this.wrap.style.left = '0px'; this.wrap.style.top = '0px';
+                    this.shape.style.padding = '0';
+                    if (p === 'top') this.shape.style.paddingBottom = `${az}px`;
+                    else if (p === 'bottom') this.shape.style.paddingTop = `${az}px`;
+                    else if (p === 'left') this.shape.style.paddingRight = `${az}px`;
+                    else if (p === 'right') this.shape.style.paddingLeft = `${az}px`;
+
+                    let tr = this.trig.getBoundingClientRect();
+                    const crs = this.trig.getClientRects();
+                    if (crs.length > 0) tr = crs[0];
+                    let tt = this.wrap.getBoundingClientRect();
+
+                    if (p === 'top' && (tr.top - tt.height - off < m)) { if (tr.bottom + tt.height + off < vh - m) p = 'bottom'; }
+                    else if (p === 'bottom' && (tr.bottom + tt.height + off > vh - m)) { if (tr.top - tt.height - off > m) p = 'top'; }
+                    else if (p === 'left' && (tr.left - tt.width - off < m)) { if (tr.right + tt.width + off < vw - m) p = 'right'; }
+                    else if (p === 'right' && (tr.right + tt.width + off > vw - m)) { if (tr.left - tt.width - off > m) p = 'left'; }
+
+                    this.shape.style.padding = '0';
+                    if (p === 'top') this.shape.style.paddingBottom = `${az}px`;
+                    else if (p === 'bottom') this.shape.style.paddingTop = `${az}px`;
+                    else if (p === 'left') this.shape.style.paddingRight = `${az}px`;
+                    else if (p === 'right') this.shape.style.paddingLeft = `${az}px`;
+
+                    tt = this.wrap.getBoundingClientRect();
+                    let t = 0, l = 0, pct = 50;
+
+                    if (p === 'top' || p === 'bottom') {
+                        const cx = tr.left + (tr.width / 2);
+                        let il = cx - (tt.width / 2);
+                        l = Math.max(m, Math.min(il, vw - tt.width - m));
+                        let px = cx - l; pct = Math.max(8, Math.min((px / tt.width) * 100, 92));
+                        t = (p === 'top') ? tr.top - tt.height - off : tr.bottom + off;
+                    } else {
+                        const cy = tr.top + (tr.height / 2);
+                        let it = cy - (tt.height / 2);
+                        t = Math.max(m, Math.min(it, vh - tt.height - m));
+                        let py = cy - t; pct = Math.max(8, Math.min((py / tt.height) * 100, 92));
+                        l = (p === 'left') ? tr.left - tt.width - off : tr.right + off;
+                    }
+
+                    t += window.scrollY; l += window.scrollX;
+
+                    if (p === 'top') this.shape.style.clipPath = arr ? `polygon(0% 0%, 100% 0%, 100% calc(100% - ${az}px), calc(${pct}% + ${az}px) calc(100% - ${az}px), ${pct}% 100%, calc(${pct}% - ${az}px) calc(100% - ${az}px), 0% calc(100% - ${az}px))` : 'none';
+                    else if (p === 'bottom') this.shape.style.clipPath = arr ? `polygon(0% ${az}px, calc(${pct}% - ${az}px) ${az}px, ${pct}% 0%, calc(${pct}% + ${az}px) ${az}px, 100% ${az}px, 100% 100%, 0% 100%)` : 'none';
+                    else if (p === 'left') this.shape.style.clipPath = arr ? `polygon(0% 0%, calc(100% - ${az}px) 0%, calc(100% - ${az}px) calc(${pct}% - ${az}px), 100% ${pct}%, calc(100% - ${az}px) calc(${pct}% + ${az}px), calc(100% - ${az}px) 100%, 0% 100%)` : 'none';
+                    else if (p === 'right') this.shape.style.clipPath = arr ? `polygon(${az}px 0%, 100% 0%, 100% 100%, ${az}px 100%, ${az}px calc(${pct}% + ${az}px), 0% ${pct}%, ${az}px calc(${pct}% - ${az}px))` : 'none';
+
+                    this.wrap.style.top = t + 'px'; this.wrap.style.left = l + 'px';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('[data-dx-tooltip]').forEach(el => new DxPreview(el));
+            });
+        })();
+    </script>
+</body>
+
+</html>

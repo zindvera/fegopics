@@ -1,522 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fegopics</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="media/favicon-180x180.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
-  <meta name="monetag" content="b54980947dcc4617cb3e9ac34a6d3d9e">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fegopics - Premium UI Components</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to ensure smooth rendering */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+    </style>
 </head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
 
-<body>
+    <!-- Header Section -->
+    <header class="pt-20 pb-12 flex flex-col items-center text-center px-4">
+        <!-- Centered Logo -->
+        <img src="https://zindvera.github.io/fegopics/media/fegopics-logo.png" alt="FegoPics Logo" class="h-24 mb-6 drop-shadow-sm">
 
-  <div id="loader-overlay">
-    <div class="loader"></div>
-  </div>
+        <!-- Heading -->
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-5 text-slate-900">
+            Welcome to Fegopics
+        </h1>
 
+        <!-- Description -->
+        <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            A premium collection of highly optimized scripts, plugins, and UI components designed to save you time and elevate your web projects.
+        </p>
+    </header>
 
-  <div class="logoheader" style="display: flex; justify-content: center; margin-bottom: 0.25in; margin-top: 0.5in;">
-    <img id="logopic" src="media/fegopics-logo.png" alt="Fegopics Logo">
-  </div>
+    <!-- Components Grid Section -->
+    <!-- 10px side margin on phone (px-[10px]), larger padding on tablet/desktop (md:px-8) -->
+    <main class="flex-grow w-full max-w-6xl mx-auto px-[10px] md:px-8 pb-20">
+        
+        <!-- Grid container: 1 col on mobile, 3 cols on tablet/desktop -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Component Card: Fegopics Tooltip -->
+            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-lg hover:border-indigo-200 transition-all duration-300 group">
+                
+                <!-- Card Image/Thumbnail Area -->
+                <div class="h-48 bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center border-b border-slate-100 relative overflow-hidden">
+                    <!-- Decorative Tooltip Graphic -->
+                    <div class="bg-slate-900 text-white text-sm font-semibold py-2 px-4 rounded-lg relative shadow-lg group-hover:-translate-y-1 transition-transform duration-300">
+                        Hover Me
+                        <!-- Tooltip Arrow -->
+                        <div class="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-slate-900 rotate-45"></div>
+                    </div>
+                </div>
 
-  <div class="main-heading" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-    <h1>Free Movies Library with Streaming Links</h1>
-  </div>
+                <!-- Card Content Area -->
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-xl font-bold text-slate-900">Fegopics Tooltip</h2>
+                        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded-full">Vanilla JS</span>
+                    </div>
+                    
+                    <p class="text-slate-600 mb-8 flex-grow leading-relaxed">
+                        Create beautiful, responsive tooltips instantly with simple data attributes. Zero dependencies, gradient-perfect clipping, and highly customizable.
+                    </p>
+                    
+                    <!-- Call to Action Button -->
+                    <a href="#" class="w-full inline-flex justify-center items-center bg-slate-900 hover:bg-indigo-600 text-white font-medium py-3 px-4 rounded-xl transition-colors duration-200">
+                        View Component
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </article>
 
-  <div class="sub-heading"
-    style="display: flex; justify-content: center; align-items: center; text-align: center; margin-bottom: 0.35in;">
-    <p id="toggleText" style="padding-top: 0.25in; font-size: 17px;">
-      It collects free-to-stream movies from multiple safe, legal streaming sites, allowing you to browse all free
-      movies.
-      <span><a href="about.html">Learn More</a></span>
-    </p>
-    </p>
-
-  </div>
-
-  <div class="static-search">
-    <div class="search-container my-3 col-lg-4 col-md-5 col-11 mx-auto">
-      <div class="custom-search-wrapper">
-        <input type="text" id="searchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
-          autocapitalize="off" spellcheck="false">
-        <button type="button" id="searchBtn">Search</button>
-      </div>
-    </div>
-    <div class="container-fluid" id="search-movies-container">
-      <h4 class="mt-4">Search Results</h4>
-      <div class="row search-results"></div>
-    </div>
-  </div>
-
-
-  <div class="scroll-search"
-    style="display:none; width: 100vw; position: fixed; top: 0; left: 0; background: white; z-index: 1000; padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <div class="d-flex align-items-center">
-      <a href="index.html" style="text-decoration: none;">
-        <img id="logo" src="media/fegopics-logo.png" alt="Fegopics Scroll Nav Logo"
-          style="height: 35px; margin-right: 10px;">
-      </a>
-      <div class="fsearch-container flex-grow-1">
-        <div class="fcustom-search-wrapper">
-          <input type="text" id="fsearchMovieKeyword" placeholder="Search Movies" autocomplete="off" autocorrect="off"
-            autocapitalize="off" spellcheck="false" class="form-control" />
-          <button type="button" id="fsearchBtn" class="btn btn-primary ms-2">Search</button>
+            <!-- You can add more component cards here in the future -->
+            
         </div>
-      </div>
-    </div>
-    <div class="mt-2 mx-0 px-0" id="fsearch-movies-container">
-      <h4 class="mt-4">Search Results</h4>
-      <div class="row fsearch-results"></div>
-    </div>
-  </div>
 
+        <!-- Coming Soon Message -->
+        <div class="mt-16 mb-4 text-center">
+            <span class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-white text-slate-600 text-sm font-semibold border border-slate-200 shadow-sm">
+                🚀 More scripts, plugins & templates are coming soon...
+            </span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 py-8 text-center text-slate-500 text-sm mt-auto">
+        <p>&copy; 2026 Fegopics. All rights reserved.</p>
+    </footer>
 
-
-
-  <div class="genre-scroll-wrapper mb-2">
-    <button class="scroll-arrow scroll-left" onclick="scrollGenres(-200)" aria-label="Scroll left">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"
-        stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
-    </button>
-    <div class="genre-scroll" id="genre-list"></div>
-    <button class="scroll-arrow scroll-right" onclick="scrollGenres(200)" aria-label="Scroll right">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"
-        stroke-linejoin="round">
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
-    </button>
-    <div class="reset-container mt-5 text-end">
-      <button class="reset-btn" id="resetBtn" title="Reset Genres Filter">RESET</button>
-    </div>
-  </div>
-
-
-  <!-- Selected genres container -->
-  <div class="selected-genres mt-2 mb-4" id="selectedGenereContainer"></div>
-
-  <div class="container">
-    <div class="pinterest-grid" id="movie-grid"></div>
-  </div>
-
-
-  <div class="pagination-controls">
-    <button id="prevBtn" class="btn btn-outline-secondary me-2" style="display:none;">← Previous</button>
-    <button id="nextBtn" class="btn btn-outline-primary" style="display:none;">Next →</button>
-  </div>
-
-  <br><br>
-
-  <footer>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="cookies.html">Cookies Policy</a>
-    <a href="terms.html">Terms of Use</a>
-    <a href="contact.html">Contact Us</a>
-  </footer>
-
-  <script src="./genres.js"></script>
-  <script src="predefined-platform.js"></script>
-  <script src="search-movies.js"></script>
-
-  <script>
-
-
-    function makeCanonical() {
-      const params = new URLSearchParams(window.location.search);
-
-      const page = params.get('page');
-      const genres = params.get('genres');
-
-      const newParams = new URLSearchParams();
-
-      // Add page first if present
-      if (page) newParams.set('page', page);
-
-      // Add genres second if present
-      if (genres) newParams.set('genres', genres);
-
-      // Build canonical URL with only page and genres parameters
-      const canonicalUrl = window.location.origin + window.location.pathname +
-        (newParams.toString() ? '?' + newParams.toString() : '');
-
-      let link = document.querySelector('link[rel="canonical"]');
-      if (!link) {
-        link = document.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        document.head.appendChild(link);
-      }
-      link.setAttribute('href', canonicalUrl);
-      console.log('Canonical set to:', canonicalUrl);
-    }
-
-    makeCanonical();
-
-    static_search();
-    scroll_search();
-
-
-    // Cookie functions
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-      return null;
-    }
-
-    function setCookie(name, value, days = 365) {
-      const expires = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`;
-    }
-
-    let countryLoaded = false;
-
-    // Country detection
-    async function detectUserCountry() {
-      const cachedCountry = getCookie('userCountry');
-      if (cachedCountry) {
-        // alert(`Using cached country: ${cachedCountry}`);
-        return cachedCountry;
-      }
-      try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        const country = data.country_code || 'US';
-        setCookie('userCountry', country, 365);
-        // alert(`Detected & cached: ${country}`);
-        return country;
-      } catch {
-        setCookie('userCountry', 'IN', 365);
-        return 'IN';
-      }
-    }
-
-    // Initialize - mutates platforms directly
-    async function initializePlatforms() {
-      const userCountry = await detectUserCountry();
-      if (userCountry !== 'IN') {
-        platforms = platforms.filter(p => !indiaOnlyPlatforms.includes(p));
-      }
-      // alert(`user country; ` + userCountry);
-      countryLoaded = true;
-      loadMovies(); // ← Works with mutated platforms!
-    }
-
-    // Block loadMovies until ready
-    const originalLoadMovies = loadMovies;
-    loadMovies = async () => {
-      if (!countryLoaded) return;
-      return originalLoadMovies();
-    };
-
-    // START
-    initializePlatforms();
-
-
-
-
-    const maxMoviesPerPage = 20;
-
-    fsearchBtn = document.getElementById('fsearchBtn');
-    fsearchBtn.addEventListener('click', function (event) {
-      document.body.style.overflowY = 'hidden';
-    });
-
-
-    const urlParams = new URLSearchParams(window.location.search);
-    // Get multiple genres split by comma, trimming spaces
-    const selectedGenres = urlParams.get("genres") ?
-      urlParams.get("genres").split(",").map(g => g.trim()).filter(g => g.length > 0) : [];
-    const currentPage = parseInt(urlParams.get("page")) || 1;
-
-    // Save current filters & reload page
-    function saveGenreFilters() {
-      const params = new URLSearchParams(window.location.search);
-      if (selectedGenres.length > 0) {
-        params.set("genres", selectedGenres.join(","));
-      } else {
-        params.delete("genres");
-      }
-      // Always reset pagination when genres change
-      params.set("page", 1);
-
-      window.location.search = params.toString();
-    }
-
-    // Toggle a genre selection and update URL
-    function toggleGenre(genre) {
-      const index = selectedGenres.indexOf(genre);
-      if (index > -1) {
-        selectedGenres.splice(index, 1);
-      } else {
-        selectedGenres.push(genre);
-      }
-      saveGenreFilters();
-    }
-
-    // Remove a selected genre via the 'x' on selected genres list
-    function removeGenre(genre) {
-      const index = selectedGenres.indexOf(genre);
-      if (index > -1) {
-        selectedGenres.splice(index, 1);
-        saveGenreFilters();
-      }
-    }
-
-    // Reset button clears only 'genres' param but keeps others & reloads
-    function resetFilters() {
-      const params = new URLSearchParams(window.location.search);
-      params.delete("genres");
-      window.location.search = params.toString();
-    }
-
-    // Render the top genre button list (excluding selected)
-    function renderGenres() {
-      const genreList = document.getElementById("genre-list");
-      genreList.innerHTML = "";
-      GENRES.forEach(genre => {
-        if (!selectedGenres.includes(genre)) {
-          genreList.innerHTML += `<a href="javascript:void(0);" class="btn btn-sm btn-outline-primary genre-btn" onclick='toggleGenre("${genre}")'>${genre}</a>`;
-        }
-      });
-      updateArrowVisibility();
-    }
-
-    // Display currently selected genres below, with clickable remove (x)
-    function renderSelectedGenres() {
-      const container = document.getElementById("selectedGenereContainer");
-      container.innerHTML = "";
-      selectedGenres.forEach(g => {
-        const item = document.createElement("div");
-        item.className = "selected-item";
-        item.innerHTML = `${g} <span onclick='removeGenre("${g}")' title="Remove genre">&times;</span>`;
-        container.appendChild(item);
-      });
-    }
-
-    // Fetch per platform with filtering by selected genres
-    async function fetchMoviesForPlatform(platform, startIndex, count) {
-      const collected = [];
-      let fileNum = 1;
-      let skip = startIndex;
-
-      while (collected.length < count) {
-        try {
-          const res = await fetch(`./data/movies/${platform}/movies-${fileNum}.json`);
-          if (!res.ok) break;
-
-          const data = await res.json();
-          let injectedData = data.map(m => ({ ...m, platform }));
-
-          // Filter to include movies that have at least one selected genre (case-insensitive)
-          if (selectedGenres.length > 0) {
-            injectedData = injectedData.filter(m => {
-              const genresArr = m.genres.split(",").map(g => g.trim().toLowerCase());
-              return selectedGenres.some(gen => genresArr.includes(gen.toLowerCase()));
-            });
-          }
-
-          if (skip >= injectedData.length) {
-            skip -= injectedData.length;
-            fileNum++;
-            continue;
-          }
-          const available = injectedData.length - skip;
-          const toTake = Math.min(available, count - collected.length);
-          collected.push(...injectedData.slice(skip, skip + toTake));
-          skip = 0;
-          if (collected.length >= count) break;
-          fileNum++;
-        } catch { break }
-      }
-      return collected;
-    }
-
-    // Platform availability based on filtered content
-    async function getAvailablePlatforms() {
-      const platformsWithData = [];
-      for (const platform of platforms) {
-        const movies = await fetchMoviesForPlatform(platform, 0, 1);
-        if (movies.length > 0) platformsWithData.push(platform);
-      }
-      return platformsWithData;
-    }
-
-    // Distribute the maxMoviesPerPage quota among available platforms evenly
-    function getMoviesPerPlatform(maxMoviesPerPage, platformsWithData) {
-      const base = Math.floor(maxMoviesPerPage / platformsWithData.length);
-      const remainder = maxMoviesPerPage % platformsWithData.length;
-      return platformsWithData.map((_, idx) => base + (idx < remainder ? 1 : 0));
-    }
-
-
-
-    // Helper to interleave arrays in round-robin fashion
-    function interleaveMovieArrays(arrays, maxItems) {
-      const result = [];
-      let idx = 0;
-      let added;
-      do {
-        added = false;
-        for (const arr of arrays) {
-          if (idx < arr.length && result.length < maxItems) {
-            result.push(arr[idx]);
-            added = true;
-          }
-        }
-        idx++;
-      } while (added && result.length < maxItems);
-      return result;
-    }
-
-
-    // Original fetch method unchanged:
-    async function fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage) {
-      const platformsWithData = await getAvailablePlatforms();
-      if (platformsWithData.length === 0) return [];
-      const perPlatformCounts = getMoviesPerPlatform(maxMoviesPerPage, platformsWithData);
-      const allMovies = [];
-      for (let i = 0; i < platformsWithData.length; i++) {
-        let moviesSkipped = 0;
-        for (let pg = 1; pg < currentPage; pg++) {
-          const alloc = getMoviesPerPlatform(maxMoviesPerPage, platformsWithData);
-          moviesSkipped += alloc[i];
-        }
-        const movies = await fetchMoviesForPlatform(platformsWithData[i], moviesSkipped, perPlatformCounts[i]);
-        allMovies.push(...movies);
-      }
-
-      // Step to interleave the movies by platform after fetching:
-      // Group back movies by platform (split from allMovies)
-      const moviesByPlatform = platformsWithData.map(platform =>
-        allMovies.filter(m => m.platform === platform)
-      );
-
-      // Interleave the grouped arrays and return
-      return interleaveMovieArrays(moviesByPlatform, maxMoviesPerPage);
-    }
-
-
-    async function loadMovies() {
-      const movies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage);
-      renderGenres();
-      renderSelectedGenres();
-
-      const grid = document.getElementById("movie-grid");
-      if (movies.length === 0) {
-        grid.innerHTML = `
-      <div class="alert alert-warning text-center" role="alert" style="width:100%;">
-        No movies found for the selected genre(s).
-      </div>
-    `;
-      } else {
-        renderMovies(movies);
-      }
-
-      document.getElementById("prevBtn").style.display = currentPage > 1 ? "inline-block" : "none";
-
-      const nextPageMovies = await fetchMoviesByPlatformsAdjusted(maxMoviesPerPage, currentPage + 1);
-      const nextPageAvailable = nextPageMovies.length > 0;
-      document.getElementById("nextBtn").style.display = nextPageAvailable ? "inline-block" : "none";
-
-      document.getElementById("prevBtn").onclick = () => {
-        const params = new URLSearchParams(window.location.search);
-        params.set("page", currentPage - 1);
-        window.location.search = params.toString();
-      };
-      document.getElementById("nextBtn").onclick = () => {
-        const params = new URLSearchParams(window.location.search);
-        params.set("page", currentPage + 1);
-        window.location.search = params.toString();
-      };
-    }
-
-
-    function renderMovies(movies) {
-      const grid = document.getElementById("movie-grid");
-      grid.innerHTML = "";
-      sessionStorage.setItem("currentPage", currentPage);
-      let cardNumber = 0;
-
-      movies.forEach(movie => {
-        cardNumber++;
-        const titleForUrl = movie.title.replace(/\s+/g, "+");
-
-        grid.innerHTML += `
-      <div class="movie-card">
-        <a href="detail.html?name=${titleForUrl}&id=${movie.id}&platformID=${movie.platform}"
-           class="text-decoration-none text-dark">
-          <img src="${movie.posterImg}" alt="${movie.title}" class="poster" />
-          <h5 class="mt-2">${movie.title}</h5>
-          <p class="text-muted">${movie.genres}</p>
-        </a>
-      </div>
-    `;
-
-
-      });
-    }
-
-
-    function scrollGenres(amount) {
-      const genreList = document.getElementById("genre-list");
-      genreList.scrollBy({ left: amount, behavior: "smooth" });
-    }
-
-    function updateArrowVisibility() {
-      const genreList = document.getElementById("genre-list");
-      const leftArrow = document.querySelector(".scroll-left");
-      const rightArrow = document.querySelector(".scroll-right");
-      const scrollLeft = genreList.scrollLeft;
-      const maxScrollLeft = genreList.scrollWidth - genreList.clientWidth;
-      leftArrow.style.display = scrollLeft <= 5 ? "none" : "block";
-      rightArrow.style.display = scrollLeft >= maxScrollLeft - 5 ? "none" : "block";
-    }
-
-    document.getElementById("resetBtn").addEventListener("click", resetFilters);
-
-    document.addEventListener("DOMContentLoaded", () => {
-      renderSelectedGenres();
-      const genreList = document.getElementById("genre-list");
-      genreList.addEventListener("scroll", updateArrowVisibility);
-      if (countryLoaded) {
-        loadMovies();
-      }
-    });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const staticSearch = document.querySelector('.static-search');
-      const scrollSearch = document.querySelector('.scroll-search');
-
-      function checkStaticSearchVisibility() {
-        const rect = staticSearch.getBoundingClientRect();
-        // If static-search is fully above viewport or partially out of view at top
-        if (rect.bottom < 0) {
-          scrollSearch.style.display = 'block';
-        } else {
-          scrollSearch.style.display = 'none';
-        }
-      }
-
-      window.addEventListener('scroll', checkStaticSearchVisibility);
-      checkStaticSearchVisibility(); // init on page load
-    });
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader-overlay');
-      if (loader) {
-        loader.style.display = 'none';
-      }
-    });
-
-
-  </script>
 </body>
-
-
 </html>
