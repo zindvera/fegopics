@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Tooltips - Documentation</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           MINIMALIST THEME STYLES
+           ========================================= */
+        :root {
+            --primary-color: #2563eb;
+            --code-bg: #0f172a;
+            --code-text: #f8fafc;
+            --navbar-height: 60px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            padding-top: var(--navbar-height);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        #pageLoader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999999;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 4px solid #e2e8f0;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .navbar {
+            height: var(--navbar-height);
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 100005 !important;
+        }
+
+        .nav-link {
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .active-nav {
+            color: var(--primary-color) !important;
+            position: relative;
+        }
+
+        @media (min-width: 992px) {
+            .active-nav::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background-color: var(--primary-color);
+            }
+        }
+
+        .fixed-toc {
+            position: fixed;
+            top: var(--navbar-height);
+            left: 0;
+            right: 0;
+            z-index: 100004 !important;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transform: translateY(-100%);
+            visibility: hidden;
+            transition: transform 0.3s ease, visibility 0.3s ease;
+        }
+
+        .fixed-toc.is-visible {
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .toc-menu-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto;
+        }
+
+        .toc-menu-btn:hover {
+            opacity: 0.8;
+        }
+
+        .toc-list-item a {
+            padding: 10px 16px;
+            border-radius: 8px;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .toc-list-item a:hover {
+            background: #f1f5f9;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 5rem 4rem;
+            margin-bottom: 6rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04);
+            border: none;
+            scroll-margin-top: 140px;
+        }
+
+        .example-group {
+            margin-bottom: 8rem;
+            scroll-margin-top: 140px;
+        }
+
+        .example-group h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .example-group>p {
+            font-size: 1.15rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+        }
+
+        .sub-example {
+            margin-bottom: 6rem;
+        }
+
+        .sub-example-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .example-desc {
+            font-size: 1.15rem;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .param-info-list {
+            margin-bottom: 4rem;
+        }
+
+        .param-info-list .badge {
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            font-weight: 500;
+            background: #f8fafc;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        .param-info-list code {
+            color: var(--primary-color);
+            background: transparent;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .param-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            color: #475569;
+            margin-bottom: 3.5rem;
+        }
+
+        .param-tag strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .param-tag code {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            background: transparent;
+            padding: 0;
+            border: none;
+            font-weight: 600;
+        }
+
+        .code-wrapper {
+            position: relative;
+            background: var(--code-bg);
+            border-radius: 16px;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-wrapper pre {
+            background: transparent !important;
+            color: var(--code-text) !important;
+            padding: 3.5rem 2rem 2rem 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            height: 100%;
+            overflow-x: auto;
+        }
+
+        .quick-start-code pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .preview-box {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            height: 100%;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.15rem;
+            color: #475569;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
+        }
+
+        .preview-trigger {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preview-trigger:hover {
+            color: #1e40af;
+            text-decoration-style: solid;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 991.98px) {
+            .section-card {
+                margin-left: calc(-.5 * var(--bs-gutter-x));
+                margin-right: calc(-.5 * var(--bs-gutter-x));
+                border-radius: 0 !important;
+                padding: 4rem 1.5rem !important;
+                margin-bottom: 4rem;
+            }
+
+            .example-group {
+                margin-bottom: 5rem;
+            }
+
+            .sub-example {
+                margin-bottom: 5rem;
+            }
+
+            .param-tag {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .active-nav {
+                border-left: 3px solid var(--primary-color);
+                padding-left: 0.75rem;
+                background: #f1f5f9;
+            }
+
+            .navbar-nav {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .code-wrapper pre {
+                padding: 4rem 1.5rem 1.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="pageLoader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container h-100 align-items-center">
+            <span class="navbar-brand d-flex align-items-center h-100">
+                <img src="https://zindvera.github.io/fegopics/media/fegopics-logo.png" height="24" alt="FegoPics"
+                    style="margin-right: 10px;">
+                <span style="font-weight: 600; color: #0f172a; font-size: 1.1rem;">Tooltip</span>
+            </span>
+
+        
+        </div>
+    </nav>
+
+    <div class="fixed-toc" id="fixedToc">
+        <div class="container py-2 position-relative">
+            <button class="toc-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#tocMenuCollapse"
+                aria-expanded="false" aria-controls="tocMenuCollapse">
+                <span id="current-section-title">Documentation</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+            <div class="collapse position-absolute w-100 start-0 top-100 bg-white shadow-sm border-bottom border-top"
+                id="tocMenuCollapse" style="border-radius: 0 0 16px 16px;">
+                <div class="container py-3">
+                    <div class="row g-2 px-3">
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#quick-start"
+                                    class="text-decoration-none text-dark fw-medium toc-link">Quick Start</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#content-types"
+                                    class="text-decoration-none text-dark fw-medium toc-link">1. Content Types</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#bg-colors"
+                                    class="text-decoration-none text-dark fw-medium toc-link">2. Backgrounds</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#interactions"
+                                    class="text-decoration-none text-dark fw-medium toc-link">3. Interactions</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#time-delays"
+                                    class="text-decoration-none text-dark fw-medium toc-link">4. Time Delays</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#viewport"
+                                    class="text-decoration-none text-dark fw-medium toc-link">5. Viewport Scroll</a>
+                            </li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#responsive"
+                                    class="text-decoration-none text-dark fw-medium toc-link">6. Responsive UI</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#custom-padding"
+                                    class="text-decoration-none text-dark fw-medium toc-link">7. Custom Padding</a></li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#distance-control"
+                                    class="text-decoration-none text-dark fw-medium toc-link">8. Distance Control</a>
+                            </li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#layering-z"
+                                    class="text-decoration-none text-dark fw-medium toc-link">9. Layering (Z-Index)</a>
+                            </li>
+                        </div>
+                        <div class="col-md-6">
+                            <li class="toc-list-item list-unstyled"><a href="#smart-placement"
+                                    class="text-decoration-none text-dark fw-medium toc-link">10. Smart Placement</a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5 mt-4">
+
+        <!-- Updated Documentation Header -->
+        <header class="mb-5 pb-4 border-bottom">
+            <h1 class="fw-bold mb-3" style="font-size: 2.75rem; letter-spacing: -0.02em;">Documentation</h1>
+            <p class="fs-5 text-muted mb-4" style="max-width: 700px;">
+                A complete guide to implementing and customizing your tooltips.
+            </p>
+            <div class="d-flex flex-wrap align-items-center gap-4 mt-2">
+         
+                <div class="text-muted bg-light px-3 py-2 rounded border" style="font-size: 0.9rem;">
+                    <strong>License Note:</strong> Developer can use it for personal &amp; commercial purpose both after
+                    purchase script.
+                </div>
+            </div>
+        </header>
+
+        <section class="section-card scroll-section" id="quick-start" data-title="Quick Start">
+            <h2 class="section-title">Quick Start</h2>
+            <p class="example-desc mb-5">Get up and running instantly. No external dependencies required.</p>
+
+            <div class="mb-5 pb-3">
+                <h5 class="fw-bold fs-4 mb-3">1. Link the script</h5>
+                <p class="example-desc">Add the script right before your closing <code>&lt;/body&gt;</code> tag.</p>
+                <div class="code-wrapper quick-start-code">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;script src="fegopics.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="fw-bold fs-4 mb-3">2. Deploy your HTML</h5>
+                <p class="example-desc">Add the <code>data-tooltip</code> attribute to any element you want to trigger.
+                </p>
+                <div class="code-wrapper quick-start-code">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;span data-tooltip="Hello World!" data-bg="#ffffff" data-color="#1e293b" data-offset="8"&gt;Target Element&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card mb-0">
+            <h2 class="section-title">Interactive Reference Guide</h2>
+            <p class="example-desc mb-5">See the example code on the left, and test the live preview on the right.
+                <i>These previews auto-display so you can easily observe their behavior.</i></p>
+
+            <div class="row g-3 mb-5 pb-5 border-bottom" id="static-toc-container">
+                <div class="col-12">
+                    <h5 class="fw-bold mb-3 text-secondary">Table of Contents:</h5>
+                </div>
+                <div class="col-md-4 col-sm-6"><a href="#content-types" class="text-decoration-none fw-medium">1.
+                        Content Types</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#bg-colors" class="text-decoration-none fw-medium">2. Background
+                        Colors</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#interactions" class="text-decoration-none fw-medium">3. User
+                        Interactions</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#time-delays" class="text-decoration-none fw-medium">4. Time
+                        Delays</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#viewport" class="text-decoration-none fw-medium">5. Viewport
+                        Detection</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#responsive" class="text-decoration-none fw-medium">6.
+                        Responsive Behavior</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#custom-padding" class="text-decoration-none fw-medium">7.
+                        Custom Padding</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#distance-control" class="text-decoration-none fw-medium">8.
+                        Distance Control</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#layering-z" class="text-decoration-none fw-medium">9. Layering
+                        (Z-Index)</a></div>
+                <div class="col-md-4 col-sm-6"><a href="#smart-placement" class="text-decoration-none fw-medium">10.
+                        Smart Placement</a></div>
+            </div>
+
+            <div class="example-group scroll-section" id="content-types" data-title="1. Content Types">
+                <h3>1. Content Types: HTML or Plain Text</h3>
+                <p>The tooltip supports standard text or rich HTML elements (like images, bold text, and custom layouts)
+                    inside the data attribute.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-tooltip</code> : Content (Plain Text or HTML elements)</span>
+                    <span class="badge"><code>data-size</code> : Sets a fixed width constraint (e.g., 250px)</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">1.1 Plain Text Definition</h4>
+                    <p class="example-desc">Perfect for simple definitions or explaining acronyms in a paragraph.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-tooltip="Text..."</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="Search Engine Optimization helps your website rank higher on Google."
+  data-bg="#ffffff" data-color="#334155"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-offset="8"
+  data-pt="16px" data-pb="16px" data-pl="20px" data-pr="20px"&gt;
+  SEO
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Our agency specializes in improving your <span class="preview-trigger"
+                                        data-dx-tooltip="Search Engine Optimization helps your website rank higher on Google."
+                                        data-dx-bg="#ffffff" data-dx-color="#334155" data-dx-close-icon="true"
+                                        data-dx-close-color="#94a3b8" data-dx-gap="8" data-dx-pt="16px"
+                                        data-dx-pb="16px" data-dx-pl="20px" data-dx-pr="20px">SEO</span> to drive more
+                                    traffic.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">1.2 Rich HTML Product Card</h4>
+                    <p class="example-desc">Use full HTML inside the tooltip to display products, images, and pricing
+                        seamlessly.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-tooltip="&lt;div&gt;HTML Content&lt;/div&gt;"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='display:flex; gap:15px; align-items:center; margin-right:12px;'&gt;&lt;img src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&h=100&fit=crop' style='border-radius:8px; width:60px; height:60px; object-fit:cover;' alt='Shoe'&gt;&lt;div style='text-align:left;'&gt;&lt;b style='font-size:16px; color:#0f172a'&gt;Nike Air Max&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#64748b'&gt;Running Shoe&lt;/span&gt;&lt;br&gt;&lt;b style='color:#10b981;'&gt;$129.99&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" 
+  data-bg="#f8fafc"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-offset="8"
+  data-pt="16px" data-pb="16px" data-pl="16px" data-pr="16px"&gt;
+  Buy Now
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Ready to upgrade your gear? <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='display:flex; gap:15px; align-items:center; margin-right:12px;'><img src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&h=100&fit=crop' style='border-radius:8px; width:60px; height:60px; object-fit:cover;' alt='Shoe'><div style='text-align:left;'><b style='font-size:16px; color:#0f172a'>Nike Air Max</b><br><span style='font-size:13px; color:#64748b'>Running Shoe</span><br><b style='color:#10b981;'>$129.99</b></div></div>"
+                                        data-dx-bg="#f8fafc" data-dx-close-icon="true" data-dx-close-color="#94a3b8"
+                                        data-dx-gap="8" data-dx-pt="16px" data-dx-pb="16px" data-dx-pl="16px"
+                                        data-dx-pr="16px">Buy Now</span> to see details.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="bg-colors" data-title="2. Background Colors">
+                <h3>2. Background Colors & Gradients</h3>
+                <p>Match your brand seamlessly by changing the background using Hex codes or CSS gradients.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-bg</code> : Background color (Hex, RGB, Gradient)</span>
+                    <span class="badge"><code>data-color</code> : Text color (Hex, RGB)</span>
+                    <span class="badge"><code>data-shadow</code> : Custom drop-shadow styling</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">2.1 Warning Alert (Hex Code)</h4>
+                    <p class="example-desc">Using a bold hex color to highlight a destructive or important action.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-bg="#ef4444"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='margin-right:15px;'&gt;&lt;b style='color:#fff;'&gt;Proceed with caution&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#fee2e2;'&gt;This action cannot be undone.&lt;/span&gt;&lt;/div&gt;" 
+  data-bg="#ef4444" data-color="#ffffff"
+  data-close-icon="true" data-close-color="#ffffff"
+  data-offset="8"
+  data-pt="16px" data-pb="16px" data-pl="20px" data-pr="20px"&gt;
+  Delete Account
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Are you sure you want to <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='margin-right:15px;'><b style='color:#fff;'>Proceed with caution</b><br><span style='font-size:13px; color:#fee2e2;'>This action cannot be undone.</span></div>"
+                                        data-dx-bg="#ef4444" data-dx-color="#ffffff" data-dx-close-icon="true"
+                                        data-dx-close-color="#ffffff" data-dx-gap="8" data-dx-pt="16px"
+                                        data-dx-pb="16px" data-dx-pl="20px" data-dx-pr="20px">Delete Account</span>
+                                    permanently?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">2.2 Premium Upgrade (CSS Gradient)</h4>
+                    <p class="example-desc">Gradients flow perfectly through the dynamically clipped arrow without
+                        breaking the design.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-bg="linear-gradient(...)"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='text-align:center; min-width: 160px; margin-top:8px;'&gt;&lt;b style='font-size:16px; color:#fff;'&gt;Unlock Pro Features&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#ffe4e6;'&gt;Get access to advanced analytics.&lt;/span&gt;&lt;/div&gt;" 
+  data-bg="linear-gradient(135deg, #f59e0b, #e11d48)" data-color="#ffffff"
+  data-close-icon="true" data-close-color="#ffffff"
+  data-offset="8"
+  data-pt="16px" data-pb="20px" data-pl="20px" data-pr="20px"&gt;
+  Upgrade Plan
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Hit limits? Click <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='text-align:center; min-width: 160px; margin-top:8px;'><b style='font-size:16px; color:#fff;'>Unlock Pro Features</b><br><span style='font-size:13px; color:#ffe4e6;'>Get access to advanced analytics.</span></div>"
+                                        data-dx-bg="linear-gradient(135deg, #f59e0b, #e11d48)" data-dx-color="#ffffff"
+                                        data-dx-close-icon="true" data-dx-close-color="#ffffff" data-dx-gap="8"
+                                        data-dx-pt="16px" data-dx-pb="20px" data-dx-pl="20px" data-dx-pr="20px">Upgrade
+                                        Plan</span> to scale.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="interactions"
+                data-title="3. User Interactions">
+                <h3>3. User Interactions: Hover & Click</h3>
+                <p>Define exactly how the user reveals the tooltip. (Note: Links and buttons inside the tooltip are
+                    automatically interactive as soon as it appears.)</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-trigger</code> : Set to <code>hover</code>, <code>click</code>, or
+                        <code>show</code></span>
+                    <span class="badge"><code>data-close-icon</code> : Generates an X icon for closing</span>
+                    <span class="badge"><code>data-close-color</code> : Customizes the close icon color</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">3.1 Hover for Quick Context</h4>
+                    <p class="example-desc">Tooltips appear instantly when users hover, perfect for defining UI
+                        elements.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-trigger="hover"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="This metric tracks the total number of unique visitors." 
+  data-trigger="hover"
+  data-bg="#ffffff" data-color="#1e293b"
+  data-close-icon="true" data-close-color="#64748b"
+  data-offset="8"
+  data-pt="16px" data-pb="16px" data-pl="20px" data-pr="24px"&gt;
+  Unique Visitors
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Your dashboard shows 15k <span class="preview-trigger"
+                                        data-dx-tooltip="This metric tracks the total number of unique visitors."
+                                        data-dx-trigger="hover" data-dx-bg="#ffffff" data-dx-color="#1e293b"
+                                        data-dx-close-icon="true" data-dx-close-color="#64748b" data-dx-gap="8"
+                                        data-dx-pt="16px" data-dx-pb="16px" data-dx-pl="20px" data-dx-pr="24px">Unique
+                                        Visitors</span> this month.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">3.2 Click for Navigational Menus</h4>
+                    <p class="example-desc">Require a click so the tooltip stays open, allowing users to comfortably
+                        click internal links.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-trigger="click"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='display:flex; flex-direction:column; gap:10px; min-width:140px; text-align:left;'&gt;&lt;b style='padding-bottom:8px; border-bottom:1px solid #e2e8f0; color:#0f172a; margin-right:15px;'&gt;Account Menu&lt;/b&gt;&lt;a href='#' style='color:#475569; text-decoration:none; font-size:14px;'&gt;Profile Settings&lt;/a&gt;&lt;a href='#' style='color:#ef4444; text-decoration:none; font-size:14px;'&gt;Sign Out&lt;/a&gt;&lt;/div&gt;" 
+  data-trigger="click"
+  data-bg="#f8fafc" data-color="#0f172a"
+  data-close-icon="true" data-close-color="#64748b"
+  data-offset="8"
+  data-pt="18px" data-pb="18px" data-pl="20px" data-pr="20px"&gt;
+  My Account
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Welcome back, Jane. Go to <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='display:flex; flex-direction:column; gap:10px; min-width: 140px; text-align:left;'><b style='padding-bottom:8px; border-bottom:1px solid #e2e8f0; color:#0f172a; margin-right:15px;'>Account Menu</b><a href='#' style='color:#475569; text-decoration:none; font-size:14px;'>Profile Settings</a><a href='#' style='color:#ef4444; text-decoration:none; font-size:14px;'>Sign Out</a></div>"
+                                        data-dx-trigger="click" data-dx-bg="#f8fafc" data-dx-color="#0f172a"
+                                        data-dx-close-icon="true" data-dx-close-color="#64748b" data-dx-gap="8"
+                                        data-dx-pt="18px" data-dx-pb="18px" data-dx-pl="20px" data-dx-pr="20px">My
+                                        Account</span> to manage settings.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="time-delays" data-title="4. Time Delays">
+                <h3>4. Time Delays</h3>
+                <p>Prevent jarring popups by adding a delay, requiring the user to intentionally rest their mouse before
+                    the tooltip appears.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-delay</code> : Milliseconds to wait before opening (e.g., 1500 for
+                        1.5s)</span>
+                    <span class="badge"><code>data-autohide</code> : Milliseconds to wait before automatically
+                        closing</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">4.1 Rest Delay (1.5s)</h4>
+                    <p class="example-desc">Tooltip will appear precisely 1.5 seconds after the user's mouse hovers over
+                        it.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-delay="1500"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='margin-right:15px;'&gt;&lt;b style='color:#fff; font-size:15px;'&gt;Admin Privilege Required&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#cbd5e1;'&gt;Only owners can modify this.&lt;/span&gt;&lt;/div&gt;" 
+  data-trigger="hover"
+  data-delay="1500"
+  data-offset="8"
+  data-bg="#334155" data-color="#ffffff"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-pt="16px" data-pb="16px" data-pl="18px" data-pr="18px"&gt;
+  Locked Setting
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>You cannot edit this <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='margin-right:15px;'><b style='color:#fff; font-size:15px;'>Admin Privilege Required</b><br><span style='font-size:13px; color:#cbd5e1;'>Only owners can modify this.</span></div>"
+                                        data-dx-trigger="hover" data-dx-delay="1500" data-dx-gap="8"
+                                        data-dx-bg="#334155" data-dx-color="#ffffff" data-dx-close-icon="true"
+                                        data-dx-close-color="#94a3b8" data-dx-pt="16px" data-dx-pb="16px"
+                                        data-dx-pl="18px" data-dx-pr="18px">Locked Setting</span>. Rest your mouse on
+                                    it.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="viewport" data-title="5. Viewport Detection">
+                <h3>5. Viewport Detection (Scroll)</h3>
+                <p>Automatically display the tooltip when the user scrolls the element into view. Great for onboarding
+                    flows.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-viewport</code> : Set <code>true</code> to trigger
+                        automatically</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">5.1 Viewport Trigger & Auto-Hide</h4>
+                    <p class="example-desc">Wait until the element enters the screen, then show the tooltip after 1.5s.
+                        If you scroll away and come back, it will trigger again!</p>
+                    <div class="param-tag">
+                        <strong>Main Parameters:</strong> <code>data-viewport="true"</code> &amp;
+                        <code>data-delay="1500"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='border-left:3px solid #f59e0b; padding-left:12px; text-align:left; margin-right:15px;'&gt;&lt;b style='color:#7f1d1d; font-size:14px;'&gt;Documentation Updated&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#991b1b;'&gt;V2 endpoints deprecated.&lt;/span&gt;&lt;/div&gt;" 
+  data-viewport="true"
+  data-delay="1500"
+  data-offset="8"
+  data-bg="#fef2f2" data-color="#7f1d1d"
+  data-close-icon="true" data-close-color="#dc2626"
+  data-pt="16px" data-pb="16px" data-pl="18px" data-pr="18px"&gt;
+  Important API Notice
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Developers must read the <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='border-left:3px solid #f59e0b; padding-left:12px; text-align:left; margin-right:15px;'><b style='color:#7f1d1d; font-size:14px;'>Documentation Updated</b><br><span style='font-size:13px; color:#991b1b;'>V2 endpoints deprecated.</span></div>"
+                                        data-dx-viewport="true" data-dx-delay="1500" data-dx-gap="8"
+                                        data-dx-bg="#fef2f2" data-dx-color="#7f1d1d" data-dx-close-icon="true"
+                                        data-dx-close-color="#dc2626" data-dx-pt="16px" data-dx-pb="16px"
+                                        data-dx-pl="18px" data-dx-pr="18px">Important API Notice</span> before
+                                    migrating.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="responsive"
+                data-title="6. Responsive Behavior">
+                <h3>6. Responsive Behavior</h3>
+                <p>Dynamically change any parameter based on screen size by adding prefixes. The script handles pointer
+                    tracking automatically, but you can override layouts per device.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>phone-data-[param]</code> : Overrides parameter below 768px</span>
+                    <span class="badge"><code>tablet-data-[param]</code> : Overrides parameter between
+                        768px-1024px</span>
+                    <span class="badge"><code>desktop-data-[param]</code> : Overrides parameter above 1024px</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">6.1 Phone Position Shift</h4>
+                    <p class="example-desc">Defaults to displaying on top, but shifts to the bottom specifically on
+                        phone screens. Resize your browser to test it.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameters:</strong> <code>data-pos="top"</code> &amp;
+                        <code>phone-data-pos="bottom"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;b style='color:#0f172a'&gt;Phone Shift!&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#475569;'&gt;Resize your browser to see the shift.&lt;/span&gt;" 
+  data-pos="top" phone-data-pos="bottom"
+  data-bg="#ffffff" data-color="#0f172a"
+  data-close-icon="true" data-close-color="#64748b"
+  data-offset="8"
+  data-pt="16px" data-pb="16px" data-pl="20px" data-pr="20px"&gt;
+  Responsive Placement
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Inspect this <span class="preview-trigger"
+                                        data-dx-tooltip="<b style='color:#0f172a'>Phone Shift!</b><br><span style='font-size:13px; color:#475569;'>Resize your browser to see the shift.</span>"
+                                        data-dx-pos="top" phone-data-dx-pos="bottom" data-dx-bg="#ffffff"
+                                        data-dx-color="#0f172a" data-dx-close-icon="true" data-dx-close-color="#64748b"
+                                        data-dx-gap="8" data-dx-pt="16px" data-dx-pb="16px" data-dx-pl="20px"
+                                        data-dx-pr="20px">Responsive Placement</span> on mobile views.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">6.2 Tablet Color Change</h4>
+                    <p class="example-desc">This tooltip is normally plain white, but applies a blue theme exclusively
+                        for tablet users.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameters:</strong> <code>data-bg="#ffffff"</code> &amp;
+                        <code>tablet-data-bg="#dbeafe"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;b&gt;Tablet Style!&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px;'&gt;White default, Blue on tablets.&lt;/span&gt;" 
+  data-bg="#ffffff" data-color="#0f172a"
+  tablet-data-bg="#dbeafe" tablet-data-color="#1e3a8a"
+  data-close-icon="true"
+  data-close-color="#64748b" tablet-data-close-color="#3b82f6"
+  data-offset="8"
+  data-pt="16px" data-pb="16px" data-pl="20px" data-pr="20px"&gt;
+  Responsive Colors
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Inspect this <span class="preview-trigger"
+                                        data-dx-tooltip="<b>Tablet Style!</b><br><span style='font-size:13px;'>White default, Blue on tablets.</span>"
+                                        data-dx-bg="#ffffff" data-dx-color="#0f172a" tablet-data-dx-bg="#dbeafe"
+                                        tablet-data-dx-color="#1e3a8a" data-dx-close-icon="true"
+                                        data-dx-close-color="#64748b" tablet-data-dx-close-color="#3b82f6"
+                                        data-dx-gap="8" data-dx-pt="16px" data-dx-pb="16px" data-dx-pl="20px"
+                                        data-dx-pr="20px">Responsive Colors</span> on tablet width.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="custom-padding"
+                data-title="7. Custom Padding">
+                <h3>7. Custom Padding</h3>
+                <p>Control internal spacing (top, bottom, left, right) to perfectly frame custom HTML structures.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-pt</code> : Top padding</span>
+                    <span class="badge"><code>data-pb</code> : Bottom padding</span>
+                    <span class="badge"><code>data-pl</code> : Left padding</span>
+                    <span class="badge"><code>data-pr</code> : Right padding</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">7.1 Clean Profile Card (High Top Padding)</h4>
+                    <p class="example-desc">We added a massive 80px top padding (<code>data-pt="80px"</code>) to cleanly
+                        push the profile text down and create visual empty space above the avatar.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-pt="80px"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='text-align:center;'&gt;&lt;img src='https://i.pravatar.cc/50?img=11' style='border-radius:50%; display:block; width:46px; height:46px; margin:0 auto 10px auto;' alt='Avatar'&gt;&lt;b style='color:#0f172a; font-size:16px;'&gt;Alex Smith&lt;/b&gt;&lt;br&gt;&lt;span style='color:#64748b; font-size:13px;'&gt;Lead UX Designer&lt;/span&gt;&lt;/div&gt;" 
+  data-pos="bottom" data-offset="12"
+  data-bg="#ffffff" data-color="#0f172a"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-pt="80px" data-pb="20px" 
+  data-pl="40px" data-pr="40px"&gt;
+  View Author
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>This article was written by our team. <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='text-align:center;'><img src='https://i.pravatar.cc/50?img=11' style='border-radius:50%; display:block; width:46px; height:46px; margin:0 auto 10px auto;' alt='Avatar'><b style='color:#0f172a; font-size:16px;'>Alex Smith</b><br><span style='color:#64748b; font-size:13px;'>Lead UX Designer</span></div>"
+                                        data-dx-pos="bottom" data-dx-bg="#ffffff" data-dx-color="#0f172a"
+                                        data-dx-close-icon="true" data-dx-close-color="#94a3b8" data-dx-gap="12"
+                                        data-dx-pt="80px" data-dx-pb="20px" data-dx-pl="40px" data-dx-pr="40px">View
+                                        Author</span> details here.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">7.2 Exaggerated Bottom Padding for Call-to-Actions</h4>
+                    <p class="example-desc">Creating 80px of empty space at the bottom (<code>data-pb="80px"</code>)
+                        separates descriptive text from an absolute-positioned "Read More" action link.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-pb="80px"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="&lt;div style='text-align:left; min-width:200px;'&gt;&lt;b style='color:#0369a1; margin-right:15px;'&gt;Web Vitals Guide&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:13px; color:#0c4a6e; display:block; margin-top:4px;'&gt;Learn how to optimize your site.&lt;/span&gt;&lt;div style='position:absolute; bottom:15px; left:18px;'&gt;&lt;span style='color:#0284c7; font-weight:600; font-size:13px;'&gt;Read Full Article →&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" 
+  data-offset="8"
+  data-bg="#f0f9ff" data-color="#0369a1"
+  data-close-icon="true" data-close-color="#0284c7"
+  data-pt="18px" data-pb="80px" 
+  data-pl="18px" data-pr="18px"&gt;
+  Learn More
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Page speed is a ranking factor. <span class="preview-trigger"
+                                        data-dx-tooltip="<div style='text-align:left; min-width:200px;'><b style='color:#0369a1; margin-right:15px;'>Web Vitals Guide</b><br><span style='font-size:13px; color:#0c4a6e; display:block; margin-top:4px;'>Learn how to optimize your site.</span><div style='position:absolute; bottom:15px; left:18px;'><span style='color:#0284c7; font-weight:600; font-size:13px;'>Read Full Article →</span></div></div>"
+                                        data-dx-bg="#f0f9ff" data-dx-color="#0369a1" data-dx-close-icon="true"
+                                        data-dx-close-color="#0284c7" data-dx-gap="8" data-dx-pt="18px"
+                                        data-dx-pb="80px" data-dx-pl="18px" data-dx-pr="18px">Learn More</span> about
+                                    optimization.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="distance-control"
+                data-title="8. Distance Control">
+                <h3>8. Distance Control (Offset)</h3>
+                <p>Adjust the external gap between the target element and the tooltip's arrow to prevent visual
+                    overlapping or to create elegant breathing room.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-offset</code> : Distance from target element in pixels (Default:
+                        12)</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">8.1 Snug Fit (Small Offset)</h4>
+                    <p class="example-desc">Setting a low offset pulls the tooltip right up to the trigger word.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-offset="2"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="Notice how close the arrow is to the text!" 
+  data-offset="2"
+  data-bg="#ffffff" data-color="#1e293b"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-pt="12px" data-pb="12px" data-pl="16px" data-pr="16px"&gt;
+  Close Gap
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Hover over this <span class="preview-trigger"
+                                        data-dx-tooltip="Notice how close the arrow is to the text!" data-dx-gap="2"
+                                        data-dx-bg="#ffffff" data-dx-color="#1e293b" data-dx-close-icon="true"
+                                        data-dx-close-color="#94a3b8" data-dx-pt="12px" data-dx-pb="12px"
+                                        data-dx-pl="16px" data-dx-pr="16px">Close Gap</span> example.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">8.2 Floating Far (Large Offset)</h4>
+                    <p class="example-desc">A much larger offset pushes the tooltip high above the content.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-offset="30"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="Lots of room to breathe." 
+  data-offset="30"
+  data-bg="#ffffff" data-color="#1e293b"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-pt="12px" data-pb="12px" data-pl="16px" data-pr="16px"&gt;
+  Large Gap
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Hover over this <span class="preview-trigger"
+                                        data-dx-tooltip="Lots of room to breathe." data-dx-gap="30" data-dx-bg="#ffffff"
+                                        data-dx-color="#1e293b" data-dx-close-icon="true" data-dx-close-color="#94a3b8"
+                                        data-dx-pt="12px" data-dx-pb="12px" data-dx-pl="16px" data-dx-pr="16px">Large
+                                        Gap</span> example.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="layering-z"
+                data-title="9. Layering (Z-Index)">
+                <h3>9. Layering (Z-Index)</h3>
+                <p>Solve overlapping issues instantly. If your site uses sticky navigation bars or full-screen modals
+                    with high z-indices, default tooltips might hide behind them. Control the depth dynamically
+                    per-element.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-z</code> : Custom z-index value (Default: 99999)</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">9.1 Bypassing Modal Overlays</h4>
+                    <p class="example-desc">If your modal wrapper has a z-index of <code>100000</code>, you can simply
+                        push this specific tooltip to <code>100005</code> without writing a single line of custom CSS.
+                    </p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-z="100005"</code>
+                    </div>
+
+                    <div class="code-wrapper">
+                        <button class="copy-btn">Copy</button>
+                        <pre><code>&lt;!-- Example of a tooltip pushed to the absolute front --&gt;
+&lt;span class="preview-trigger" 
+  data-tooltip="This will appear over your modal." 
+  data-z="100005"
+  data-bg="#ffffff" data-color="#1e293b"
+  data-offset="8"
+  data-pt="12px" data-pb="12px" data-pl="16px" data-pr="16px"&gt;
+  Modal Button
+&lt;/span&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group border-top pt-5 scroll-section" id="smart-placement"
+                data-title="10. Smart Placement">
+                <h3>10. Smart Placement (Pointer Position)</h3>
+                <p>You can suggest the primary position of the tooltip (<code>top</code>, <code>bottom</code>,
+                    <code>left</code>, or <code>right</code>). <br><br><strong>Note on Smart Fallback:</strong> If you
+                    suggest <code>top</code> but the user scrolls too close to the top edge of the browser, the script
+                    will automatically flip the tooltip to <code>bottom</code> to keep it fully visible.</p>
+
+                <div class="param-info-list d-flex flex-wrap gap-2">
+                    <span class="badge"><code>data-pos</code> : Primary placement priority (top | bottom | left |
+                        right)</span>
+                </div>
+
+                <div class="sub-example">
+                    <h4 class="sub-example-title">10.1 Top Placement</h4>
+                    <p class="example-desc">The default behavior. Tooltip appears above the target element.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-pos="top"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="Standard Top Placement." 
+  data-pos="top"
+  data-bg="#ffffff" data-color="#1e293b"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-offset="12"
+  data-pt="12px" data-pb="12px" data-pl="16px" data-pr="16px"&gt;
+  Point Up
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Hover here to <span class="preview-trigger"
+                                        data-dx-tooltip="Standard Top Placement." data-dx-pos="top" data-dx-bg="#ffffff"
+                                        data-dx-color="#1e293b" data-dx-close-icon="true" data-dx-close-color="#94a3b8"
+                                        data-dx-gap="12" data-dx-pt="12px" data-dx-pb="12px" data-dx-pl="16px"
+                                        data-dx-pr="16px">Point Up</span> (Top).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-example mb-0">
+                    <h4 class="sub-example-title">10.2 Bottom Placement</h4>
+                    <p class="example-desc">Forces the tooltip to spawn below the element.</p>
+                    <div class="param-tag">
+                        <strong>Main Parameter:</strong> <code>data-pos="bottom"</code>
+                    </div>
+
+                    <div class="row g-5 align-items-stretch">
+                        <div class="col-lg-6">
+                            <div class="code-wrapper">
+                                <button class="copy-btn">Copy</button>
+                                <pre><code>&lt;span class="preview-trigger" 
+  data-tooltip="Standard Bottom Placement." 
+  data-pos="bottom"
+  data-bg="#ffffff" data-color="#1e293b"
+  data-close-icon="true" data-close-color="#94a3b8"
+  data-offset="12"
+  data-pt="12px" data-pb="12px" data-pl="16px" data-pr="16px"&gt;
+  Point Down
+&lt;/span&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="preview-box">
+                                <span>Hover here to <span class="preview-trigger"
+                                        data-dx-tooltip="Standard Bottom Placement." data-dx-pos="bottom"
+                                        data-dx-bg="#ffffff" data-dx-color="#1e293b" data-dx-close-icon="true"
+                                        data-dx-close-color="#94a3b8" data-dx-gap="12" data-dx-pt="12px"
+                                        data-dx-pb="12px" data-dx-pl="16px" data-dx-pr="16px">Point Down</span>
+                                    (Bottom).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top py-5 mt-5">
+        <div class="container text-center">
+            <img src="https://zindvera.github.io/fegopics/media/fegopics-logo.png" height="24" alt="FegoPics"
+                class="mb-3 opacity-75">
+            <p class="text-muted mb-0">© 2026 FegoPics. All rights reserved.</p>
+
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 400);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. Copy Logic ---
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const codeEl = btn.nextElementSibling.querySelector('code') || btn.nextElementSibling;
+                    const textToCopy = codeEl.innerText;
+
+                    const textArea = document.createElement("textarea");
+                    textArea.value = textToCopy;
+                    textArea.style.position = "fixed";
+                    textArea.style.top = "-9999px";
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        const originalText = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        btn.style.background = '#10b981';
+                        setTimeout(() => {
+                            btn.innerText = originalText;
+                            btn.style.background = 'rgba(255,255,255,0.1)';
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            });
+
+            // --- 2. Scroll Spy Logic for Fixed Header ---
+            const sections = document.querySelectorAll('.scroll-section');
+            const titleEl = document.getElementById('current-section-title');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const fixedToc = document.getElementById('fixedToc');
+            const staticTocContainer = document.getElementById('static-toc-container');
+
+            window.addEventListener('scroll', () => {
+                if (staticTocContainer) {
+                    const threshold = staticTocContainer.offsetTop + staticTocContainer.offsetHeight;
+                    if (window.scrollY > threshold) {
+                        fixedToc.classList.add('is-visible');
+                    } else {
+                        fixedToc.classList.remove('is-visible');
+                        const menuCollapse = document.getElementById('tocMenuCollapse');
+                        if (menuCollapse.classList.contains('show')) {
+                            const bsCollapse = bootstrap.Collapse.getInstance(menuCollapse);
+                            if (bsCollapse) bsCollapse.hide();
+                        }
+                    }
+                }
+
+                let current = 'Documentation';
+                sections.forEach(sec => {
+                    const secTop = sec.offsetTop;
+                    if (window.scrollY >= (secTop - 180)) {
+                        current = sec.getAttribute('data-title');
+                    }
+                });
+
+                if (titleEl) {
+                    if (current.length > 20) {
+                        titleEl.innerText = current.substring(0, 20) + '...';
+                    } else {
+                        titleEl.innerText = current;
+                    }
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const menuCollapse = document.getElementById('tocMenuCollapse');
+                    if (menuCollapse.classList.contains('show')) {
+                        const bsCollapse = bootstrap.Collapse.getInstance(menuCollapse) || new bootstrap.Collapse(menuCollapse);
+                        bsCollapse.hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- 
+    FEGOPICS.JS INCLUDED HERE FOR LIVE PREVIEWS (DECOY PROTECTION ENABLED)
+    Uses 'dx-' prefixed classes and attributes to prevent pure copy-pasting of premium source.
+-->
+    <script>
+        (function () {
+            const style = document.createElement('style');
+            style.textContent = `
+        .dx-wrap {
+            position: absolute; z-index: 99999; opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; transform: translateY(5px);
+            max-width: calc(100vw - 30px); box-sizing: border-box;
+        }
+        .dx-wrap.dx-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .dx-main { position: relative; transition: clip-path 0.2s ease; max-width: 100%; box-sizing: border-box; }
+        .dx-body { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 1.4; word-wrap: break-word; max-width: 100%; box-sizing: border-box; }
+        .dx-x-btn { position: absolute; top: 6px; right: 6px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; font-weight: 500; border: none; padding: 4px 8px; line-height: 1; z-index: 10; opacity: 0.6; transition: opacity 0.2s; }
+        .dx-x-btn:hover { opacity: 1; }
+    `;
+            document.head.appendChild(style);
+
+            class DxPreview {
+                constructor(el) {
+                    this.trig = el;
+                    this.vis = false;
+                    this.trig.__dxTooltip = this;
+                    this.init();
+                    this.bind();
+                }
+
+                v(name) {
+                    const w = document.documentElement.clientWidth;
+                    let p = '';
+                    if (w < 768) p = 'phone-';
+                    else if (w < 1024) p = 'tablet-';
+                    else p = 'desktop-';
+                    return this.trig.getAttribute(`${p}data-dx-${name}`) || this.trig.getAttribute(`data-dx-${name}`);
+                }
+
+                init() {
+                    this.wrap = document.createElement('div');
+                    this.wrap.className = 'dx-wrap';
+                    this.shape = document.createElement('div');
+                    this.shape.className = 'dx-main';
+                    this.content = document.createElement('div');
+                    this.content.className = 'dx-body';
+                    this.shape.appendChild(this.content);
+
+                    if (this.v('close-icon') === 'true') {
+                        this.xBtn = document.createElement('button');
+                        this.xBtn.className = 'dx-x-btn dx-close';
+                        this.xBtn.innerHTML = '&times;';
+                        this.shape.appendChild(this.xBtn);
+                    }
+                    this.wrap.appendChild(this.shape);
+                    document.body.appendChild(this.wrap);
+                }
+
+                upd() {
+                    this.content.innerHTML = this.trig.getAttribute('data-dx-tooltip') || '';
+                    this.shape.style.background = this.v('bg') || '#1a1a1a';
+                    this.content.style.color = this.v('color') || '#ffffff';
+                    if (this.v('size')) this.content.style.width = this.v('size');
+
+                    const z = this.v('z');
+                    if (z) this.wrap.style.zIndex = z;
+
+                    const sh = this.v('shadow');
+                    this.wrap.style.filter = sh ? `drop-shadow(${sh})` : `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`;
+
+                    if (this.xBtn) {
+                        const cx = this.v('close-color');
+                        this.xBtn.style.color = cx ? cx : 'inherit';
+                    }
+
+                    this.content.style.paddingTop = this.v('pt') || '10px';
+                    this.content.style.paddingBottom = this.v('pb') || '10px';
+                    this.content.style.paddingLeft = this.v('pl') || '15px';
+
+                    const basePr = this.v('pr') || '15px';
+                    if (this.v('close-icon') === 'true') {
+                        this.content.style.paddingRight = `calc(${basePr} + 24px)`;
+                    } else {
+                        this.content.style.paddingRight = basePr;
+                    }
+                }
+
+                bind() {
+                    const m = this.v('trigger') || 'show';
+                    const vp = this.v('viewport') === 'true';
+
+                    if (vp) {
+                        const obs = new IntersectionObserver((entries) => {
+                            entries.forEach(en => {
+                                if (en.isIntersecting) {
+                                    if (this.vpTo) clearTimeout(this.vpTo);
+                                    this.vpTo = setTimeout(() => this.show(), parseInt(this.v('delay')) || 0);
+                                } else {
+                                    if (this.vpTo) clearTimeout(this.vpTo);
+                                    this.hide();
+                                }
+                            });
+                        }, { threshold: 0.1 });
+                        obs.observe(this.trig);
+                    }
+
+                    if (m === 'show' && !vp) {
+                        setTimeout(() => this.show(), parseInt(this.v('delay')) || 0);
+                    } else if (m === 'hover') {
+                        this.trig.addEventListener('mouseenter', () => {
+                            if (this.hTo) clearTimeout(this.hTo);
+                            if (this.oTo) clearTimeout(this.oTo);
+                            this.hTo = setTimeout(() => this.show(), parseInt(this.v('delay')) || 0);
+                        });
+                        this.trig.addEventListener('mouseleave', () => {
+                            if (this.hTo) clearTimeout(this.hTo);
+                            this.oTo = setTimeout(() => this.hide(), 100);
+                        });
+                        this.wrap.addEventListener('mouseenter', () => { if (this.oTo) clearTimeout(this.oTo); });
+                        this.wrap.addEventListener('mouseleave', () => { this.oTo = setTimeout(() => this.hide(), 100); });
+                    } else if (m === 'click') {
+                        this.trig.addEventListener('click', (e) => {
+                            e.preventDefault(); e.stopPropagation();
+                            if (this.vis) this.hide();
+                            else {
+                                const d = parseInt(this.v('delay')) || 0;
+                                if (d > 0) setTimeout(() => this.show(), d); else this.show();
+                            }
+                        });
+                        document.addEventListener('click', (e) => {
+                            if (this.vis && !this.wrap.contains(e.target) && !this.trig.contains(e.target)) this.hide();
+                        });
+                    }
+
+                    this.wrap.addEventListener('click', (e) => {
+                        if (e.target.closest('.dx-close')) {
+                            e.stopPropagation();
+                            this.hide();
+                            setTimeout(() => {
+                                this.show();
+                            }, 1000);
+                        }
+                    });
+
+                    window.addEventListener('resize', () => { if (this.vis) { this.upd(); this.pos(); } });
+                    window.addEventListener('scroll', () => { if (this.vis) this.pos(); });
+                }
+
+                show() {
+                    this.upd(); this.pos();
+                    this.wrap.classList.add('dx-visible'); this.vis = true;
+                    const ah = parseInt(this.v('autohide'));
+                    if (ah) setTimeout(() => this.hide(), ah);
+                }
+
+                hide() {
+                    this.wrap.classList.remove('dx-visible'); this.vis = false;
+                }
+
+                pos() {
+                    const arr = this.v('arrow') !== 'false';
+                    let p = this.v('pos') || 'top';
+                    const off = parseInt(this.v('gap')) || 12;
+                    const m = 15; const az = arr ? 10 : 0;
+
+                    const vw = document.documentElement.clientWidth;
+                    const vh = document.documentElement.clientHeight;
+
+                    this.wrap.style.left = '0px'; this.wrap.style.top = '0px';
+                    this.shape.style.padding = '0';
+                    if (p === 'top') this.shape.style.paddingBottom = `${az}px`;
+                    else if (p === 'bottom') this.shape.style.paddingTop = `${az}px`;
+                    else if (p === 'left') this.shape.style.paddingRight = `${az}px`;
+                    else if (p === 'right') this.shape.style.paddingLeft = `${az}px`;
+
+                    let tr = this.trig.getBoundingClientRect();
+                    const crs = this.trig.getClientRects();
+                    if (crs.length > 0) tr = crs[0];
+                    let tt = this.wrap.getBoundingClientRect();
+
+                    if (p === 'top' && (tr.top - tt.height - off < m)) { if (tr.bottom + tt.height + off < vh - m) p = 'bottom'; }
+                    else if (p === 'bottom' && (tr.bottom + tt.height + off > vh - m)) { if (tr.top - tt.height - off > m) p = 'top'; }
+                    else if (p === 'left' && (tr.left - tt.width - off < m)) { if (tr.right + tt.width + off < vw - m) p = 'right'; }
+                    else if (p === 'right' && (tr.right + tt.width + off > vw - m)) { if (tr.left - tt.width - off > m) p = 'left'; }
+
+                    this.shape.style.padding = '0';
+                    if (p === 'top') this.shape.style.paddingBottom = `${az}px`;
+                    else if (p === 'bottom') this.shape.style.paddingTop = `${az}px`;
+                    else if (p === 'left') this.shape.style.paddingRight = `${az}px`;
+                    else if (p === 'right') this.shape.style.paddingLeft = `${az}px`;
+
+                    tt = this.wrap.getBoundingClientRect();
+                    let t = 0, l = 0, pct = 50;
+
+                    if (p === 'top' || p === 'bottom') {
+                        const cx = tr.left + (tr.width / 2);
+                        let il = cx - (tt.width / 2);
+                        l = Math.max(m, Math.min(il, vw - tt.width - m));
+                        let px = cx - l; pct = Math.max(8, Math.min((px / tt.width) * 100, 92));
+                        t = (p === 'top') ? tr.top - tt.height - off : tr.bottom + off;
+                    } else {
+                        const cy = tr.top + (tr.height / 2);
+                        let it = cy - (tt.height / 2);
+                        t = Math.max(m, Math.min(it, vh - tt.height - m));
+                        let py = cy - t; pct = Math.max(8, Math.min((py / tt.height) * 100, 92));
+                        l = (p === 'left') ? tr.left - tt.width - off : tr.right + off;
+                    }
+
+                    t += window.scrollY; l += window.scrollX;
+
+                    if (p === 'top') this.shape.style.clipPath = arr ? `polygon(0% 0%, 100% 0%, 100% calc(100% - ${az}px), calc(${pct}% + ${az}px) calc(100% - ${az}px), ${pct}% 100%, calc(${pct}% - ${az}px) calc(100% - ${az}px), 0% calc(100% - ${az}px))` : 'none';
+                    else if (p === 'bottom') this.shape.style.clipPath = arr ? `polygon(0% ${az}px, calc(${pct}% - ${az}px) ${az}px, ${pct}% 0%, calc(${pct}% + ${az}px) ${az}px, 100% ${az}px, 100% 100%, 0% 100%)` : 'none';
+                    else if (p === 'left') this.shape.style.clipPath = arr ? `polygon(0% 0%, calc(100% - ${az}px) 0%, calc(100% - ${az}px) calc(${pct}% - ${az}px), 100% ${pct}%, calc(100% - ${az}px) calc(${pct}% + ${az}px), calc(100% - ${az}px) 100%, 0% 100%)` : 'none';
+                    else if (p === 'right') this.shape.style.clipPath = arr ? `polygon(${az}px 0%, 100% 0%, 100% 100%, ${az}px 100%, ${az}px calc(${pct}% + ${az}px), 0% ${pct}%, ${az}px calc(${pct}% - ${az}px))` : 'none';
+
+                    this.wrap.style.top = t + 'px'; this.wrap.style.left = l + 'px';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('[data-dx-tooltip]').forEach(el => new DxPreview(el));
+            });
+        })();
+    </script>
+</body>
+
+</html>
