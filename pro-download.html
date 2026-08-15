@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrollStrike PRO - Official WordPress Plugin</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --link-blue: #2563eb;
+            --link-blue-hover: #1d4ed8;
+            --text-black: #000000;
+            --text-dark: #0f172a;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Primary Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 16px 36px;
+            font-size: 16px;
+            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.22);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(234, 88, 12, 0.28);
+        }
+
+        .navbar {
+            background: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            padding: 18px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 70px 0 50px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto 32px auto;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .collapsible-wrapper {
+            position: relative;
+        }
+
+        .collapsible-segment {
+            max-height: 380px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collapsible-segment::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0.95) 70%, rgba(248, 250, 252, 1) 100%);
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .checklist-box .collapsible-segment::after {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 70%, rgba(255, 255, 255, 1) 100%);
+        }
+
+        .activation-section .collapsible-segment::after {
+            background: linear-gradient(to bottom, rgba(241, 245, 249, 0) 0%, rgba(241, 245, 249, 0.95) 70%, rgba(241, 245, 249, 1) 100%);
+        }
+
+        .collapsible-segment.expanded {
+            max-height: 3500px !important;
+        }
+
+        .collapsible-segment.expanded::after {
+            opacity: 0;
+        }
+
+        .expand-btn-wrap {
+            text-align: center;
+            margin-top: 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .expand-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: var(--link-blue);
+            font-size: 16px;
+            font-weight: 800;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .expand-toggle-btn:hover {
+            color: var(--link-blue-hover);
+            background: rgba(37, 99, 235, 0.08);
+            text-decoration: underline;
+            transform: translateY(-1px);
+        }
+
+        .expand-toggle-btn .arrow-icon {
+            stroke: var(--link-blue);
+            transition: transform 0.3s ease, stroke 0.2s ease;
+        }
+
+        .expand-toggle-btn:hover .arrow-icon {
+            stroke: var(--link-blue-hover);
+        }
+
+        .expand-toggle-btn.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .pro-section {
+            padding: 40px 0 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+        }
+
+        .feature-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .feature-card-centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .feature-info-centered {
+            max-width: 680px;
+            margin: 0 auto 24px auto;
+        }
+
+        .feature-heading {
+            font-size: 26px;
+            font-weight: 900;
+            line-height: 1.25;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.4px;
+        }
+
+        .feature-desc {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+
+        .feature-screenshot-wrap {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .checklist-section {
+            padding: 60px 0 90px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .checklist-box {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .checklist-table th {
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-black);
+        }
+
+        .checklist-table td {
+            padding: 16px 20px;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            color: var(--text-dark);
+        }
+
+        .checklist-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .item-title {
+            font-weight: 700;
+        }
+
+        .icon-check-pro {
+            color: #ea580c;
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .icon-check-free {
+            color: #475569;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .icon-cross {
+            color: #cbd5e1;
+            font-size: 16px;
+        }
+
+        .pro-tag-highlight {
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .activation-section {
+            padding: 70px 0 90px 0;
+            border-top: 1px solid var(--border);
+            background: #f1f5f9;
+        }
+
+        .steps-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            max-width: 940px;
+            margin: 0 auto;
+        }
+
+        .step-card-centered {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .step-card-centered:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .step-info-centered {
+            max-width: 640px;
+            margin: 0 auto 24px auto;
+        }
+
+        .step-number-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #ffedd5;
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .step-desc strong {
+            color: var(--text-dark);
+        }
+
+        .step-screenshot-wrap {
+            width: 100%;
+            max-width: 840px;
+            margin: 0 auto;
+        }
+
+        .step-screenshot-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 0 8px;
+            }
+
+            .hero {
+                padding: 45px 8px 35px 8px;
+            }
+
+            .hero-title { 
+                font-size: 28px; 
+            }
+
+            .hero-desc { 
+                font-size: 15px; 
+            }
+
+            .btn-primary { 
+                width: 100%; 
+            }
+
+            .section-title { 
+                font-size: 24px; 
+                margin-bottom: 30px;
+            }
+
+            .feature-stack {
+                gap: 32px;
+            }
+
+            .feature-card-centered {
+                width: 100%;
+            }
+
+            .feature-info-centered {
+                padding: 0 8px;
+                margin-bottom: 16px;
+            }
+
+            .feature-heading { 
+                font-size: 20px; 
+            }
+
+            .feature-desc { 
+                font-size: 14px; 
+            }
+
+            .feature-screenshot-wrap { 
+                width: 100%; 
+                padding: 0;
+            }
+
+            .screenshot-img {
+                border-radius: 10px;
+            }
+
+            .checklist-box { 
+                margin: 0;
+                padding: 20px 8px; 
+                border-radius: 14px;
+            }
+
+            .checklist-table th, 
+            .checklist-table td {
+                padding: 10px 6px;
+                font-size: 13px;
+            }
+
+            .activation-section .container {
+                padding: 0 8px;
+            }
+
+            .steps-stack {
+                gap: 28px;
+            }
+
+            .step-card-centered {
+                padding: 24px 12px;
+                border-radius: 14px;
+            }
+
+            .step-info-centered {
+                padding: 0 4px;
+                margin-bottom: 16px;
+            }
+
+            .step-title {
+                font-size: 19px;
+            }
+
+            .step-desc {
+                font-size: 14px;
+            }
+
+            .step-screenshot-wrap {
+                width: 100%;
+            }
+
+            .step-screenshot-img {
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html">
+                <img src="media/fegopics-logo.png" alt="ScrollStrike Logo" class="logo-img">
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Download ScrollStrike PRO</h1>
+            <p class="hero-desc">
+                Add images to your highlighters, pick any color you want, and dim background text as visitors scroll down your page.
+            </p>
+            <div>
+                <a href="#" class="btn btn-primary" id="downloadZipBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download ScrollStrike PRO ZIP</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pro-section">
+        <div class="container collapsible-wrapper">
+            <h2 class="section-title">What You Get in PRO</h2>
+            
+            <div class="collapsible-segment">
+                <div class="feature-stack">
+                    
+                    <!-- FEATURE 1 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <h3 class="feature-heading">Image & Text Content</h3>
+                            <p class="feature-desc">
+                                Add product photos directly inside your highlighters alongside your text so visitors easily see what you recommend.
+                            </p>
+                        </div>
+                        <div class="feature-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3783471/pexels-photo-3783471.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Image and Text Highlighter Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- FEATURE 2 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <h3 class="feature-heading">Pick Any Color</h3>
+                            <p class="feature-desc">
+                                Choose any background color from a color picker so your highlighters match your website look and feel.
+                            </p>
+                        </div>
+                        <div class="feature-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/1036808/pexels-photo-1036808.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Custom Color Picker Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- FEATURE 3 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <h3 class="feature-heading">Focus Mode (Dim Background)</h3>
+                            <p class="feature-desc">
+                                Gently dim and blur surrounding page text when a highlighter triggers, guiding visitor eyes directly to your link.
+                            </p>
+                        </div>
+                        <div class="feature-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Focus Mode Blur Preview Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- View More Blue Link Toggle -->
+            <div class="expand-btn-wrap">
+                <button class="expand-toggle-btn" onclick="toggleSegment(this)">
+                    <span class="btn-text">View More</span>
+                    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="checklist-section">
+        <div class="container collapsible-wrapper">
+            <h2 class="section-title">All Features Checklist</h2>
+            
+            <div class="checklist-box">
+                <div class="collapsible-segment">
+                    <table class="checklist-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">Feature</th>
+                                <th style="width: 25%; text-align: center;">Free</th>
+                                <th style="width: 25%; text-align: center;">PRO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="item-title">Image & Text Highlighters</td>
+                                <td style="text-align: center;"><span class="icon-cross">✕</span></td>
+                                <td style="text-align: center;"><span class="icon-check-pro">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="item-title">Pick Any Color</td>
+                                <td style="text-align: center;"><span class="icon-cross">✕</span></td>
+                                <td style="text-align: center;"><span class="icon-check-pro">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="item-title">Focus Mode (Dim Background)</td>
+                                <td style="text-align: center;"><span class="icon-cross">✕</span></td>
+                                <td style="text-align: center;"><span class="icon-check-pro">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="item-title">Delay & Frequency Controls</td>
+                                <td style="text-align: center;"><span class="icon-check-free">✓</span></td>
+                                <td style="text-align: center;"><span class="icon-check-pro">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="item-title">Text Only Highlighters</td>
+                                <td style="text-align: center;"><span class="icon-check-free">✓</span></td>
+                                <td style="text-align: center;"><span class="icon-check-pro">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="item-title">8 Preset Color Buttons</td>
+                                <td style="text-align: center;"><span class="icon-check-free">✓</span></td>
+                                <td style="text-align: center;"><span class="icon-check-pro">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="item-title">Customer Support</td>
+                                <td style="text-align: center; color: var(--text-muted);">Standard</td>
+                                <td style="text-align: center;" class="pro-tag-highlight">Priority</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- View More Blue Link Toggle -->
+            <div class="expand-btn-wrap">
+                <button class="expand-toggle-btn" onclick="toggleSegment(this)">
+                    <span class="btn-text">View More</span>
+                    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="activation-section">
+        <div class="container collapsible-wrapper">
+            <h2 class="section-title">How to Activate PRO</h2>
+            
+            <div class="collapsible-segment">
+                <div class="steps-stack">
+                    
+                    <!-- STEP 1 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">1</div>
+                            <h3 class="step-title">Upload PRO Plugin ZIP</h3>
+                            <p class="step-desc">
+                                Download the PRO plugin ZIP above. Go to your WordPress admin under <strong>Plugins &rarr; Add New &rarr; Upload Plugin</strong>, select the downloaded file, and click <strong>Activate Plugin</strong>.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 1: Upload PRO Plugin ZIP Screenshot" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">2</div>
+                            <h3 class="step-title">Get License Code</h3>
+                            <p class="step-desc">
+                                Open <strong>ScrollStrike &rarr; Upgrade to PRO</strong> in your admin menu. Choose your plan option (1 Month, 6 Months, or 1 Year) in the PRO Plan Options section to get your license code on Gumroad.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 2: Get License Code on Gumroad Screenshot" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">3</div>
+                            <h3 class="step-title">Enter Key & Activate</h3>
+                            <p class="step-desc">
+                                On the <strong>Upgrade to PRO</strong> page, paste your license code into the input field and click <strong>Activate</strong> to unlock all PRO features instantly.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 3: Enter Key and Activate Screenshot" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- View More Blue Link Toggle -->
+            <div class="expand-btn-wrap">
+                <button class="expand-toggle-btn" onclick="toggleSegment(this)">
+                    <span class="btn-text">View More</span>
+                    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ScrollStrike PRO. Simple link highlighters for WordPress.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Segment Expand / Collapse Toggle Handler
+        function toggleSegment(btn) {
+            const wrapper = btn.closest('.collapsible-wrapper');
+            const segment = wrapper.querySelector('.collapsible-segment');
+            const textSpan = btn.querySelector('.btn-text');
+            const isExpanded = segment.classList.contains('expanded');
+
+            if (isExpanded) {
+                segment.classList.remove('expanded');
+                textSpan.textContent = 'View More';
+                btn.classList.remove('active');
+
+                // Smooth scroll back to section header if user collapsed from lower down
+                const rect = wrapper.getBoundingClientRect();
+                if (rect.top < 0) {
+                    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else {
+                segment.classList.add('expanded');
+                textSpan.textContent = 'Show Less';
+                btn.classList.add('active');
+            }
+        }
+
+        // ZIP Download Notification Handler
+        document.getElementById('downloadZipBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const notify = document.createElement('div');
+            notify.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#0f172a; color:#ffffff; padding:14px 24px; border-radius:12px; font-weight:700; font-size:14px; box-shadow:0 10px 25px rgba(0,0,0,0.2); z-index:999; transition:all 0.3s ease;';
+            notify.innerHTML = '⚡ Download initiated for <strong>scrollstrike-pro.zip</strong>';
+            document.body.appendChild(notify);
+
+            setTimeout(() => {
+                notify.style.opacity = '0';
+                setTimeout(() => notify.remove(), 300);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

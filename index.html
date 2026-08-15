@@ -3,90 +3,1164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fegopics - Premium UI Components</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ScrollStrike - Increase Affiliate Link Clicks & Revenue</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        /* Custom styles to ensure smooth rendering */
+        /* ==========================================================================
+           1. CSS VARIABLES & RESETS
+           ========================================================================== */
+        :root {
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --link-blue: #2563eb;
+            --link-blue-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-section: #ffffff;
+            --bg-alt: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-black: #000000;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==========================================================================
+           2. TYPOGRAPHY & BUTTONS
+           ========================================================================== */
+        .text-center { text-align: center; }
+        .font-extrabold { font-weight: 800; }
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: var(--text-dark);
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-alt);
+        }
+
+        /* Custom Labels & Statements */
+        .black-label {
+            color: var(--text-black);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border-bottom: 3px solid var(--text-black);
+            padding-bottom: 2px;
+        }
+
+        /* Problem Red-Orange Gradient Text - Vibrant & Eye-Appealing */
+        .problem-statement {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #dc2626 0%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 8px;
+        }
+
+        /* Solution Sapphire-Cyan Gradient Text - Rich & Eye-Appealing */
+        .solution-statement {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 8px;
+        }
+
+        /* Standard Big Bold Statement */
+        .big-bold-statement {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        /* ==========================================================================
+           3. NAVBAR & HEADER
+           ========================================================================== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-btn {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION & DEMO
+           ========================================================================== */
+        .hero-section {
+            padding: 60px 0;
+        }
+
+        .hero-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-body);
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions .btn {
+            padding: 14px 32px;
+            font-size: 16px;
+        }
+
+        .hero-interactive {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text-col {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .hero-demo-col {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .caption-text {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--primary);
+        }
+
+        .word-span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(4px);
+            animation: fastAppend 0.15s forwards ease-out;
+            margin-right: 0.25em;
+        }
+
+        @keyframes fastAppend {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .demo-card-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .browser-content-viewport {
+            overflow: hidden;
+            position: relative;
+            background: white;
+            height: 480px; 
+        }
+
+        .demo-scroll-body {
+            padding: 30px;
+            padding-bottom: 250px; 
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .demo-meta {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .demo-h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .demo-byline {
+            font-size: 12px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--bg-alt);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .demo-p {
+            font-size: 14px;
+            color: var(--text-body);
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        .demo-target-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+
+        .demo-affiliate-wrapper {
+            position: relative !important;
+            display: inline-block !important;
+        }
+
+        .demo-affiliate-link {
+            color: #4f46e5;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .demo-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px); 
+            left: 50%;
+            transform: translateX(-50%) translateY(4px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #312e81;
+            color: #ffffff;
+            border: 1px solid #4338ca;
+            border-radius: 12px;
+            box-shadow: 0 14px 35px rgba(49, 46, 129, 0.4);
+            z-index: 50;
+            box-sizing: border-box;
+            width: 250px;
+            padding: 14px;
+        }
+
+        .demo-tooltip.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .demo-tooltip-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .demo-tooltip-img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: block;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .demo-tooltip p {
+            font-size: 12px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .demo-tooltip-arrow {
+            position: absolute;
+            bottom: -6px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 7px solid #312e81;
+            z-index: 51;
+        }
+
+        /* ==========================================================================
+           5. SECTION PADDING & EXPANDABLE WRAPPERS
+           ========================================================================== */
+        .section-padding {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .bg-gray-section {
+            background-color: var(--bg-alt);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-dark);
+        }
+
+        /* Expandable Segment Container */
+        .expandable-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .expandable-content {
+            max-height: 380px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .expandable-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 70%, rgba(255, 255, 255, 1) 100%);
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .bg-gray-section .expandable-content::after {
+            background: linear-gradient(to bottom, rgba(241, 245, 249, 0) 0%, rgba(241, 245, 249, 0.95) 70%, rgba(241, 245, 249, 1) 100%);
+        }
+
+        .expandable-content.is-open {
+            max-height: 3500px !important;
+        }
+
+        .expandable-content.is-open::after {
+            opacity: 0;
+        }
+
+        /* High-Visibility Blue Link Style for View More Toggles */
+        .expand-btn-wrap {
+            text-align: center;
+            margin-top: 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: var(--link-blue);
+            font-size: 16px;
+            font-weight: 800;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            color: var(--link-blue-hover);
+            background: rgba(37, 99, 235, 0.08);
+            text-decoration: underline;
+            transform: translateY(-1px);
+        }
+
+        .toggle-btn .arrow-icon {
+            stroke: var(--link-blue);
+            transition: transform 0.3s ease, stroke 0.2s ease;
+        }
+
+        .toggle-btn:hover .arrow-icon {
+            stroke: var(--link-blue-hover);
+        }
+
+        .toggle-btn.is-open .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ==========================================================================
+           6. PROBLEM & SOLUTION CARDS (CENTERED WITHOUT VIEW MORE)
+           ========================================================================== */
+        .problem-solution-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ps-item-centered {
+            text-align: center;
+            padding: 40px 32px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================================================
+           7. HOW TO USE & FEATURES (CENTERED TEXT TOP, WIDE IMAGE BELOW)
+           ========================================================================== */
+        .vertical-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
+        }
+
+        /* Centered Step Card Structure */
+        .step-card-centered {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        .step-card-centered:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .step-info-centered {
+            max-width: 680px;
+            margin: 0 auto 24px auto;
+        }
+
+        .step-number-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #ffedd5;
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .step-desc strong {
+            color: var(--text-dark);
+        }
+
+        .step-screenshot-wrap {
+            width: 100%;
+            max-width: 840px;
+            margin: 0 auto;
+        }
+
+        .step-screenshot-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+        }
+
+        /* Features Centered Card Layout */
+        .feature-card-centered {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+        }
+
+        .feature-info-centered {
+            max-width: 680px;
+            margin: 0 auto 24px auto;
+        }
+
+        .feature-heading {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .benefit-card {
+            background: var(--bg-body);
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           8. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 35px 0;
+            background: var(--text-dark);
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* ==========================================================================
+           9. RESPONSIVE MEDIA QUERIES (FULL WIDTH WITH 8PX SIDES ON MOBILE)
+           ========================================================================== */
+        @media (max-width: 767px) {
+            .container {
+                padding: 0 8px;
+            }
+
+            .hero-title { font-size: 28px; }
+            .hero-subtitle { font-size: 15px; }
+            .hero-actions { flex-direction: column; }
+            .hero-actions .btn { width: 100%; }
+            
+            .hero-interactive {
+                flex-direction: column;
+                padding: 0;
+                gap: 20px;
+            }
+
+            .hero-text-col {
+                order: 2;
+                padding: 0 8px;
+                text-align: center;
+            }
+
+            .caption-text { font-size: 22px; }
+            
+            .hero-demo-col {
+                order: 1;
+                width: 100%;
+            }
+            
+            .demo-card-container {
+                border-radius: 12px;
+            }
+
+            .section-padding {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 24px;
+            }
+
+            .problem-solution-stack {
+                gap: 20px;
+            }
+
+            .ps-item-centered {
+                padding: 24px 12px;
+                border-radius: 14px;
+                margin: 0;
+            }
+
+            .problem-statement,
+            .solution-statement {
+                font-size: 22px;
+            }
+
+            .expandable-card {
+                padding: 0;
+                border: none;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .vertical-stack {
+                gap: 20px;
+            }
+
+            .step-card-centered,
+            .feature-card-centered {
+                padding: 24px 12px;
+                border-radius: 14px;
+            }
+
+            .step-info-centered,
+            .feature-info-centered {
+                padding: 0 4px;
+                margin-bottom: 16px;
+            }
+
+            .step-title,
+            .feature-heading {
+                font-size: 19px;
+            }
+
+            .step-desc,
+            .feature-desc {
+                font-size: 14px;
+            }
+
+            .step-screenshot-wrap {
+                width: 100%;
+            }
+
+            .step-screenshot-img {
+                border-radius: 10px;
+            }
+
+            .benefit-card {
+                padding: 28px 16px;
+                border-radius: 14px;
+            }
+
+            .big-bold-statement {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+<body>
 
-    <!-- Header Section -->
-    <header class="pt-20 pb-12 flex flex-col items-center text-center px-4">
-        <!-- Centered Logo -->
-        <img src="https://zindvera.github.io/fegopics/media/fegopics-logo.png" alt="FegoPics Logo" class="h-24 mb-6 drop-shadow-sm">
-
-        <!-- Heading -->
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-5 text-slate-900">
-            Welcome to Fegopics
-        </h1>
-
-        <!-- Description -->
-        <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            A premium collection of highly optimized scripts, plugins, and UI components designed to save you time and elevate your web projects.
-        </p>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container">
+            <a href="#">
+                <img src="media/fegopics-logo.png" alt="ScrollStrike Logo" class="logo-img">
+            </a>
+            <a href="#" class="btn btn-primary nav-btn">Download Free ZIP</a>
+        </div>
     </header>
 
-    <!-- Components Grid Section -->
-    <!-- 10px side margin on phone (px-[10px]), larger padding on tablet/desktop (md:px-8) -->
-    <main class="flex-grow w-full max-w-6xl mx-auto px-[10px] md:px-8 pb-20">
-        
-        <!-- Grid container: 1 col on mobile, 3 cols on tablet/desktop -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-header container">
+            <h1 class="hero-title">Increase Your Affiliate Link Clicks & Revenue</h1>
+            <p class="hero-subtitle">Easily add photos and short summary notes to your links inside WordPress. As readers scroll down, your links show helpful context about what you're recommending.</p>
+            <div class="hero-actions">
+                <a href="#" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download Free ZIP</span>
+                </a>
+                <a href="#pro-pricing" class="btn btn-outline">View Pro Pricing</a>
+            </div>
+        </div>
+
+        <div class="hero-interactive container" style="padding-left:0; padding-right:0;">
+            <!-- Left Side: Changing Text -->
+            <div class="hero-text-col">
+                <p id="captionBox" class="caption-text"></p>
+            </div>
+
+            <!-- Right Side: Demo Window -->
+            <div class="hero-demo-col">
+                <div class="demo-card-container">
+                    <div class="browser-content-viewport" id="demoViewport">
+                        <div class="demo-scroll-body" id="demoScrollBody">
+                            
+                            <div style="margin-bottom: 20px;">
+                                <span class="demo-meta">Workspace Guide</span>
+                                <h3 class="demo-h3">Building the Ultimate Deep Work Desk Setup</h3>
+                                <div class="demo-byline">By Sarah Jenkins • 5 Min Read</div>
+                            </div>
+
+                            <p class="demo-p">Creating a workspace that fosters deep focus is about more than just aesthetics. It requires carefully selecting tools that remove friction from your workflow. Whether you're coding, designing, or writing, physical discomfort is the fastest way to lose your state of flow.</p>
+                            
+                            <p class="demo-p">For years, I struggled with mild wrist fatigue. I tried different desk heights, mechanical keyboards, and wrist rests, but the discomfort persisted at the end of long eight-hour sessions. The real culprit was the standard ambidextrous mouse I was using, which forced my hand into an unnatural flat posture.</p>
+
+                            <p class="demo-p">I decided to completely overhaul my peripheral setup. I spent three months testing various ergonomic solutions across different operating systems. I needed something that supported the natural arch of my hand while providing precise tracking on a wooden desk surface without a mousepad.</p>
+
+                            <!-- TARGET AFFILIATE BOX -->
+                            <div class="demo-target-box">
+                                After extensive testing, the piece of hardware that completely eliminated my wrist fatigue and boosted my workflow speed is the 
+                                
+                                <span class="demo-affiliate-wrapper">
+                                    <a href="#" class="demo-affiliate-link" onclick="return false;">Logitech MX Master 3S</a>
+                                    
+                                    <!-- Tooltip / Visual Link Preview -->
+                                    <div class="demo-tooltip" id="demoTooltip">
+                                        <span class="demo-tooltip-close">✕</span>
+                                        <img src="https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Logitech MX Master 3S" class="demo-tooltip-img" />
+                                        <p>Logitech MX Master 3S • Ergonomic Wireless Mouse with 8K DPI Sensor & Quiet Clicks</p>
+                                        <div class="demo-tooltip-arrow"></div>
+                                    </div>
+                                </span> 
+                                
+                                which features ultra-quiet clicks, an 8000 DPI track-anywhere sensor, and a sculpted ergonomic design.
+                            </div>
+
+                            <h4 class="demo-h3" style="font-size: 16px;">Final Thoughts</h4>
+                            <p class="demo-p">Investing in the right peripherals pays daily dividends. Your hands are your primary instruments; treat them with care by choosing tools designed for human anatomy rather than just sleek aesthetics.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: PROBLEM & SOLUTION (NO VIEW MORE, CENTERED TEXT & GRADIENTS) -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">Why ScrollStrike?</h2>
             
-            <!-- Component Card: Fegopics Tooltip -->
-            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-lg hover:border-indigo-200 transition-all duration-300 group">
+            <div class="problem-solution-stack">
                 
-                <!-- Card Image/Thumbnail Area -->
-                <div class="h-48 bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center border-b border-slate-100 relative overflow-hidden">
-                    <!-- Decorative Tooltip Graphic -->
-                    <div class="bg-slate-900 text-white text-sm font-semibold py-2 px-4 rounded-lg relative shadow-lg group-hover:-translate-y-1 transition-transform duration-300">
-                        Hover Me
-                        <!-- Tooltip Arrow -->
-                        <div class="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-slate-900 rotate-45"></div>
-                    </div>
+                <!-- Problem Item -->
+                <div class="ps-item-centered">
+                    <span class="black-label">The Problem</span>
+                    <h3 class="problem-statement">
+                        People quickly scroll past plain text links and ignore intrusive ads, so they miss what your links are actually pointing to.
+                    </h3>
                 </div>
 
-                <!-- Card Content Area -->
-                <div class="p-6 flex flex-col flex-grow">
-                    <div class="flex items-center justify-between mb-3">
-                        <h2 class="text-xl font-bold text-slate-900">Fegopics Tooltip</h2>
-                        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded-full">Vanilla JS</span>
-                    </div>
-                    
-                    <p class="text-slate-600 mb-8 flex-grow leading-relaxed">
-                        Create beautiful, responsive tooltips instantly with simple data attributes. Zero dependencies, gradient-perfect clipping, and highly customizable.
-                    </p>
-                    
-                    <!-- Call to Action Button -->
-                    <a href="tooltip/javascript/demo/focus.html" class="w-full inline-flex justify-center items-center bg-slate-900 hover:bg-indigo-600 text-white font-medium py-3 px-4 rounded-xl transition-colors duration-200">
-                        View Component
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
+                <!-- Solution Item -->
+                <div class="ps-item-centered">
+                    <span class="black-label">The Solution</span>
+                    <h3 class="solution-statement">
+                        Add a custom photo and summary note to any link so when readers scroll past, a quick popup shows them exactly what you're recommending.
+                    </h3>
                 </div>
-            </article>
 
-            <!-- You can add more component cards here in the future -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: FEATURES -->
+    <section class="section-padding bg-gray-section">
+        <div class="container">
+            <h2 class="section-title text-center">Features</h2>
             
-        </div>
+            <div class="expandable-card">
+                <div class="expandable-content vertical-stack" id="content-features">
+                    
+                    <!-- Feature 1 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 1</span>
+                            <h3 class="feature-heading">Visual Link Previews</h3>
+                            <p class="feature-desc">You can add a custom photo and short info note to any link so readers instantly see what's inside without having to guess.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Visual Link Preview Creation" class="step-screenshot-img">
+                        </div>
+                    </div>
 
-        <!-- Coming Soon Message -->
-        <div class="mt-16 mb-4 text-center">
-            <span class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-white text-slate-600 text-sm font-semibold border border-slate-200 shadow-sm">
-                🚀 More scripts, plugins & templates are coming soon...
-            </span>
-        </div>
-    </main>
+                    <!-- Feature 2 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 2</span>
+                            <h3 class="feature-heading">Works Directly in WordPress</h3>
+                            <p class="feature-desc">No technical setup needed. Simply highlight any link inside your normal WordPress post editor and attach your own photo and info preview with one click.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/5077051/pexels-photo-5077051.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="WordPress Editor Integration" class="step-screenshot-img">
+                        </div>
+                    </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-200 py-8 text-center text-slate-500 text-sm mt-auto">
-        <p>&copy; 2026 Fegopics. All rights reserved.</p>
+                    <!-- Feature 3 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 3</span>
+                            <h3 class="feature-heading">Control Delay & Frequency</h3>
+                            <p class="feature-desc">Control when your preview appears—show it immediately as the link enters view, set a short delay, or show it only once per visitor.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Delay and Frequency Settings" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Blue View More Toggle Link -->
+                <div class="expand-btn-wrap">
+                    <button onclick="toggleCard('features', this)" class="toggle-btn">
+                        <span class="btn-text">View More</span>
+                        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: BENEFIT -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="benefit-card">
+                <span class="black-label">The Benefit</span>
+                <h2 class="big-bold-statement" style="margin-bottom:0;">Give readers instant context about what's inside your links by adding custom photos and info notes right inside your post editor.</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: HOW TO USE SCROLLSTRIKE -->
+    <section class="section-padding bg-gray-section">
+        <div class="container">
+            <h2 class="section-title text-center">How to Use ScrollStrike</h2>
+            
+            <div class="expandable-card">
+                <div class="expandable-content vertical-stack" id="content-howto">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">1</div>
+                            <h3 class="step-title">Open Article Editor</h3>
+                            <p class="step-desc">
+                                Open your post or page inside your normal <strong>WordPress post editor</strong>.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 1: Open Article Editor" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">2</div>
+                            <h3 class="step-title">Click ScrollStrike Icon</h3>
+                            <p class="step-desc">
+                                Highlight your link text, then click the <strong>ScrollStrike icon</strong> in your top editing toolbar.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 2: Click Icon" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">3</div>
+                            <h3 class="step-title">Add Photo & Info Note</h3>
+                            <p class="step-desc">
+                                Upload a photo and write a short summary note explaining what's inside the link.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 3: Add Photo and Details" class="step-screenshot-img">
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">4</div>
+                            <h3 class="step-title">Save & Turn On</h3>
+                            <p class="step-desc">
+                                Click Save to attach your visual info preview to the link. It will automatically pop up whenever readers scroll down to it.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/5077038/pexels-photo-5077038.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 4: Save and Turn On" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Blue View More Toggle Link -->
+                <div class="expand-btn-wrap">
+                    <button onclick="toggleCard('howto', this)" class="toggle-btn">
+                        <span class="btn-text">View More</span>
+                        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ScrollStrike. Simple link highlighters for WordPress.</p>
+        </div>
     </footer>
 
+    <script>
+        // EXPAND / COLLAPSE TOGGLE HANDLER
+        function toggleCard(id, btn) {
+            const content = document.getElementById('content-' + id);
+            const textSpan = btn.querySelector('.btn-text');
+            const isOpen = content.classList.contains('is-open');
+
+            if (isOpen) {
+                content.classList.remove('is-open');
+                textSpan.textContent = 'View More';
+                btn.classList.remove('is-open');
+
+                const rect = content.getBoundingClientRect();
+                if (rect.top < 0) {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else {
+                content.classList.add('is-open');
+                textSpan.textContent = 'Show Less';
+                btn.classList.add('is-open');
+            }
+        }
+
+        // HERO DEMO ANIMATION SCRIPT
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoScrollBody = document.getElementById('demoScrollBody');
+            const demoTooltip = document.getElementById('demoTooltip');
+            const captionBox = document.getElementById('captionBox');
+            let timerId = null;
+
+            const phases = [
+                {
+                    text: "Website visitor arrives on your blog post...",
+                    scrollPos: '0px',
+                    showTooltip: false,
+                    delay: 0
+                },
+                {
+                    text: "Visitor scrolls down while reading your article...",
+                    scrollPos: '-360px', 
+                    showTooltip: false,
+                    delay: 0
+                },
+                {
+                    text: "The photo & info popup you set up appears right beside your link!",
+                    scrollPos: '-360px',
+                    showTooltip: true,
+                    delay: 450
+                },
+                {
+                    text: "The reader sees the context you added and clicks with confidence.",
+                    scrollPos: '-360px',
+                    showTooltip: true,
+                    delay: 0
+                },
+                {
+                    text: "That's how adding quick visual context to your links boosts reader trust and clicks!",
+                    scrollPos: '-360px',
+                    showTooltip: true,
+                    delay: 0
+                }
+            ];
+
+            let currentPhaseIndex = 0;
+            let hasStarted = false;
+
+            function appendWordsFast(text, callback) {
+                captionBox.innerHTML = '';
+                const words = text.split(' ');
+                
+                words.forEach((word, index) => {
+                    const wordSpan = document.createElement('span');
+                    wordSpan.className = 'word-span';
+                    wordSpan.style.animationDelay = `${index * 0.05}s`;
+                    wordSpan.textContent = word;
+                    captionBox.appendChild(wordSpan);
+                });
+
+                const totalAppendTime = words.length * 50 + 200;
+                setTimeout(() => {
+                    if (callback) callback();
+                }, totalAppendTime);
+            }
+
+            function runSequence() {
+                const phase = phases[currentPhaseIndex];
+
+                demoScrollBody.style.transform = `translateY(${phase.scrollPos})`;
+
+                if (timerId) clearTimeout(timerId);
+
+                if (phase.showTooltip) {
+                    if (phase.delay > 0) {
+                        timerId = setTimeout(() => {
+                            demoTooltip.classList.add('visible');
+                        }, phase.delay);
+                    } else {
+                        demoTooltip.classList.add('visible');
+                    }
+                } else {
+                    demoTooltip.classList.remove('visible');
+                }
+
+                appendWordsFast(phase.text, () => {
+                    setTimeout(() => {
+                        currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+                        runSequence();
+                    }, 4500); 
+                });
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasStarted) {
+                        hasStarted = true;
+                        runSequence();
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            const demoViewport = document.getElementById('demoViewport');
+            if (demoViewport) observer.observe(demoViewport);
+        });
+    </script>
 </body>
 </html>
