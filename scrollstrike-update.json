@@ -1,7 +1,7 @@
 {
   "name": "ScrollStrike",
   "slug": "scrollstrike",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "homepage": "https://zindvera.github.io/fegopics/pro-download",
   "download_url": "https://zindvera.github.io/fegopics/downloads/ScrollStrike.zip",
   "requires": "6.0",
@@ -10,6 +10,6 @@
   "last_updated": "2026-08-29",
   "sections": {
     "description": "Increase your affiliate link clicks & affiliate revenue by highlighting your affiliate links on the page. Simply create highlighter tooltips on your affiliate links so as visitors scroll, your links get highlighted with context and can't be missed.",
-    "changelog": "<h4>1.0.0</h4><ul><li>This is first upgrade.</li><li>Initial public release.</li><li>Native Gutenberg block editor integration.</li><li>Custom delay triggers and frequency controls.</li><li>Strict preset color themes.</li></ul>"
+    "changelog": "<h4>1.0.0</h4><ul><li>Initial public release.</li><li>Native Gutenberg block editor integration.</li><li>Custom delay triggers and frequency controls.</li><li>Strict preset color themes.</li></ul>"
   }
 }
