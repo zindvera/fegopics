@@ -344,7 +344,7 @@
         }
 
         /* ==========================================================================
-           5. PROBLEM & SOLUTION CARDS
+           5. PROBLEM & SOLUTION CARDS (MINIMALIST CLEAN LOOK)
            ========================================================================== */
         .problem-solution-stack {
             display: flex;
@@ -381,27 +381,22 @@
             border: 1px solid #bfdbfe;
         }
 
-        .ps-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
+        /* Simple Minimalist Text Labels */
+        .ps-label {
+            font-size: 13px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 6px 14px;
-            border-radius: 9999px;
-            margin-bottom: 18px;
+            letter-spacing: 1.2px;
+            margin-bottom: 12px;
+            display: inline-block;
         }
 
-        .ps-badge-problem {
-            background: #ffedd5;
-            color: #c2410c;
+        .ps-label-problem {
+            color: #ea580c;
         }
 
-        .ps-badge-solution {
-            background: #dbeafe;
-            color: #1d4ed8;
+        .ps-label-solution {
+            color: #2563eb;
         }
 
         .ps-statement {
@@ -907,6 +902,7 @@
             .hero-actions { flex-direction: column; }
             .hero-actions .btn { width: 100%; }
             
+            /* Phone View: Text above demo animation container */
             .hero-interactive {
                 flex-direction: column;
                 padding: 0;
@@ -914,13 +910,20 @@
             }
 
             .hero-text-col {
-                order: 2;
+                order: 1;
                 padding: 0 8px;
                 text-align: center;
             }
 
-            .caption-text { font-size: 22px; }
-            .hero-demo-col { order: 1; width: 100%; }
+            .hero-demo-col { 
+                order: 2; 
+                width: 100%; 
+            }
+
+            .caption-text { 
+                font-size: 22px; 
+            }
+
             .demo-card-container { border-radius: 12px; }
 
             .demo-tooltip {
@@ -1008,12 +1011,12 @@
         </div>
 
         <div class="hero-interactive container" style="padding-left:0; padding-right:0;">
-            <!-- Left Side: Changing Text -->
+            <!-- Left Side (Top on Mobile): Changing Text -->
             <div class="hero-text-col">
                 <p id="captionBox" class="caption-text"></p>
             </div>
 
-            <!-- Right Side: Demo Window -->
+            <!-- Right Side (Bottom on Mobile): Demo Window -->
             <div class="hero-demo-col">
                 <div class="demo-card-container">
                     <div class="browser-content-viewport" id="demoViewport">
@@ -1065,7 +1068,7 @@
         </div>
     </section>
 
-    <!-- SECTION 1: PROBLEM & SOLUTION -->
+    <!-- SECTION 1: PROBLEM & SOLUTION (CLEAN MINIMALIST LOOK) -->
     <section class="section-padding">
         <div class="container">
             <h2 class="section-title text-center">Why ScrollStrike?</h2>
@@ -1074,10 +1077,7 @@
                 
                 <!-- Problem Card -->
                 <div class="ps-card ps-card-problem">
-                    <span class="ps-badge ps-badge-problem">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                        The Problem
-                    </span>
+                    <span class="ps-label ps-label-problem">The Problem</span>
                     <h3 class="ps-statement">
                         Your readers <span class="ps-highlight-red">ignore affiliate links</span> while scrolling through posts, leading to lost clicks and revenue.
                     </h3>
@@ -1085,10 +1085,7 @@
 
                 <!-- Solution Card -->
                 <div class="ps-card ps-card-solution">
-                    <span class="ps-badge ps-badge-solution">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        The Solution
-                    </span>
+                    <span class="ps-label ps-label-solution">The Solution</span>
                     <h3 class="ps-statement">
                         ScrollStrike <span class="ps-highlight-blue">automatically highlights your links</span> as readers scroll down, making your recommendations impossible to miss.
                     </h3>
