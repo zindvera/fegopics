@@ -271,7 +271,7 @@
             font-weight: 700;
         }
 
-        /* Tooltip Container (#d71f3a) */
+        /* Tooltip Container (#d71f3a) - No Shadow */
         .demo-tooltip {
             position: absolute;
             bottom: calc(100% + 16px); 
@@ -284,7 +284,7 @@
             color: #ffffff;
             border: 1px solid #b5152c;
             border-radius: 12px;
-            box-shadow: 0 14px 35px rgba(215, 31, 58, 0.35);
+            box-shadow: none;
             z-index: 50;
             box-sizing: border-box;
             width: 300px;
@@ -381,7 +381,7 @@
             border: 1px solid #bfdbfe;
         }
 
-        /* Simple Minimalist Text Labels */
+        /* Simple Minimalist Text Labels without "The" */
         .ps-label {
             font-size: 13px;
             font-weight: 800;
@@ -839,14 +839,14 @@
         }
 
         /* ==========================================================================
-           9. STICKY BOTTOM-RIGHT DOWNLOAD BUTTON
+           9. STICKY BOTTOM-RIGHT DOWNLOAD BUTTON (No Shadow)
            ========================================================================== */
         .sticky-bottom-btn {
             position: fixed;
             bottom: 24px;
             right: 24px;
             z-index: 999;
-            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.4);
+            box-shadow: none;
             padding: 14px 24px;
             font-size: 15px;
             opacity: 0;
@@ -897,8 +897,20 @@
 
         @media (max-width: 767px) {
             .container { padding: 0 8px; }
+            
+            /* Increased margin bottom for hero-header in phone view */
+            .hero-header {
+                margin: 0 auto 85px auto;
+            }
+
             .hero-title { font-size: 28px; }
-            .hero-subtitle { font-size: 15px; }
+            
+            /* Bigger font size for hero-subtitle on mobile */
+            .hero-subtitle { 
+                font-size: 17px; 
+                line-height: 1.5;
+            }
+            
             .hero-actions { flex-direction: column; }
             .hero-actions .btn { width: 100%; }
             
@@ -982,6 +994,7 @@
                 right: 16px;
                 left: 16px;
                 text-align: center;
+                box-shadow: none;
             }
         }
     </style>
@@ -1043,7 +1056,7 @@
                                 <span class="demo-affiliate-wrapper" id="demoTargetLinkWrap">
                                     <a href="#" class="demo-affiliate-link" onclick="return false;">15 Best Corner Floor Lamps for Living Room</a>
                                     
-                                    <!-- Tooltip (#d71f3a) with Enlarged Triangle Arrow -->
+                                    <!-- Tooltip (#d71f3a) with Enlarged Triangle Arrow & No Box Shadow -->
                                     <div class="demo-tooltip" id="demoTooltip">
                                         <span class="demo-tooltip-close">✕</span>
                                         <p>Here you can see 15 best corner lamps for living room</p>
@@ -1077,7 +1090,7 @@
                 
                 <!-- Problem Card -->
                 <div class="ps-card ps-card-problem">
-                    <span class="ps-label ps-label-problem">The Problem</span>
+                    <span class="ps-label ps-label-problem">Problem</span>
                     <h3 class="ps-statement">
                         Your readers <span class="ps-highlight-red">ignore affiliate links</span> while scrolling through posts, leading to lost clicks and revenue.
                     </h3>
@@ -1085,7 +1098,7 @@
 
                 <!-- Solution Card -->
                 <div class="ps-card ps-card-solution">
-                    <span class="ps-label ps-label-solution">The Solution</span>
+                    <span class="ps-label ps-label-solution">Solution</span>
                     <h3 class="ps-statement">
                         ScrollStrike <span class="ps-highlight-blue">automatically highlights your links</span> as readers scroll down, making your recommendations impossible to miss.
                     </h3>
@@ -1419,7 +1432,7 @@
         </div>
     </section>
 
-    <!-- STICKY BOTTOM RIGHT DOWNLOAD BUTTON -->
+    <!-- STICKY BOTTOM RIGHT DOWNLOAD BUTTON (No Box Shadow) -->
     <a href="downloads/ScrollStrike.zip" id="stickyDownloadBtn" class="btn btn-primary sticky-bottom-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span>Download Free ZIP</span>
@@ -1474,7 +1487,7 @@
             }
         });
 
-        // HERO DEMO ANIMATION SCRIPT
+        // HERO DEMO ANIMATION SCRIPT (STARTS AFTER 3 SECONDS ON LOAD)
         document.addEventListener('DOMContentLoaded', function() {
             const demoViewport = document.getElementById('demoViewport');
             const demoScrollBody = document.getElementById('demoScrollBody');
@@ -1528,7 +1541,6 @@
             ];
 
             let currentPhaseIndex = 0;
-            let hasStarted = false;
 
             function appendWordsFast(text, callback) {
                 captionBox.innerHTML = '';
@@ -1576,16 +1588,10 @@
                 });
             }
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !hasStarted) {
-                        hasStarted = true;
-                        runSequence();
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            if (demoViewport) observer.observe(demoViewport);
+            // Starts exactly 6 seconds after page load
+            setTimeout(() => {
+                runSequence();
+            }, 6000);
         });
     </script>
 </body>
