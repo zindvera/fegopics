@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScrollStrike - Increase Affiliate Link Clicks & Revenue</title>
+    <title>ScrollStrike - Increase Your Affiliate Link Clicks & Revenue</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,7 @@
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
         }
 
         * {
@@ -96,63 +97,6 @@
             transform: translateY(-1px);
         }
 
-        .btn-outline {
-            background-color: white;
-            color: var(--text-dark);
-            border: 1px solid #cbd5e1;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--bg-alt);
-        }
-
-        /* Custom Labels & Statements */
-        .black-label {
-            color: var(--text-black);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
-            display: inline-block;
-            margin-bottom: 12px;
-            border-bottom: 3px solid var(--text-black);
-            padding-bottom: 2px;
-        }
-
-        /* Problem Red-Orange Gradient Text - Vibrant & Eye-Appealing */
-        .problem-statement {
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 1.3;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #dc2626 0%, #ea580c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-top: 8px;
-        }
-
-        /* Solution Sapphire-Cyan Gradient Text - Rich & Eye-Appealing */
-        .solution-statement {
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 1.3;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-top: 8px;
-        }
-
-        /* Standard Big Bold Statement */
-        .big-bold-statement {
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 1.25;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
         /* ==========================================================================
            3. NAVBAR & HEADER
            ========================================================================== */
@@ -169,18 +113,13 @@
 
         .navbar .container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
         }
 
         .logo-img {
             height: 32px;
             width: auto;
-        }
-
-        .nav-btn {
-            font-size: 14px;
-            padding: 10px 20px;
         }
 
         /* ==========================================================================
@@ -274,7 +213,7 @@
 
         .demo-scroll-body {
             padding: 30px;
-            padding-bottom: 250px; 
+            padding-bottom: 300px; 
             transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -327,28 +266,32 @@
         }
 
         .demo-affiliate-link {
-            color: #4f46e5;
+            color: #2563eb;
             text-decoration: underline;
             font-weight: 700;
         }
 
+        /* Tooltip Container (#d71f3a) */
         .demo-tooltip {
             position: absolute;
-            bottom: calc(100% + 8px); 
+            bottom: calc(100% + 16px); 
             left: 50%;
             transform: translateX(-50%) translateY(4px) scale(0.95);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: #312e81;
+            background: #d71f3a;
             color: #ffffff;
-            border: 1px solid #4338ca;
+            border: 1px solid #b5152c;
             border-radius: 12px;
-            box-shadow: 0 14px 35px rgba(49, 46, 129, 0.4);
+            box-shadow: 0 14px 35px rgba(215, 31, 58, 0.35);
             z-index: 50;
             box-sizing: border-box;
-            width: 250px;
+            width: 300px;
+            max-width: 90vw;
+            height: auto;
             padding: 14px;
+            text-align: left;
         }
 
         .demo-tooltip.visible {
@@ -363,42 +306,125 @@
             right: 12px;
             font-size: 12px;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.85);
             cursor: pointer;
+        }
+
+        .demo-tooltip p {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            padding-right: 16px;
+            line-height: 1.4;
+            color: #ffffff;
         }
 
         .demo-tooltip-img {
             width: 100%;
-            height: 90px;
+            height: auto;
+            max-height: 140px;
             object-fit: cover;
             border-radius: 6px;
-            margin-bottom: 10px;
             display: block;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
         }
 
-        .demo-tooltip p {
-            font-size: 12px;
-            font-weight: 700;
-            margin: 0;
-            line-height: 1.4;
-        }
-
+        /* Enlarged Triangle Arrow matching #d71f3a */
         .demo-tooltip-arrow {
             position: absolute;
-            bottom: -6px; 
+            bottom: -13px; 
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-top: 7px solid #312e81;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 14px solid #d71f3a;
             z-index: 51;
         }
 
         /* ==========================================================================
-           5. SECTION PADDING & EXPANDABLE WRAPPERS
+           5. PROBLEM & SOLUTION CARDS
+           ========================================================================== */
+        .problem-solution-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .ps-card {
+            border-radius: 20px;
+            padding: 36px 32px;
+            position: relative;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .ps-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.07);
+        }
+
+        .ps-card-problem {
+            background: #ffffff;
+            border: 1px solid #fed7aa;
+        }
+
+        .ps-card-solution {
+            background: #ffffff;
+            border: 1px solid #bfdbfe;
+        }
+
+        .ps-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            margin-bottom: 18px;
+        }
+
+        .ps-badge-problem {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .ps-badge-solution {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .ps-statement {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+            color: #1e293b;
+            max-width: 740px;
+        }
+
+        .ps-highlight-red {
+            color: #ea580c;
+            font-weight: 800;
+        }
+
+        .ps-highlight-blue {
+            color: #2563eb;
+            font-weight: 800;
+        }
+
+        /* ==========================================================================
+           6. SECTION PADDING & EXPANDABLE WRAPPERS
            ========================================================================== */
         .section-padding {
             padding: 80px 0;
@@ -409,19 +435,14 @@
             background-color: var(--bg-alt);
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
         .section-title {
             font-size: 36px;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: var(--text-dark);
+            margin-bottom: 40px;
         }
 
-        /* Expandable Segment Container */
         .expandable-card {
             background: white;
             border: 1px solid var(--border);
@@ -434,7 +455,7 @@
         }
 
         .expandable-content {
-            max-height: 380px;
+            max-height: 520px;
             overflow: hidden;
             position: relative;
             transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -458,14 +479,13 @@
         }
 
         .expandable-content.is-open {
-            max-height: 3500px !important;
+            max-height: 8000px !important;
         }
 
         .expandable-content.is-open::after {
             opacity: 0;
         }
 
-        /* High-Visibility Blue Link Style for View More Toggles */
         .expand-btn-wrap {
             text-align: center;
             margin-top: 24px;
@@ -510,32 +530,20 @@
             transform: rotate(180deg);
         }
 
-        /* ==========================================================================
-           6. PROBLEM & SOLUTION CARDS (CENTERED WITHOUT VIEW MORE)
-           ========================================================================== */
-        .problem-solution-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .ps-item-centered {
-            text-align: center;
-            padding: 40px 32px;
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .black-label {
+            color: var(--text-black);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border-bottom: 3px solid var(--text-black);
+            padding-bottom: 2px;
         }
 
         /* ==========================================================================
-           7. HOW TO USE & FEATURES (CENTERED TEXT TOP, WIDE IMAGE BELOW)
+           7. HOW TO USE & FEATURES
            ========================================================================== */
         .vertical-stack {
             display: flex;
@@ -543,8 +551,8 @@
             gap: 45px;
         }
 
-        /* Centered Step Card Structure */
-        .step-card-centered {
+        .step-card-centered,
+        .feature-card-centered {
             background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 20px;
@@ -558,12 +566,14 @@
             width: 100%;
         }
 
-        .step-card-centered:hover {
+        .step-card-centered:hover,
+        .feature-card-centered:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
         }
 
-        .step-info-centered {
+        .step-info-centered,
+        .feature-info-centered {
             max-width: 680px;
             margin: 0 auto 24px auto;
         }
@@ -582,7 +592,8 @@
             margin-bottom: 16px;
         }
 
-        .step-title {
+        .step-title,
+        .feature-heading {
             font-size: 24px;
             font-weight: 800;
             color: var(--text-dark);
@@ -590,14 +601,11 @@
             letter-spacing: -0.3px;
         }
 
-        .step-desc {
+        .step-desc,
+        .feature-desc {
             font-size: 15px;
             color: var(--text-body);
             line-height: 1.65;
-        }
-
-        .step-desc strong {
-            color: var(--text-dark);
         }
 
         .step-screenshot-wrap {
@@ -616,51 +624,250 @@
             box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
         }
 
-        /* Features Centered Card Layout */
-        .feature-card-centered {
+        /* ==========================================================================
+           8. FREE VS PRO MATRIX & PLANS SECTION
+           ========================================================================== */
+        .ss-features-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 960px;
+            margin: 0 auto 60px auto;
+        }
+
+        .ss-matrix-card {
             background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 36px 32px;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .ss-matrix-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .ss-matrix-free {
+            border: 2px solid #64748b;
+            box-shadow: 0 12px 35px rgba(100, 116, 139, 0.08);
+        }
+
+        .ss-matrix-pro {
+            border: 2px solid #ea580c;
+            box-shadow: 0 12px 40px rgba(234, 88, 12, 0.08);
+        }
+
+        .ss-matrix-card-title {
+            font-size: 20px;
+            margin: 0 0 30px 0;
             text-align: center;
-            width: 100%;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            font-weight: 700;
         }
 
-        .feature-info-centered {
-            max-width: 680px;
-            margin: 0 auto 24px auto;
+        .title-black { color: #000000; }
+        .title-green { color: #16a34a; }
+        .title-orange { color: #ea580c; }
+
+        .ss-text-green { color: #16a34a; }
+        .ss-text-orange { color: #ea580c; }
+        .ss-text-slate { color: #475569; }
+        .ss-text-dark { color: #0f172a; font-weight: 500; }
+
+        .ss-matrix-features-list {
+            display: grid;
+            grid-auto-rows: minmax(42px, auto);
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
         }
 
-        .feature-heading {
-            font-size: 24px;
+        .ss-feature-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ss-feature-disabled { color: #94a3b8; }
+        .ss-check-green { color: #10b981; font-weight: bold; font-size: 18px; }
+        .ss-check-orange { color: #ea580c; font-weight: bold; font-size: 18px; }
+        .ss-cross-gray { color: #cbd5e1; font-weight: bold; font-size: 16px; }
+        .ss-bold-orange { color: #ea580c; font-weight: 700; }
+
+        .ss-pricing-section {
+            margin-top: 20px;
+        }
+
+        .ss-pricing-heading {
+            font-size: 26px;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 12px;
-            letter-spacing: -0.3px;
-        }
-
-        .feature-desc {
-            font-size: 15px;
-            color: var(--text-body);
-            line-height: 1.65;
-        }
-
-        .benefit-card {
-            background: var(--bg-body);
-            border: 2px dashed #cbd5e1;
-            border-radius: 20px;
-            padding: 40px 30px;
+            margin: 0 0 10px 0;
             text-align: center;
-            max-width: 900px;
+            letter-spacing: -0.5px;
+        }
+
+        .ss-pricing-subheading {
+            font-size: 16px;
+            color: var(--text-body);
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .ss-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1060px;
             margin: 0 auto;
         }
 
+        .ss-pricing-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 36px 24px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.03), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            text-align: left;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .ss-pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -5px rgba(15, 23, 42, 0.06), 0 10px 15px -3px rgba(15, 23, 42, 0.04);
+        }
+
+        .ss-pricing-card-free {
+            border: 2px solid #16a34a;
+            box-shadow: 0 12px 30px rgba(22, 163, 74, 0.09);
+            background: #ffffff;
+        }
+
+        .ss-pricing-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .ss-pricing-title-group {
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .ss-pricing-term {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .ss-term-green { color: #16a34a; }
+        .ss-term-orange { color: #ea580c; }
+
+        .ss-pricing-type {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-left: 2px;
+        }
+
+        .ss-pricing-amount-wrap {
+            text-align: center;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .ss-pricing-amount {
+            font-size: 42px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .ss-pricing-rate {
+            font-size: 15px;
+            text-align: center;
+            margin: 12px 0 24px 0;
+            font-weight: 700;
+        }
+
+        .ss-rate-green { color: #16a34a; }
+
+        .ss-pricing-desc {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
+            text-align: center;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .ss-pricing-badge {
+            position: absolute;
+            top: -13px;
+            right: 16px;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            letter-spacing: 0.5px;
+        }
+
+        .ss-badge-green-pill {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            box-shadow: 0 2px 6px rgba(22, 163, 74, 0.1);
+        }
+
+        .ss-badge-orange {
+            background: #ffedd5;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+            box-shadow: 0 2px 6px rgba(234, 88, 12, 0.08);
+        }
+
+        .ss-badge-green {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            box-shadow: 0 2px 6px rgba(22, 163, 74, 0.08);
+        }
+
         /* ==========================================================================
-           8. FOOTER
+           9. STICKY BOTTOM-RIGHT DOWNLOAD BUTTON
+           ========================================================================== */
+        .sticky-bottom-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.4);
+            padding: 14px 24px;
+            font-size: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+        }
+
+        .sticky-bottom-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           10. FOOTER
            ========================================================================== */
         footer {
             text-align: center;
@@ -671,13 +878,30 @@
         }
 
         /* ==========================================================================
-           9. RESPONSIVE MEDIA QUERIES (FULL WIDTH WITH 8PX SIDES ON MOBILE)
+           11. RESPONSIVE MEDIA QUERIES
            ========================================================================== */
-        @media (max-width: 767px) {
-            .container {
-                padding: 0 8px;
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .hero-interactive { gap: 25px; }
+            .caption-text { font-size: 26px; }
+            .demo-tooltip {
+                width: 330px !important;
+                max-width: 85vw;
             }
+            .ss-pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
 
+        @media (max-width: 992px) {
+            .ss-pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container { padding: 0 8px; }
             .hero-title { font-size: 28px; }
             .hero-subtitle { font-size: 15px; }
             .hero-actions { flex-direction: column; }
@@ -696,38 +920,31 @@
             }
 
             .caption-text { font-size: 22px; }
-            
-            .hero-demo-col {
-                order: 1;
-                width: 100%;
-            }
-            
-            .demo-card-container {
-                border-radius: 12px;
+            .hero-demo-col { order: 1; width: 100%; }
+            .demo-card-container { border-radius: 12px; }
+
+            .demo-tooltip {
+                width: calc(100vw - 48px) !important;
+                max-width: 320px;
+                left: 50%;
+                transform: translateX(-50%) translateY(4px) scale(0.95);
             }
 
-            .section-padding {
-                padding: 50px 0;
+            .demo-tooltip.visible {
+                transform: translateX(-50%) translateY(0) scale(1);
             }
 
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 24px;
+            .section-padding { padding: 50px 0; }
+            .section-title { font-size: 24px; margin-bottom: 24px; }
+            .problem-solution-stack { gap: 16px; }
+
+            .ps-card {
+                padding: 24px 16px;
+                border-radius: 16px;
             }
 
-            .problem-solution-stack {
-                gap: 20px;
-            }
-
-            .ps-item-centered {
-                padding: 24px 12px;
-                border-radius: 14px;
-                margin: 0;
-            }
-
-            .problem-statement,
-            .solution-statement {
-                font-size: 22px;
+            .ps-statement {
+                font-size: 19px;
             }
 
             .expandable-card {
@@ -737,47 +954,31 @@
                 box-shadow: none;
             }
 
-            .vertical-stack {
-                gap: 20px;
-            }
-
-            .step-card-centered,
-            .feature-card-centered {
+            .vertical-stack { gap: 20px; }
+            .step-card-centered, .feature-card-centered {
                 padding: 24px 12px;
                 border-radius: 14px;
             }
 
-            .step-info-centered,
-            .feature-info-centered {
+            .step-info-centered, .feature-info-centered {
                 padding: 0 4px;
                 margin-bottom: 16px;
             }
 
-            .step-title,
-            .feature-heading {
-                font-size: 19px;
-            }
+            .step-title, .feature-heading { font-size: 19px; }
+            .step-desc, .feature-desc { font-size: 14px; }
+            .step-screenshot-wrap { width: 100%; }
+            .step-screenshot-img { border-radius: 10px; }
+            .ss-features-matrix { grid-template-columns: 1fr; gap: 20px; }
+            .ss-matrix-card { padding: 28px 20px; border-radius: 16px; }
+            .ss-pricing-grid { grid-template-columns: 1fr; gap: 20px; }
+            .ss-pricing-card { padding: 28px 20px; border-radius: 16px; }
 
-            .step-desc,
-            .feature-desc {
-                font-size: 14px;
-            }
-
-            .step-screenshot-wrap {
-                width: 100%;
-            }
-
-            .step-screenshot-img {
-                border-radius: 10px;
-            }
-
-            .benefit-card {
-                padding: 28px 16px;
-                border-radius: 14px;
-            }
-
-            .big-bold-statement {
-                font-size: 20px;
+            .sticky-bottom-btn {
+                bottom: 16px;
+                right: 16px;
+                left: 16px;
+                text-align: center;
             }
         }
     </style>
@@ -790,7 +991,6 @@
             <a href="#">
                 <img src="media/fegopics-logo.png" alt="ScrollStrike Logo" class="logo-img">
             </a>
-            <a href="downloads/ScrollStrike.zip" class="btn btn-primary nav-btn">Download Free ZIP</a>
         </div>
     </header>
 
@@ -798,13 +998,12 @@
     <section class="hero-section">
         <div class="hero-header container">
             <h1 class="hero-title">Increase Your Affiliate Link Clicks & Revenue</h1>
-            <p class="hero-subtitle">Easily add photos and short summary notes to your links inside WordPress. As readers scroll down, your links show helpful context about what you're recommending.</p>
+            <p class="hero-subtitle">Automatically highlights your affiliate links with highlighter when visitors scroll down your page.</p>
             <div class="hero-actions">
-                <a href="downloads/ScrollStrike.zip" class="btn btn-primary">
+                <a href="downloads/ScrollStrike.zip" id="mainHeroDownloadBtn" class="btn btn-primary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     <span>Download Free ZIP</span>
                 </a>
-                <a href="#pro-pricing" class="btn btn-outline">View Pro Pricing</a>
             </div>
         </div>
 
@@ -821,38 +1020,43 @@
                         <div class="demo-scroll-body" id="demoScrollBody">
                             
                             <div style="margin-bottom: 20px;">
-                                <span class="demo-meta">Workspace Guide</span>
-                                <h3 class="demo-h3">Building the Ultimate Deep Work Desk Setup</h3>
+                                <span class="demo-meta">Home Decor Ideas</span>
+                                <h3 class="demo-h3">Best Things to Decorate Your Living Room</h3>
                                 <div class="demo-byline">By Sarah Jenkins • 5 Min Read</div>
                             </div>
 
-                            <p class="demo-p">Creating a workspace that fosters deep focus is about more than just aesthetics. It requires carefully selecting tools that remove friction from your workflow. Whether you're coding, designing, or writing, physical discomfort is the fastest way to lose your state of flow.</p>
+                            <p class="demo-p">Transforming your living room into a cozy, welcoming sanctuary doesn't require knocking down walls or spending a fortune. Often, adding a few intentional statement pieces—like textured throw pillows, layered area rugs, and wall art—brings the whole room together.</p>
                             
-                            <p class="demo-p">For years, I struggled with mild wrist fatigue. I tried different desk heights, mechanical keyboards, and wrist rests, but the discomfort persisted at the end of long eight-hour sessions. The real culprit was the standard ambidextrous mouse I was using, which forced my hand into an unnatural flat posture.</p>
+                            <p class="demo-p">A well-designed living area balances comfort, natural warmth, and functional everyday aesthetics. Start by assessing how you use the room: is it a lively gathering spot for family movie nights, or a quiet haven for evening reading and morning coffee?</p>
 
-                            <p class="demo-p">I decided to completely overhaul my peripheral setup. I spent three months testing various ergonomic solutions across different operating systems. I needed something that supported the natural arch of my hand while providing precise tracking on a wooden desk surface without a mousepad.</p>
+                            <p class="demo-p">Layering textures across your sofas with knit throws and velvet cushions adds depth. Complementing that with organic wooden coffee tables and indoor greenery softens sharp edges and breathes life into neutral palettes.</p>
+
+                            <p class="demo-p">One of the most overlooked areas in almost every living space is the empty room corner. Leaving corners completely bare makes an entire room feel cold, unfinished, and visually disconnected.</p>
 
                             <!-- TARGET AFFILIATE BOX -->
-                            <div class="demo-target-box">
-                                After extensive testing, the piece of hardware that completely eliminated my wrist fatigue and boosted my workflow speed is the 
+                            <div class="demo-target-box" id="demoTargetBox">
+                                To easily fill awkward dead zones and add cozy, layered lighting to your seating area, check out our curated guide on the 
                                 
-                                <span class="demo-affiliate-wrapper">
-                                    <a href="#" class="demo-affiliate-link" onclick="return false;">Logitech MX Master 3S</a>
+                                <span class="demo-affiliate-wrapper" id="demoTargetLinkWrap">
+                                    <a href="#" class="demo-affiliate-link" onclick="return false;">15 Best Corner Floor Lamps for Living Room</a>
                                     
-                                    <!-- Tooltip / Visual Link Preview -->
+                                    <!-- Tooltip (#d71f3a) with Enlarged Triangle Arrow -->
                                     <div class="demo-tooltip" id="demoTooltip">
                                         <span class="demo-tooltip-close">✕</span>
-                                        <img src="https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Logitech MX Master 3S" class="demo-tooltip-img" />
-                                        <p>Logitech MX Master 3S • Ergonomic Wireless Mouse with 8K DPI Sensor & Quiet Clicks</p>
+                                        <p>Here you can see 15 best corner lamps for living room</p>
+                                        <img src="media/asset/sample-image.png" alt="15 Best Corner Floor Lamps for Living Room" class="demo-tooltip-img" />
                                         <div class="demo-tooltip-arrow"></div>
                                     </div>
                                 </span> 
                                 
-                                which features ultra-quiet clicks, an 8000 DPI track-anywhere sensor, and a sculpted ergonomic design.
+                                which covers space-saving arc fixtures, dimmable ambient tree lights, and modern corner designs.
                             </div>
 
-                            <h4 class="demo-h3" style="font-size: 16px;">Final Thoughts</h4>
-                            <p class="demo-p">Investing in the right peripherals pays daily dividends. Your hands are your primary instruments; treat them with care by choosing tools designed for human anatomy rather than just sleek aesthetics.</p>
+                            <h4 class="demo-h3" style="font-size: 16px;">Top Living Room Decorating Items</h4>
+                            <p class="demo-p"><strong>1. Statement Floor Lamps:</strong> Fills empty corners and casts warm, comfortable evening light.</p>
+                            <p class="demo-p"><strong>2. Large Indoor Plants:</strong> Adds natural vibrancy with low-maintenance greenery like Fiddle Leaf Figs or Monsteras.</p>
+                            <p class="demo-p"><strong>3. Textured Area Rugs:</strong> Grounds your sofa and coffee table while adding soft underfoot comfort.</p>
+                            <p class="demo-p"><strong>4. Gallery Wall Prints:</strong> Showcases framed art and personal photography to express your unique style.</p>
 
                         </div>
                     </div>
@@ -861,26 +1065,32 @@
         </div>
     </section>
 
-    <!-- SECTION 1: PROBLEM & SOLUTION (NO VIEW MORE, CENTERED TEXT & GRADIENTS) -->
+    <!-- SECTION 1: PROBLEM & SOLUTION -->
     <section class="section-padding">
         <div class="container">
             <h2 class="section-title text-center">Why ScrollStrike?</h2>
             
             <div class="problem-solution-stack">
                 
-                <!-- Problem Item -->
-                <div class="ps-item-centered">
-                    <span class="black-label">The Problem</span>
-                    <h3 class="problem-statement">
-                        People quickly scroll past plain text links and ignore intrusive ads, so they miss what your links are actually pointing to.
+                <!-- Problem Card -->
+                <div class="ps-card ps-card-problem">
+                    <span class="ps-badge ps-badge-problem">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        The Problem
+                    </span>
+                    <h3 class="ps-statement">
+                        Your readers <span class="ps-highlight-red">ignore affiliate links</span> while scrolling through posts, leading to lost clicks and revenue.
                     </h3>
                 </div>
 
-                <!-- Solution Item -->
-                <div class="ps-item-centered">
-                    <span class="black-label">The Solution</span>
-                    <h3 class="solution-statement">
-                        Add a custom photo and summary note to any link so when readers scroll past, a quick popup shows them exactly what you're recommending.
+                <!-- Solution Card -->
+                <div class="ps-card ps-card-solution">
+                    <span class="ps-badge ps-badge-solution">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        The Solution
+                    </span>
+                    <h3 class="ps-statement">
+                        ScrollStrike <span class="ps-highlight-blue">automatically highlights your links</span> as readers scroll down, making your recommendations impossible to miss.
                     </h3>
                 </div>
 
@@ -900,11 +1110,11 @@
                     <div class="feature-card-centered">
                         <div class="feature-info-centered">
                             <span class="black-label">Feature 1</span>
-                            <h3 class="feature-heading">Visual Link Previews</h3>
-                            <p class="feature-desc">You can add a custom photo and short info note to any link so readers instantly see what's inside without having to guess.</p>
+                            <h3 class="feature-heading">Works Inside WordPress Editor</h3>
+                            <p class="feature-desc">Easily add a highlighter to any link directly while writing your post in the standard block editor.</p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Visual Link Preview Creation" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/5077051/pexels-photo-5077051.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Works Inside WordPress Editor" class="step-screenshot-img">
                         </div>
                     </div>
 
@@ -912,11 +1122,11 @@
                     <div class="feature-card-centered">
                         <div class="feature-info-centered">
                             <span class="black-label">Feature 2</span>
-                            <h3 class="feature-heading">Works Directly in WordPress</h3>
-                            <p class="feature-desc">No technical setup needed. Simply highlight any link inside your normal WordPress post editor and attach your own photo and info preview with one click.</p>
+                            <h3 class="feature-heading">Live Preview Studio</h3>
+                            <p class="feature-desc">See exactly how your highlighter looks before publishing it on your site.</p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/5077051/pexels-photo-5077051.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="WordPress Editor Integration" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Live Preview Studio" class="step-screenshot-img">
                         </div>
                     </div>
 
@@ -924,17 +1134,76 @@
                     <div class="feature-card-centered">
                         <div class="feature-info-centered">
                             <span class="black-label">Feature 3</span>
-                            <h3 class="feature-heading">Control Delay & Frequency</h3>
-                            <p class="feature-desc">Control when your preview appears—show it immediately as the link enters view, set a short delay, or show it only once per visitor.</p>
+                            <h3 class="feature-heading">Timed Delay</h3>
+                            <p class="feature-desc">Choose if the highlighter appears right away or after a few seconds when a reader reaches it.</p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Delay and Frequency Settings" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Timed Delay" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 4</span>
+                            <h3 class="feature-heading">Display Frequency Rules</h3>
+                            <p class="feature-desc">Decide how often readers see the highlighter (on every visit, only once, or after a set number of visits).</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Display Frequency Rules" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 5</span>
+                            <h3 class="feature-heading">Ready-Made & Custom Colors</h3>
+                            <p class="feature-desc">Pick from preset highlighter colors or choose your own custom colors.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Ready-Made and Custom Colors" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 6</span>
+                            <h3 class="feature-heading">Focus Mode (Background Blur)</h3>
+                            <p class="feature-desc">Slightly dim and blur the background to pull 100% of the reader's attention to your link.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/5077038/pexels-photo-5077038.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Focus Mode Background Blur" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Feature 7 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 7</span>
+                            <h3 class="feature-heading">Highlighter Library & Reuse</h3>
+                            <p class="feature-desc">Save highlighters to your library and easily reuse them across other blog posts.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Highlighter Library and Reuse" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Feature 8 -->
+                    <div class="feature-card-centered">
+                        <div class="feature-info-centered">
+                            <span class="black-label">Feature 8</span>
+                            <h3 class="feature-heading">Deployment Tracker</h3>
+                            <p class="feature-desc">See an exact list and timeline of all pages where each highlighter is currently active.</p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Deployment Tracker" class="step-screenshot-img">
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Blue View More Toggle Link -->
                 <div class="expand-btn-wrap">
                     <button onclick="toggleCard('features', this)" class="toggle-btn">
                         <span class="btn-text">View More</span>
@@ -945,18 +1214,8 @@
         </div>
     </section>
 
-    <!-- SECTION 3: BENEFIT -->
+    <!-- SECTION 3: HOW TO USE SCROLLSTRIKE -->
     <section class="section-padding">
-        <div class="container">
-            <div class="benefit-card">
-                <span class="black-label">The Benefit</span>
-                <h2 class="big-bold-statement" style="margin-bottom:0;">Give readers instant context about what's inside your links by adding custom photos and info notes right inside your post editor.</h2>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: HOW TO USE SCROLLSTRIKE -->
-    <section class="section-padding bg-gray-section">
         <div class="container">
             <h2 class="section-title text-center">How to Use ScrollStrike</h2>
             
@@ -967,13 +1226,13 @@
                     <div class="step-card-centered">
                         <div class="step-info-centered">
                             <div class="step-number-badge">1</div>
-                            <h3 class="step-title">Open Article Editor</h3>
+                            <h3 class="step-title">Open Your Post & Select Link Text</h3>
                             <p class="step-desc">
-                                Open your post or page inside your normal <strong>WordPress post editor</strong>.
+                                Open any blog post in the WordPress editor and highlight the specific link text you want readers to notice.
                             </p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 1: Open Article Editor" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 1: Open Your Post and Select Link Text" class="step-screenshot-img">
                         </div>
                     </div>
 
@@ -981,13 +1240,13 @@
                     <div class="step-card-centered">
                         <div class="step-info-centered">
                             <div class="step-number-badge">2</div>
-                            <h3 class="step-title">Click ScrollStrike Icon</h3>
+                            <h3 class="step-title">Click the ScrollStrike Button</h3>
                             <p class="step-desc">
-                                Highlight your link text, then click the <strong>ScrollStrike icon</strong> in your top editing toolbar.
+                                Click the ScrollStrike highlighter icon directly inside the editor toolbar to open the studio.
                             </p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 2: Click Icon" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 2: Click the ScrollStrike Button" class="step-screenshot-img">
                         </div>
                     </div>
 
@@ -995,13 +1254,13 @@
                     <div class="step-card-centered">
                         <div class="step-info-centered">
                             <div class="step-number-badge">3</div>
-                            <h3 class="step-title">Add Photo & Info Note</h3>
+                            <h3 class="step-title">Add Note Text or Image</h3>
                             <p class="step-desc">
-                                Upload a photo and write a short summary note explaining what's inside the link.
+                                Type your message or insert an image into the note box to add context to your recommendation.
                             </p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 3: Add Photo and Details" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 3: Add Note Text or Image" class="step-screenshot-img">
                         </div>
                     </div>
                     
@@ -1009,19 +1268,32 @@
                     <div class="step-card-centered">
                         <div class="step-info-centered">
                             <div class="step-number-badge">4</div>
-                            <h3 class="step-title">Save & Turn On</h3>
+                            <h3 class="step-title">Choose Color, Delay & Settings</h3>
                             <p class="step-desc">
-                                Click Save to attach your visual info preview to the link. It will automatically pop up whenever readers scroll down to it.
+                                Pick a highlighter color, set your trigger delay, adjust frequency, or enable focus mode with the live preview.
                             </p>
                         </div>
                         <div class="step-screenshot-wrap">
-                            <img src="https://images.pexels.com/photos/5077038/pexels-photo-5077038.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 4: Save and Turn On" class="step-screenshot-img">
+                            <img src="https://images.pexels.com/photos/5077038/pexels-photo-5077038.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 4: Choose Color, Delay and Settings" class="step-screenshot-img">
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-card-centered">
+                        <div class="step-info-centered">
+                            <div class="step-number-badge">5</div>
+                            <h3 class="step-title">Save and Publish</h3>
+                            <p class="step-desc">
+                                Save your highlighter and publish the post—your link will automatically highlight as readers scroll down your page.
+                            </p>
+                        </div>
+                        <div class="step-screenshot-wrap">
+                            <img src="https://images.pexels.com/photos/5077051/pexels-photo-5077051.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Step 5: Save and Publish" class="step-screenshot-img">
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Blue View More Toggle Link -->
                 <div class="expand-btn-wrap">
                     <button onclick="toggleCard('howto', this)" class="toggle-btn">
                         <span class="btn-text">View More</span>
@@ -1031,6 +1303,130 @@
             </div>
         </div>
     </section>
+
+    <!-- SECTION 4: PLANS -->
+    <section class="section-padding bg-gray-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title text-center">Plans</h2>
+
+            <!-- Parallel Comparison Matrix -->
+            <div class="ss-features-matrix">
+                <!-- Free Matrix Card -->
+                <div class="ss-matrix-card ss-matrix-free">
+                    <h3 class="ss-matrix-card-title">
+                        <span class="title-black">ScrollStrike </span><span class="title-green">FREE</span>
+                    </h3>
+
+                    <div class="ss-matrix-features-list ss-text-slate">
+                        <div class="ss-feature-row"><span class="ss-check-green">✓</span> <span>Max 3 unique highlighters</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-green">✓</span> <span>Target only 3 elements</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-green">✓</span> <span>8 basic color presets only</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-green">✓</span> <span>Frequency & Delay Control</span></div>
+                        <div class="ss-feature-row ss-feature-disabled"><span class="ss-cross-gray">✕</span> <span>Focus Mode (Background Blur)</span></div>
+                        <div class="ss-feature-row ss-feature-disabled"><span class="ss-cross-gray">✕</span> <span>Premium Customer Support</span></div>
+                    </div>
+                </div>
+
+                <!-- Pro Matrix Card -->
+                <div class="ss-matrix-card ss-matrix-pro">
+                    <h3 class="ss-matrix-card-title">
+                        <span class="title-black">ScrollStrike </span><span class="title-orange">PRO</span>
+                    </h3>
+
+                    <div class="ss-matrix-features-list ss-text-dark">
+                        <div class="ss-feature-row"><span class="ss-check-orange">✓</span> <span><span class="ss-bold-orange">Unlimited</span> unique highlighters</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-orange">✓</span> <span><span class="ss-bold-orange">Unlimited</span> target elements</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-orange">✓</span> <span>Pick Any Color</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-orange">✓</span> <span>Frequency & Delay Control</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-orange">✓</span> <span>Focus Mode (Background Blur)</span></div>
+                        <div class="ss-feature-row"><span class="ss-check-orange">✓</span> <span>Premium Customer Support</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Packages Grid -->
+            <div class="ss-pricing-section">
+                <h3 class="ss-pricing-heading">Start Free Today</h3>
+                <p class="ss-pricing-subheading">Download and use free forever, or upgrade anytime inside your WordPress dashboard.</p>
+
+                <div class="ss-pricing-grid">
+                    <!-- Free Plan Card -->
+                    <div class="ss-pricing-card ss-pricing-card-free">
+                        <span class="ss-pricing-badge ss-badge-green-pill">Recommended</span>
+                        <div>
+                            <div class="ss-pricing-sub">ScrollStrike</div>
+                            <div class="ss-pricing-title-group">
+                                <span class="ss-pricing-term ss-term-green">Free</span>
+                                <span class="ss-pricing-type">Forever</span>
+                            </div>
+                            <div class="ss-pricing-amount-wrap">
+                                <span class="ss-pricing-amount">$0</span>
+                            </div>
+                            <p class="ss-pricing-rate ss-rate-green">100% Free Forever</p>
+                            <p class="ss-pricing-desc">Start highlighting your affiliate links right away with zero cost.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1 Month Plan -->
+                    <div class="ss-pricing-card">
+                        <div>
+                            <div class="ss-pricing-sub">ScrollStrike</div>
+                            <div class="ss-pricing-title-group">
+                                <span class="ss-pricing-term ss-term-orange">1 Month</span>
+                                <span class="ss-pricing-type">Pro License</span>
+                            </div>
+                            <div class="ss-pricing-amount-wrap">
+                                <span class="ss-pricing-amount">$3</span>
+                            </div>
+                            <p class="ss-pricing-rate ss-rate-green">$3 per month</p>
+                            <p class="ss-pricing-desc">Unlock PRO version for 1 month at $3.</p>
+                        </div>
+                    </div>
+
+                    <!-- 6 Months Plan -->
+                    <div class="ss-pricing-card">
+                        <span class="ss-pricing-badge ss-badge-orange">Save 22%</span>
+                        <div>
+                            <div class="ss-pricing-sub">ScrollStrike</div>
+                            <div class="ss-pricing-title-group">
+                                <span class="ss-pricing-term ss-term-orange">6 Months</span>
+                                <span class="ss-pricing-type">Pro License</span>
+                            </div>
+                            <div class="ss-pricing-amount-wrap">
+                                <span class="ss-pricing-amount">$14</span>
+                            </div>
+                            <p class="ss-pricing-rate ss-rate-green">~$2.33 per month</p>
+                            <p class="ss-pricing-desc">Unlock PRO version for 6 months at $14.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1 Year Plan -->
+                    <div class="ss-pricing-card">
+                        <span class="ss-pricing-badge ss-badge-green">Save 50%</span>
+                        <div>
+                            <div class="ss-pricing-sub">ScrollStrike</div>
+                            <div class="ss-pricing-title-group">
+                                <span class="ss-pricing-term ss-term-orange">1 Year</span>
+                                <span class="ss-pricing-type">Pro License</span>
+                            </div>
+                            <div class="ss-pricing-amount-wrap">
+                                <span class="ss-pricing-amount">$18</span>
+                            </div>
+                            <p class="ss-pricing-rate ss-rate-green">$1.50 per month</p>
+                            <p class="ss-pricing-desc">Unlock PRO version for 1 year at $18.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STICKY BOTTOM RIGHT DOWNLOAD BUTTON -->
+    <a href="downloads/ScrollStrike.zip" id="stickyDownloadBtn" class="btn btn-primary sticky-bottom-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download Free ZIP</span>
+    </a>
 
     <footer>
         <div class="container">
@@ -1061,41 +1457,74 @@
             }
         }
 
+        // STICKY BOTTOM-RIGHT BUTTON ON SCROLL PAST HERO
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroDownloadBtn = document.getElementById('mainHeroDownloadBtn');
+            const stickyDownloadBtn = document.getElementById('stickyDownloadBtn');
+
+            if (heroDownloadBtn && stickyDownloadBtn) {
+                const btnObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) {
+                            stickyDownloadBtn.classList.add('visible');
+                        } else {
+                            stickyDownloadBtn.classList.remove('visible');
+                        }
+                    });
+                }, { threshold: 0 });
+
+                btnObserver.observe(heroDownloadBtn);
+            }
+        });
+
         // HERO DEMO ANIMATION SCRIPT
         document.addEventListener('DOMContentLoaded', function() {
+            const demoViewport = document.getElementById('demoViewport');
             const demoScrollBody = document.getElementById('demoScrollBody');
+            const demoTargetLinkWrap = document.getElementById('demoTargetLinkWrap');
             const demoTooltip = document.getElementById('demoTooltip');
             const captionBox = document.getElementById('captionBox');
             let timerId = null;
 
+            function calculateDynamicBottomScroll() {
+                if (!demoViewport || !demoTargetLinkWrap || !demoScrollBody) return 0;
+                
+                const linkOffsetTop = demoTargetLinkWrap.offsetTop;
+                const linkHeight = demoTargetLinkWrap.offsetHeight;
+                const viewportHeight = demoViewport.clientHeight;
+                
+                const targetScroll = linkOffsetTop - (viewportHeight - linkHeight - 50);
+                return -Math.max(0, targetScroll);
+            }
+
             const phases = [
                 {
                     text: "Website visitor arrives on your blog post...",
-                    scrollPos: '0px',
+                    isScrolled: false,
                     showTooltip: false,
                     delay: 0
                 },
                 {
                     text: "Visitor scrolls down while reading your article...",
-                    scrollPos: '-360px', 
+                    isScrolled: true,
                     showTooltip: false,
                     delay: 0
                 },
                 {
-                    text: "The photo & info popup you set up appears right beside your link!",
-                    scrollPos: '-360px',
+                    text: "ScrollStrike highlights your affiliate link with a highlighter as readers scroll!",
+                    isScrolled: true,
                     showTooltip: true,
                     delay: 450
                 },
                 {
-                    text: "The reader sees the context you added and clicks with confidence.",
-                    scrollPos: '-360px',
+                    text: "The reader notices your recommendation and clicks with confidence.",
+                    isScrolled: true,
                     showTooltip: true,
                     delay: 0
                 },
                 {
-                    text: "That's how adding quick visual context to your links boosts reader trust and clicks!",
-                    scrollPos: '-360px',
+                    text: "That's how automatic scroll highlighting turns readers into affiliate revenue!",
+                    isScrolled: true,
                     showTooltip: true,
                     delay: 0
                 }
@@ -1124,8 +1553,9 @@
 
             function runSequence() {
                 const phase = phases[currentPhaseIndex];
+                const dynamicY = phase.isScrolled ? calculateDynamicBottomScroll() : 0;
 
-                demoScrollBody.style.transform = `translateY(${phase.scrollPos})`;
+                demoScrollBody.style.transform = `translateY(${dynamicY}px)`;
 
                 if (timerId) clearTimeout(timerId);
 
@@ -1158,7 +1588,6 @@
                 });
             }, { threshold: 0.2 });
 
-            const demoViewport = document.getElementById('demoViewport');
             if (demoViewport) observer.observe(demoViewport);
         });
     </script>
