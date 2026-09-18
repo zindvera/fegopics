@@ -1,0 +1,15 @@
+{
+  "name": "ScrollStrike Pro",
+  "slug": "scrollstrike",
+  "version": "1.0.0",
+  "homepage": "https://zindvera.github.io/fegopics/pro-download",
+  "download_url": "https://zindvera.github.io/fegopics/downloads/ScrollStrike-Lifetime-Pro.zip",
+  "requires": "6.0",
+  "tested": "6.7",
+  "requires_php": "7.4",
+  "last_updated": "2026-09-18",
+  "sections": {
+    "description": "Increase your affiliate link clicks & affiliate revenue by highlighting your affiliate links on the page[cite: 9]. Full Lifetime Pro edition featuring unlimited highlighters, custom hex colors, and scroll-triggered Focus Mode blur[cite: 7].",
+    "changelog": "<h4>1.0.0</h4><ul><li>Initial Lifetime Pro release.</li><li>Unlocked unlimited highlighter creation and element attachment.</li><li>Focus Mode background blur support.</li><li>Custom hex and RGB color pickers enabled.</li><li>Integrated one-click dashboard updates without license keys.</li></ul>"
+  }
+}
