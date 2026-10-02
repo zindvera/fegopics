@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get ScrollStrike Lifetime PRO</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESETS (MATCHING INDEX.HTML)
+           ========================================================================== */
+        :root {
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --link-blue: #2563eb;
+            --link-blue-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-section: #ffffff;
+            --bg-alt: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --success-bg: #dcfce7;
+            --success-border: #bbf7d0;
+            --success-text: #15803d;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --error-text: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           2. NAVBAR
+           ========================================================================== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-home-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-body);
+            transition: color 0.2s;
+        }
+
+        .nav-home-link:hover {
+            color: var(--primary);
+        }
+
+        /* ==========================================================================
+           3. REDEMPTION MAIN CARD
+           ========================================================================== */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 24px;
+        }
+
+        .redeem-card {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 44px 36px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        /* Centered Header Lockup: Logo on left, Label on right */
+        .product-brand-lockup {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .product-square-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+
+        .wp-label-group {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .wp-label-prefix {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .wp-label-main {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.3px;
+        }
+
+        .redeem-title {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .redeem-subtitle {
+            font-size: 15px;
+            color: var(--text-body);
+            margin-bottom: 28px;
+        }
+
+        /* Form Controls */
+        .redeem-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group {
+            position: relative;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .redeem-input {
+            width: 100%;
+            padding: 14px 18px;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            color: var(--text-dark);
+            background: var(--bg-body);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .redeem-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12);
+            background: #ffffff;
+        }
+
+        .redeem-input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-main);
+            font-weight: 800;
+            font-size: 16px;
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            width: 100%;
+            margin-top: 6px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-submit:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Status Container */
+        .status-box {
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-box.error {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-text);
+            font-weight: 600;
+        }
+
+        .status-box.success {
+            display: block;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-text);
+        }
+
+        .success-title {
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-text {
+            font-size: 13px;
+            color: #166534;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .direct-download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #15803d;
+            color: #ffffff;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: background 0.2s ease;
+        }
+
+        .direct-download-link:hover {
+            background: #166534;
+        }
+
+        /* Instructions */
+        .redeem-guide {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .guide-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+        }
+
+        .guide-list {
+            padding-left: 20px;
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        .guide-list li {
+            margin-bottom: 14px;
+        }
+
+        .guide-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================================================
+           4. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 24px 0;
+            background: var(--text-dark);
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: auto;
+        }
+
+        @media (max-width: 640px) {
+            .redeem-card {
+                padding: 32px 20px;
+                border-radius: 16px;
+            }
+            .redeem-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html">
+                <img src="media/fegopics-logo.png" alt="ScrollStrike Logo" class="logo-img">
+            </a>
+            <a href="index.html" class="nav-home-link">Back to Home &rarr;</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-wrapper">
+        <div class="redeem-card">
+            
+            <!-- Centered Header Lockup: Logo at Left, Label at Right -->
+            <div>
+                <div class="product-brand-lockup">
+                    <img src="media/ScrollStrike-logo.jpg" alt="ScrollStrike Logo" class="product-square-logo">
+                    <div class="wp-label-group">
+                        <span class="wp-label-prefix">WordPress</span>
+                        <span class="wp-label-main">Plugin</span>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="redeem-title">Get ScrollStrike Lifetime PRO</h1>
+            <p class="redeem-subtitle">Paste your redemption code below to start your download.</p>
+
+            <form id="redeemForm" class="redeem-form">
+                <div class="input-group">
+                    <label class="input-label" for="licenseCode">Redemption Code</label>
+                    <input 
+                        type="text" 
+                        id="licenseCode" 
+                        class="redeem-input" 
+                        placeholder="e.g. SCROLL-XXXX-XXXX" 
+                        required 
+                        autocomplete="off" 
+                        spellcheck="false"
+                    />
+                </div>
+                
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span id="submitBtnText">Download Plugin ZIP</span>
+                </button>
+            </form>
+
+            <!-- Status Box -->
+            <div id="statusBox" class="status-box"></div>
+
+            <!-- Installation Instructions -->
+            <div class="redeem-guide">
+                <div class="guide-title">How to install after downloading</div>
+                <ol class="guide-list">
+                    <li>Download the <strong>ScrollStrike.zip</strong> package.</li>
+                    <li>In your WordPress dashboard, go to <strong>Plugins &gt; Add New &gt; Upload Plugin</strong>.</li>
+                    <li>Choose the .zip file and click <strong>Install Now</strong>, then activate.</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ScrollStrike. Simple link highlighters for WordPress.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC -->
+    <script>
+        // CONFIGURATION: Replace with your actual Cloudflare Worker URL
+        const WORKER_ENDPOINT = "https://your-worker-subdomain.workers.dev";
+
+        const redeemForm = document.getElementById('redeemForm');
+        const licenseInput = document.getElementById('licenseCode');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitBtnText = document.getElementById('submitBtnText');
+        const statusBox = document.getElementById('statusBox');
+
+        redeemForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Trim leading/trailing whitespace without changing character casing
+            const code = licenseInput.value.trim();
+            if (!code) return;
+
+            // Reset UI
+            statusBox.style.display = 'none';
+            statusBox.className = 'status-box';
+            statusBox.innerHTML = '';
+            submitBtn.disabled = true;
+            submitBtnText.textContent = 'Verifying Code...';
+
+            try {
+                const response = await fetch(WORKER_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code: code })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success && data.downloadUrl) {
+                    // Success View
+                    statusBox.className = 'status-box success';
+                    statusBox.innerHTML = `
+                        <div class="success-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Code Verified Successfully!</span>
+                        </div>
+                        <p class="success-text">Your download should start automatically. If it doesn't, click the button below:</p>
+                        <a href="${data.downloadUrl}" download class="direct-download-link">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Download ScrollStrike.zip</span>
+                        </a>
+                    `;
+                    statusBox.style.display = 'block';
+
+                    // Trigger direct browser download
+                    const autoDownload = document.createElement('a');
+                    autoDownload.href = data.downloadUrl;
+                    autoDownload.setAttribute('download', 'ScrollStrike.zip');
+                    document.body.appendChild(autoDownload);
+                    autoDownload.click();
+                    autoDownload.remove();
+
+                } else {
+                    // Rejection View
+                    statusBox.className = 'status-box error';
+                    statusBox.innerHTML = `
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        <span>${data.message || 'Invalid redemption code. Please check your purchase receipt.'}</span>
+                    `;
+                    statusBox.style.display = 'flex';
+                }
+            } catch (err) {
+                // Network / Worker Offline View
+                statusBox.className = 'status-box error';
+                statusBox.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>Server connection error. Please try again in a moment.</span>
+                `;
+                statusBox.style.display = 'flex';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtnText.textContent = 'Download Plugin ZIP';
+            }
+        });
+    </script>
+</body>
+</html>

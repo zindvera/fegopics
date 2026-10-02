@@ -381,7 +381,6 @@
             border: 1px solid #bfdbfe;
         }
 
-        /* Simple Minimalist Text Labels without "The" */
         .ps-label {
             font-size: 13px;
             font-weight: 800;
@@ -839,7 +838,84 @@
         }
 
         /* ==========================================================================
-           9. STICKY BOTTOM-RIGHT DOWNLOAD BUTTON (No Shadow)
+           9. FAQ SECTION
+           ========================================================================== */
+        .faq-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .faq-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 36px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-card details {
+            padding: 18px 0;
+        }
+
+        .faq-card details:first-child {
+            padding-top: 4px;
+        }
+
+        .faq-card details:last-child {
+            padding-bottom: 4px;
+        }
+
+        .faq-card details + details {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-card summary {
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-dark);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+
+        .faq-card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-card summary:hover {
+            color: var(--primary);
+        }
+
+        .faq-card summary::after {
+            content: '+';
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-muted);
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .faq-card details[open] summary::after {
+            content: '−';
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: var(--text-body);
+            margin-top: 12px;
+            line-height: 1.65;
+            padding-right: 28px;
+        }
+
+        /* ==========================================================================
+           10. STICKY BOTTOM-RIGHT DOWNLOAD BUTTON (No Shadow)
            ========================================================================== */
         .sticky-bottom-btn {
             position: fixed;
@@ -862,7 +938,7 @@
         }
 
         /* ==========================================================================
-           10. FOOTER
+           11. FOOTER
            ========================================================================== */
         footer {
             text-align: center;
@@ -873,7 +949,7 @@
         }
 
         /* ==========================================================================
-           11. RESPONSIVE MEDIA QUERIES
+           12. RESPONSIVE MEDIA QUERIES
            ========================================================================== */
         @media (min-width: 768px) and (max-width: 1024px) {
             .hero-interactive { gap: 25px; }
@@ -898,14 +974,12 @@
         @media (max-width: 767px) {
             .container { padding: 0 8px; }
             
-            /* Increased margin bottom for hero-header in phone view */
             .hero-header {
                 margin: 0 auto 85px auto;
             }
 
             .hero-title { font-size: 28px; }
             
-            /* Bigger font size for hero-subtitle on mobile */
             .hero-subtitle { 
                 font-size: 17px; 
                 line-height: 1.5;
@@ -914,7 +988,6 @@
             .hero-actions { flex-direction: column; }
             .hero-actions .btn { width: 100%; }
             
-            /* Phone View: Text above demo animation container */
             .hero-interactive {
                 flex-direction: column;
                 padding: 0;
@@ -988,6 +1061,20 @@
             .ss-matrix-card { padding: 28px 20px; border-radius: 16px; }
             .ss-pricing-grid { grid-template-columns: 1fr; gap: 20px; }
             .ss-pricing-card { padding: 28px 20px; border-radius: 16px; }
+
+            .faq-card {
+                padding: 20px 16px;
+                border-radius: 16px;
+            }
+
+            .faq-card summary {
+                font-size: 15px;
+            }
+
+            .faq-answer {
+                font-size: 14px;
+                padding-right: 0;
+            }
 
             .sticky-bottom-btn {
                 bottom: 16px;
@@ -1429,6 +1516,50 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <!-- SECTION 5: FAQS -->
+    <section class="section-padding" id="faqs">
+        <div class="container">
+            <h2 class="section-title text-center">Frequently Asked Questions</h2>
+            
+            <div class="faq-wrapper">
+                <aside aria-label="Frequently Asked Questions" class="faq-card">
+                    <details open>
+                        <summary>What does ScrollStrike do?</summary>
+                        <div class="faq-answer">ScrollStrike automatically displays an eye-catching highlighter note over your target affiliate links the moment readers scroll down to them. This gives visitors clear context and an image preview of what's inside before they decide to click.</div>
+                    </details>
+                    <details>
+                        <summary>How do I create a highlighter note on a link in WordPress?</summary>
+                        <div class="faq-answer">Open any post in the Gutenberg editor, select your link, and click the ScrollStrike icon on the toolbar. This opens the studio window where you can write your note, add an image, pick colors, and set your timing. Click Save, and your link is set to highlight when visitors scroll down.</div>
+                    </details>
+                    <details>
+                        <summary>Can I preview the highlighter note before publishing?</summary>
+                        <div class="faq-answer">Yes. The studio includes a Live Preview pane on the right side that updates in real time as you write your note, add an image, pick colors, or toggle focus mode, so you can see exactly how the highlighter note looks before publishing.</div>
+                    </details>
+                    <details>
+                        <summary>How do I see the highlighter note in action on my published post?</summary>
+                        <div class="faq-answer">Once you save your highlighter note and update or publish the post, simply visit the live article. As you scroll down to your target link, ScrollStrike automatically triggers the highlighter note right over it.</div>
+                    </details>
+                    <details>
+                        <summary>What do I get with this lifetime deal?</summary>
+                        <div class="faq-answer">You get lifetime access to ScrollStrike with unlimited highlighter notes, unlimited target links across your site, custom color styling, Focus Mode (background blur), display frequency controls, and all future plugin updates.</div>
+                    </details>
+                    <details>
+                        <summary>Will ScrollStrike slow down my website?</summary>
+                        <div class="faq-answer">No. ScrollStrike only loads its lightweight scripts and styling on posts where an active highlighter is present, keeping all other pages on your site completely untouched and fast.</div>
+                    </details>
+                    <details>
+                        <summary>Which WordPress editors does ScrollStrike support?</summary>
+                        <div class="faq-answer">ScrollStrike is built natively for the WordPress block editor (Gutenberg). You configure your highlighter notes, images, and timing directly on your links inside the standard Gutenberg post and page editing screen.</div>
+                    </details>
+                    <details>
+                        <summary>How does the highlighter note appear on mobile phones and tablets?</summary>
+                        <div class="faq-answer">It is fully responsive. The highlighter note automatically adjusts its size to fit different device screens cleanly, so it stays readable without disturbing the reading experience.</div>
+                    </details>
+                </aside>
+            </div>
         </div>
     </section>
 
