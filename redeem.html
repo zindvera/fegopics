@@ -440,7 +440,7 @@
             <div class="redeem-guide">
                 <div class="guide-title">How to install after downloading</div>
                 <ol class="guide-list">
-                    <li>Download the <strong>ScrollStrike.zip</strong> package.</li>
+                    <li>Download the <strong>ScrollStrike-Lifetime-Pro.zip</strong> package.</li>
                     <li>In your WordPress dashboard, go to <strong>Plugins &gt; Add New &gt; Upload Plugin</strong>.</li>
                     <li>Choose the .zip file and click <strong>Install Now</strong>, then activate.</li>
                 </ol>
@@ -457,8 +457,8 @@
 
     <!-- INTERACTION LOGIC -->
     <script>
-        // CONFIGURATION: Replace with your actual Cloudflare Worker URL
-        const WORKER_ENDPOINT = "https://your-worker-subdomain.workers.dev";
+        // CONFIGURATION: Connected to your live Cloudflare Worker
+        const WORKER_ENDPOINT = "https://scrollstrike-validator.zindvera.workers.dev";
 
         const redeemForm = document.getElementById('redeemForm');
         const licenseInput = document.getElementById('licenseCode');
@@ -469,11 +469,11 @@
         redeemForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Trim leading/trailing whitespace without changing character casing
+            // Trim whitespace
             const code = licenseInput.value.trim();
             if (!code) return;
 
-            // Reset UI
+            // Reset UI state
             statusBox.style.display = 'none';
             statusBox.className = 'status-box';
             statusBox.innerHTML = '';
@@ -500,9 +500,9 @@
                             <span>Code Verified Successfully!</span>
                         </div>
                         <p class="success-text">Your download should start automatically. If it doesn't, click the button below:</p>
-                        <a href="${data.downloadUrl}" download class="direct-download-link">
+                        <a href="${data.downloadUrl}" download="ScrollStrike-Lifetime-Pro.zip" class="direct-download-link" id="manualDownloadLink">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            <span>Download ScrollStrike.zip</span>
+                            <span>Download ScrollStrike-Lifetime-Pro.zip</span>
                         </a>
                     `;
                     statusBox.style.display = 'block';
@@ -510,7 +510,8 @@
                     // Trigger direct browser download
                     const autoDownload = document.createElement('a');
                     autoDownload.href = data.downloadUrl;
-                    autoDownload.setAttribute('download', 'ScrollStrike.zip');
+                    autoDownload.setAttribute('download', 'ScrollStrike-Lifetime-Pro.zip');
+                    autoDownload.style.display = 'none';
                     document.body.appendChild(autoDownload);
                     autoDownload.click();
                     autoDownload.remove();
@@ -528,7 +529,7 @@
                 // Network / Worker Offline View
                 statusBox.className = 'status-box error';
                 statusBox.innerHTML = `
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" cy="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                     <span>Server connection error. Please try again in a moment.</span>
                 `;
                 statusBox.style.display = 'flex';
