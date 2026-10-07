@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - ScrollStrike by FegoPics</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESETS
+           ========================================================================== */
+        :root {
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --link-blue: #2563eb;
+            --link-blue-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-section: #ffffff;
+            --bg-alt: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-black: #000000;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-blue);
+        }
+
+        a:hover {
+            color: var(--link-blue-hover);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           2. NAVBAR
+           ========================================================================== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-back-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* ==========================================================================
+           3. POLICY CONTENT CARD & TYPOGRAPHY
+           ========================================================================== */
+        .policy-section {
+            padding: 60px 0 80px 0;
+            flex: 1;
+        }
+
+        .policy-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .policy-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .policy-badge {
+            display: inline-block;
+            background: #ffedd5;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 14px;
+        }
+
+        .policy-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.6px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .policy-date {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .policy-intro {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .policy-block {
+            margin-bottom: 32px;
+        }
+
+        .policy-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .policy-subcard {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+
+        .policy-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .policy-list li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        .policy-list li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            color: var(--primary);
+            font-size: 20px;
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        .policy-list strong {
+            color: var(--text-dark);
+        }
+
+        .highlight-notice {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            color: #166534;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.55;
+        }
+
+        .highlight-notice strong {
+            color: #14532d;
+        }
+
+        .contact-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-top: 14px;
+        }
+
+        .contact-box p {
+            font-size: 15px;
+            color: var(--text-body);
+            margin-bottom: 6px;
+        }
+
+        .contact-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-box strong {
+            color: var(--text-dark);
+        }
+
+        /* ==========================================================================
+           4. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 40px 0 30px 0;
+            background: var(--text-dark);
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 22px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 640px;
+            height: 1px;
+            background: #1e293b;
+            margin: 6px 0;
+        }
+
+        .footer-copy {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .footer-disclaimer {
+            font-size: 11px;
+            color: #64748b;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           5. RESPONSIVE
+           ========================================================================== */
+        @media (max-width: 767px) {
+            .container { padding: 0 16px; }
+            .policy-section { padding: 36px 0 50px 0; }
+            .policy-card { padding: 26px 18px; border-radius: 16px; }
+            .policy-title { font-size: 26px; }
+            .policy-h2 { font-size: 18px; }
+            .policy-subcard { padding: 16px 14px; }
+            .highlight-notice { padding: 14px 16px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html">
+                <img src="media/fegopics-logo.png" alt="FegoPics Logo" class="logo-img">
+            </a>
+            <a href="index.html" class="nav-back-link">
+                ← Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN COOKIE POLICY CONTENT -->
+    <main class="policy-section">
+        <div class="container">
+            <div class="policy-card">
+                
+                <div class="policy-header">
+                    <span class="policy-badge">Compliance</span>
+                    <h1 class="policy-title">Cookie Policy</h1>
+                    <div class="policy-date">Last Updated: October 2026</div>
+                </div>
+
+                <p class="policy-intro">
+                    Welcome to <strong>ScrollStrike</strong>. ScrollStrike is built and maintained under <strong>FegoPics</strong>, an independent developer profile run by a solopreneur. We believe in keeping things simple, clear, and honest. We do not use sneaky ad-tracking cookies, behavioral surveillance pixels, or marketing spyware.
+                </p>
+
+                <!-- GREEN CALLOUT -->
+                <div class="highlight-notice">
+                    <span style="font-size: 20px; line-height: 1;">🛡️</span>
+                    <div>
+                        <strong>Zero Ad Tracking:</strong> We do not track you across the web or collect personal browsing habits. You can browse our website knowing your reading activity stays private.
+                    </div>
+                </div>
+
+                <!-- SECTION 1 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">1. What Are Cookies & Local Storage?</h2>
+                    <p style="font-size: 15px; color: var(--text-body); line-height: 1.65;">
+                        Cookies and local browser storage are small pieces of data saved by your web browser on your computer or mobile device. They help websites remember basic choices—like keeping you logged into an account or remembering simple interface preferences.
+                    </p>
+                </section>
+
+                <!-- SECTION 2 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">2. Zero Invasive Tracking on Our Website</h2>
+                    <ul class="policy-list">
+                        <li><strong>No Advertising Pixels:</strong> We do not use marketing trackers such as the Meta (Facebook) Pixel, Google Ads tracking, or cross-site behavioral tracking scripts.</li>
+                        <li><strong>No Selling of Browsing Data:</strong> We never collect, package, or sell information about your browsing behavior to any third-party advertisers or data brokers.</li>
+                    </ul>
+                </section>
+
+                <!-- SECTION 3 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">3. Essential & Functional Storage Only</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 10px;">
+                        Any storage used on our website (<code>fegopics.com</code> / <code>ScrollStrike</code>) is strictly functional:
+                    </p>
+                    <ul class="policy-list">
+                        <li><strong>Interface Preferences:</strong> Temporarily remembering basic interface states (such as whether an informational modal or preview was viewed).</li>
+                        <li><strong>Code Redemption (<code>redeem.html</code>):</strong> Temporarily maintaining session state while validating your purchase code to deliver your direct <code>.zip</code> download link.</li>
+                    </ul>
+                </section>
+
+                <!-- SECTION 4 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">4. Third-Party Platforms (Gumroad & AppSumo)</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 12px;">
+                        When you make a purchase or visit our partner platforms:
+                    </p>
+                    <div class="policy-subcard">
+                        <ul class="policy-list">
+                            <li><strong>Gumroad:</strong> Handles payments and checkout security using their own essential session cookies to manage your digital purchase securely.</li>
+                            <li><strong>AppSumo:</strong> Manages redemption voucher delivery and account sessions under their own terms and privacy standards.</li>
+                        </ul>
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+                        These external platforms manage their own cookies in accordance with their respective privacy and cookie guidelines.
+                    </p>
+                </section>
+
+                <!-- SECTION 5 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">5. How the ScrollStrike Plugin Uses Local Browser Memory</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 12px;">
+                        When you run ScrollStrike on your own WordPress site, you have full control over the <strong>Display Frequency</strong> feature (such as setting a highlighter to appear <em>"only once per visitor"</em>):
+                    </p>
+                    <div class="policy-subcard">
+                        <ul class="policy-list">
+                            <li>To honor this setting, the plugin stores a tiny anonymous marker inside the visitor’s local browser (<code>localStorage</code>).</li>
+                            <li>This simply tells the visitor's browser: <em>"This reader already saw this highlight once, so don't show it again."</em></li>
+                            <li><strong>No personal data, IP addresses, or reading histories are collected or sent to FegoPics.</strong> Everything remains 100% self-hosted inside the reader's local browser and your own WordPress site.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SECTION 6 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">6. How You Can Control or Clear Cookies</h2>
+                    <p style="font-size: 15px; color: var(--text-body); line-height: 1.65;">
+                        You have complete control over cookies on your devices. You can choose to block, limit, or delete cookies and local browser storage anytime through your browser settings (Chrome, Safari, Firefox, Edge, etc.).
+                    </p>
+                </section>
+
+                <!-- SECTION 7 -->
+                <section class="policy-block">
+                    <h2 class="policy-h2">7. Questions & Support</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 12px;">
+                        If you have any questions about this Cookie Policy, feel free to contact us:
+                    </p>
+                    <div class="contact-box">
+                        <p><strong>Brand:</strong> FegoPics</p>
+                        <p><strong>Email:</strong> <a href="mailto:support@fegopics.com">support@fegopics.com</a></p>
+                        <p><strong>Website:</strong> <a href="index.html">ScrollStrike Home</a></p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <ul class="footer-links">
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="cookies.html">Cookie Policy</a></li>
+            </ul>
+
+            <div class="footer-divider"></div>
+
+            <p class="footer-copy">&copy; 2026 FegoPics. All rights reserved.</p>
+            <p class="footer-disclaimer">WordPress® is a registered trademark of the WordPress Foundation. ScrollStrike is an independent plugin created by FegoPics and is not affiliated with or endorsed by Automattic Inc. or the WordPress Foundation.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

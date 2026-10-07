@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Support - ScrollStrike by FegoPics</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & BASE STYLES
+           ========================================================================== */
+        :root {
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --link-blue: #2563eb;
+            --link-blue-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-section: #ffffff;
+            --bg-alt: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-black: #000000;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-blue);
+        }
+
+        a:hover {
+            color: var(--link-blue-hover);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           2. NAVBAR
+           ========================================================================== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-back-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* ==========================================================================
+           3. CONTACT CARD & EMAIL DISPLAY
+           ========================================================================== */
+        .contact-section {
+            padding: 60px 0 80px 0;
+            flex: 1;
+        }
+
+        .contact-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-badge {
+            display: inline-block;
+            background: #ffedd5;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 14px;
+        }
+
+        .contact-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.6px;
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .contact-subtitle {
+            font-size: 16px;
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Prominent Email Display Container */
+        .email-showcase-box {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+            border: 2px solid #fed7aa;
+            border-radius: 18px;
+            padding: 36px 24px;
+            text-align: center;
+            margin-bottom: 36px;
+            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.05);
+        }
+
+        .email-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .email-address {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            word-break: break-all;
+            cursor: pointer;
+            user-select: all;
+            transition: color 0.2s ease;
+        }
+
+        .email-address:hover {
+            color: var(--primary);
+        }
+
+        .email-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-copy-email {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-copy-email:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35);
+        }
+
+        .btn-copy-email.copied {
+            background-color: #16a34a;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+        }
+
+        .response-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* ==========================================================================
+           4. HELPFUL SHORTCUTS & INFO
+           ========================================================================== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .info-item h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .maker-notice {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 22px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .maker-notice strong {
+            color: var(--text-dark);
+        }
+
+        /* ==========================================================================
+           5. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 40px 0 30px 0;
+            background: var(--text-dark);
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 22px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 640px;
+            height: 1px;
+            background: #1e293b;
+            margin: 6px 0;
+        }
+
+        .footer-copy {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .footer-disclaimer {
+            font-size: 11px;
+            color: #64748b;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           6. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 767px) {
+            .container { padding: 0 16px; }
+            .contact-section { padding: 36px 0 50px 0; }
+            .contact-card { padding: 26px 18px; border-radius: 16px; }
+            .contact-title { font-size: 26px; }
+            .email-showcase-box { padding: 26px 16px; }
+            .email-address { font-size: 21px; }
+            .email-actions { flex-direction: column; width: 100%; }
+            .btn-copy-email, .btn-send-email { width: 100%; justify-content: center; }
+            .info-grid { grid-template-columns: 1fr; gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html">
+                <img src="media/fegopics-logo.png" alt="FegoPics Logo" class="logo-img">
+            </a>
+            <a href="index.html" class="nav-back-link">
+                ← Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTACT CONTENT -->
+    <main class="contact-section">
+        <div class="container">
+            <div class="contact-card">
+                
+                <div class="contact-header">
+                    <span class="contact-badge">Support</span>
+                    <h1 class="contact-title">Contact & Support</h1>
+                    <p class="contact-subtitle">
+                        Have questions about ScrollStrike, need help with installation, or want to suggest a new feature? We are happy to help!
+                    </p>
+                </div>
+
+                <!-- EMAIL SHOWCASE BOX -->
+                <div class="email-showcase-box">
+                    <span class="email-label">Official Support Email</span>
+                    <div>
+                        <span class="email-address" id="emailDisplay" onclick="copyEmailToClipboard()" title="Click to copy">
+                            support@fegopics.com
+                        </span>
+                    </div>
+
+                    <div class="email-actions">
+                        <!-- Direct Copy Button -->
+                        <button class="btn-copy-email" id="copyBtn" onclick="copyEmailToClipboard()">
+                            <svg id="copyBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span id="copyBtnText">Copy Email Address</span>
+                        </button>
+                    </div>
+
+                    <div class="response-note">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Expected response time: Usually within 24 hours</span>
+                    </div>
+                </div>
+
+                <!-- HELPFUL SELF-SERVICE SHORTCUTS -->
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>🎟️ AppSumo Voucher?</h3>
+                        <p>If you purchased a code on AppSumo, claim and download your PRO zip immediately on our <a href="redeem.html"><strong>Redemption Page</strong></a>.</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>❓ Have Quick Questions?</h3>
+                        <p>Wondering how delay timing, per-visitor frequency, or Gutenberg controls work? Check the <a href="index.html#faqs"><strong>FAQs on our homepage</strong></a>.</p>
+                    </div>
+                </div>
+
+                <!-- ABOUT THE MAKER NOTE -->
+                <div class="maker-notice">
+                    <strong>Direct Solopreneur Support:</strong> ScrollStrike is built and maintained under <strong>FegoPics</strong>. There are no automated bot responses—every email is read and answered directly by the creator.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <ul class="footer-links">
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="cookies.html">Cookie Policy</a></li>
+            </ul>
+
+            <div class="footer-divider"></div>
+
+            <p class="footer-copy">&copy; 2026 FegoPics. All rights reserved.</p>
+            <p class="footer-disclaimer">WordPress® is a registered trademark of the WordPress Foundation. ScrollStrike is an independent plugin created by FegoPics and is not affiliated with or endorsed by Automattic Inc. or the WordPress Foundation.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT FOR COPY FUNCTIONALITY -->
+    <script>
+        function copyEmailToClipboard() {
+            const emailText = 'support@fegopics.com';
+            const btn = document.getElementById('copyBtn');
+            const btnText = document.getElementById('copyBtnText');
+            const btnIcon = document.getElementById('copyBtnIcon');
+
+            // Fallback-safe clipboard copy using textarea for maximum browser compatibility
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = emailText;
+            tempTextarea.setAttribute('readonly', '');
+            tempTextarea.style.position = 'absolute';
+            tempTextarea.style.left = '-9999px';
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    btnText.textContent = 'Copied to Clipboard!';
+                    btn.classList.add('copied');
+
+                    setTimeout(function() {
+                        btnText.textContent = 'Copy Email Address';
+                        btn.classList.remove('copied');
+                    }, 2500);
+                }
+            } catch (err) {
+                console.error('Failed to copy email: ', err);
+            }
+
+            document.body.removeChild(tempTextarea);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - ScrollStrike by FegoPics</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESETS
+           ========================================================================== */
+        :root {
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --link-blue: #2563eb;
+            --link-blue-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-section: #ffffff;
+            --bg-alt: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-black: #000000;
+            --text-body: #475569;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-blue);
+        }
+
+        a:hover {
+            color: var(--link-blue-hover);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           2. NAVBAR
+           ========================================================================== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-back-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* ==========================================================================
+           3. TERMS CONTENT CARD & TYPOGRAPHY
+           ========================================================================== */
+        .terms-section {
+            padding: 60px 0 80px 0;
+            flex: 1;
+        }
+
+        .terms-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .terms-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terms-badge {
+            display: inline-block;
+            background: #ffedd5;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 14px;
+        }
+
+        .terms-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.6px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .terms-date {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .terms-intro {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .terms-block {
+            margin-bottom: 32px;
+        }
+
+        .terms-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terms-h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 16px 0 8px 0;
+        }
+
+        .terms-subcard {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+
+        .terms-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .terms-list li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        .terms-list li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            color: var(--primary);
+            font-size: 20px;
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        .terms-list strong {
+            color: var(--text-dark);
+        }
+
+        .contact-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-top: 14px;
+        }
+
+        .contact-box p {
+            font-size: 15px;
+            color: var(--text-body);
+            margin-bottom: 6px;
+        }
+
+        .contact-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-box strong {
+            color: var(--text-dark);
+        }
+
+        /* ==========================================================================
+           4. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 40px 0 30px 0;
+            background: var(--text-dark);
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 22px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 640px;
+            height: 1px;
+            background: #1e293b;
+            margin: 6px 0;
+        }
+
+        .footer-copy {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .footer-disclaimer {
+            font-size: 11px;
+            color: #64748b;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           5. RESPONSIVE
+           ========================================================================== */
+        @media (max-width: 767px) {
+            .container { padding: 0 16px; }
+            .terms-section { padding: 36px 0 50px 0; }
+            .terms-card { padding: 26px 18px; border-radius: 16px; }
+            .terms-title { font-size: 26px; }
+            .terms-h2 { font-size: 18px; }
+            .terms-subcard { padding: 16px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html">
+                <img src="media/fegopics-logo.png" alt="FegoPics Logo" class="logo-img">
+            </a>
+            <a href="index.html" class="nav-back-link">
+                ← Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN TERMS OF SERVICE CONTENT -->
+    <main class="terms-section">
+        <div class="container">
+            <div class="terms-card">
+                
+                <div class="terms-header">
+                    <span class="terms-badge">Legal</span>
+                    <h1 class="terms-title">Terms of Service</h1>
+                    <div class="terms-date">Last Updated: October 2026</div>
+                </div>
+
+                <p class="terms-intro">
+                    Welcome to <strong>ScrollStrike</strong>. ScrollStrike is an independent software tool built and maintained under <strong>FegoPics</strong>, an independent developer profile run by a solopreneur. By downloading our free version, purchasing a license, or redeeming an authorized code, you agree to these clear and simple terms.
+                </p>
+
+                <!-- SECTION 1 -->
+                <section class="terms-block">
+                    <h2 class="terms-h2">1. License & Permitted Use</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 12px;">
+                        When you obtain a ScrollStrike license, you are granted a non-exclusive license to download, install, and use the plugin according to these guidelines:
+                    </p>
+
+                    <div class="terms-subcard">
+                        <h3 class="terms-h3" style="margin-top: 0; color: #15803d;">✓ What You Can Do</h3>
+                        <ul class="terms-list">
+                            <li><strong>Commercial Use on Your Own Sites:</strong> You may use ScrollStrike on personal and commercial websites that you own and operate (including monetized affiliate blogs, e-commerce stores, and digital publications).</li>
+                            <li><strong>Full Feature Access:</strong> You can configure and display highlighters, visual previews, and custom settings across your allowed domains as permitted by your plan.</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-subcard">
+                        <h3 class="terms-h3" style="margin-top: 0; color: #dc2626;">✕ What You Cannot Do</h3>
+                        <ul class="terms-list">
+                            <li><strong>No Redistribution or Reselling:</strong> You may not resell, sub-license, redistribute, share, lease, or publicly upload the plugin's <code>.zip</code> file, code, or redemption codes to any third-party, file-sharing site, or client transfer package.</li>
+                            <li><strong>Non-Transferable:</strong> Your license and redemption credentials are tied to your personal ownership and cannot be divided, resold, or re-allocated to outside parties.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SECTION 2 -->
+                <section class="terms-block">
+                    <h2 class="terms-h2">2. Refund Policy</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 12px;">
+                        Because ScrollStrike is distributed across multiple authorized channels as downloadable software, refund handling depends on where you made your purchase:
+                    </p>
+
+                    <div class="terms-subcard">
+                        <h3 class="terms-h3" style="margin-top: 0;">A. Gumroad Purchases (Digital Downloads)</h3>
+                        <ul class="terms-list">
+                            <li><strong>All Sales Are Final:</strong> Because ScrollStrike is delivered as an instant, downloadable digital software file (<code>.zip</code>), purchases made directly through Gumroad are <strong>non-refundable</strong>.</li>
+                            <li><strong>Try Before You Buy:</strong> We provide a 100% Free Forever version so you can thoroughly test the plugin's workflow and compatibility on your WordPress site before purchasing a paid plan.</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-subcard">
+                        <h3 class="terms-h3" style="margin-top: 0;">B. AppSumo Purchases (Redemption Codes)</h3>
+                        <ul class="terms-list">
+                            <li><strong>AppSumo Guarantee Applies:</strong> If you purchased a redemption code through AppSumo, your purchase is protected by AppSumo's official 60-day money-back guarantee.</li>
+                            <li><strong>Direct Processing:</strong> Because AppSumo collects and manages your billing details directly, all refund requests for AppSumo purchases must be initiated and handled directly through your AppSumo customer account.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SECTION 3 -->
+                <section class="terms-block">
+                    <h2 class="terms-h2">3. Updates & Future Major Versions</h2>
+                    <ul class="terms-list">
+                        <li><strong>Included Updates:</strong> Lifetime PRO and active subscription license holders receive bug fixes, improvements, and updates released for this version of ScrollStrike.</li>
+                        <li><strong>Future Major Releases:</strong> We reserve the right to develop and introduce major new products, completely rebuilt successor versions, or brand-new tools under distinct <code>.zip</code> packages which may require a separate purchase.</li>
+                    </ul>
+                </section>
+
+                <!-- SECTION 4 -->
+                <section class="terms-block">
+                    <h2 class="terms-h2">4. Software Compatibility & Warranty</h2>
+                    <ul class="terms-list">
+                        <li><strong>"As-Is" Software:</strong> ScrollStrike is provided "as is" without warranties of any kind. While we rigorously test every release for modern WordPress block editor (Gutenberg) standards, we cannot guarantee conflict-free compatibility with every third-party theme, conflicting page builder, or custom script.</li>
+                        <li><strong>Site Performance:</strong> You remain responsible for maintaining regular backups of your WordPress database and site files before installing or updating any third-party plugins.</li>
+                    </ul>
+                </section>
+
+                <!-- SECTION 5 -->
+                <section class="terms-block">
+                    <h2 class="terms-h2">5. Questions & Support</h2>
+                    <p style="font-size: 15px; color: var(--text-body); margin-bottom: 12px;">
+                        If you have questions about these terms or need technical help with your plugin installation, please reach out directly:
+                    </p>
+                    <div class="contact-box">
+                        <p><strong>Brand:</strong> FegoPics</p>
+                        <p><strong>Email:</strong> <a href="mailto:support@fegopics.com">support@fegopics.com</a></p>
+                        <p><strong>Website:</strong> <a href="index.html">ScrollStrike Home</a></p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <ul class="footer-links">
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="cookies.html">Cookie Policy</a></li>
+            </ul>
+
+            <div class="footer-divider"></div>
+
+            <p class="footer-copy">&copy; 2026 FegoPics. All rights reserved.</p>
+            <p class="footer-disclaimer">WordPress® is a registered trademark of the WordPress Foundation. ScrollStrike is an independent plugin created by FegoPics and is not affiliated with or endorsed by Automattic Inc. or the WordPress Foundation.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
