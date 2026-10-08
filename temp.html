@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title & Image Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">
+                A
+            </div>
+            <span class="text-xl font-bold tracking-tight text-slate-900">Apex Studio</span>
+        </div>
+        <nav class="hidden sm:flex items-center space-x-6 text-sm font-medium text-slate-600">
+            <a href="#features" class="hover:text-indigo-600 transition-colors">Features</a>
+            <a href="#about" class="hover:text-indigo-600 transition-colors">About</a>
+            <a href="#contact" class="hover:text-indigo-600 transition-colors">Contact</a>
+        </nav>
+    </header>
+
+    <main class="w-full max-w-7xl mx-auto px-6 py-12 my-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            <!-- Left Side Title & Content Block -->
+            <div class="flex flex-col space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 border border-indigo-100 rounded-full w-fit">
+                    <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-indigo-700">Innovate Faster</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+                    Crafting <span class="text-indigo-600">Digital Experiences</span> That Inspire
+                </h1>
+
+                <p class="text-lg text-slate-600 max-w-xl leading-relaxed">
+                    Build seamless, intuitive, and visually stunning web environments. We focus on performance, aesthetic detail, and responsive architecture to elevate your digital presence.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <a href="#get-started" class="inline-flex justify-center items-center px-6 py-3.5 rounded-xl bg-indigo-600 text-white font-semibold shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 hover:shadow-indigo-600/30 transition-all duration-200 text-center">
+                        Get Started Today
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                    <a href="#learn-more" class="inline-flex justify-center items-center px-6 py-3.5 rounded-xl bg-white text-slate-700 font-semibold border border-slate-200 hover:bg-slate-100 transition-all duration-200 text-center">
+                        Explore Portfolio
+                    </a>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200 mt-4">
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900">99.9%</div>
+                        <div class="text-xs text-slate-500 font-medium">Uptime Guarantee</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900">10x</div>
+                        <div class="text-xs text-slate-500 font-medium">Faster Delivery</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900">24/7</div>
+                        <div class="text-xs text-slate-500 font-medium">Expert Support</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center items-center w-full">
+                <!-- Background Accent Blur -->
+                <div class="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl opacity-20 blur-2xl"></div>
+
+                <!-- Image Wrapper with auto height and full aspect display -->
+                <div class="relative w-full h-auto overflow-hidden rounded-2xl bg-slate-900 shadow-2xl border border-slate-100 group">
+                    <img 
+                        src="media/screenshot/scrollstrike-deploytrack.png" 
+                        alt="Workspace preview with laptops and software code" 
+                        class="w-full h-auto block object-contain transform group-hover:scale-105 transition-transform duration-500"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x600/4f46e5/ffffff?text=Digital+Workspace';"
+                    />
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full border-t border-slate-200 py-6 text-center text-sm text-slate-500">
+        <p>&copy; 2026 Apex Studio. Built for flexibility and responsive layout.</p>
+    </footer>
+
+</body>
+</html>
