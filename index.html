@@ -196,22 +196,92 @@
           to { opacity: 1; transform: translateY(0); }
       }
 
+      /* SLIMMER TABLET FRAME FOR DESKTOP & TABLET */
+      .tablet-frame-wrapper {
+          background: #1e293b;
+          border-radius: 26px;
+          padding: 10px 14px 14px 14px;
+          box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px #334155;
+          position: relative;
+          width: 100%;
+      }
+
+      .tablet-frame-top-bar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-bottom: 6px;
+          position: relative;
+      }
+
+      .tablet-camera-notch {
+          width: 6px;
+          height: 6px;
+          background: #334155;
+          border-radius: 50%;
+          border: 1px solid #475569;
+      }
+
       .demo-card-container {
           background: white;
           border: 1px solid var(--border);
-          border-radius: 20px;
-          box-shadow: var(--shadow-lg);
+          border-radius: 16px;
+          box-shadow: var(--shadow-sm);
           overflow: hidden;
           width: 100%;
       }
 
+      /* BROWSER MOCKUP HEADER (OFFWHITE GREY WITH DOTS + LIVE BLOG POST LABEL) */
+      .browser-mockup-header {
+          display: none;
+          align-items: center;
+          justify-content: space-between;
+          background-color: #f1f5f9;
+          border-bottom: 1px solid #e2e8f0;
+          padding: 10px 14px;
+          user-select: none;
+      }
+
+      .mockup-dots {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          width: 50px;
+      }
+
+      .mockup-dot {
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          display: inline-block;
+      }
+
+      .mockup-dot.dot-red { background: #ef4444; }
+      .mockup-dot.dot-yellow { background: #f59e0b; }
+      .mockup-dot.dot-green { background: #10b981; }
+
+      .mockup-title {
+          font-size: 12px;
+          font-weight: 700;
+          color: #475569;
+          letter-spacing: 0.3px;
+          text-align: center;
+          flex: 1;
+      }
+
+      .mockup-spacer {
+          width: 50px;
+      }
+
+      /* Increased Height to 700px for Desktop & Tablet */
       .browser-content-viewport {
           overflow: hidden;
           position: relative;
           background: white;
-          height: 480px; 
+          height: 700px; 
       }
 
+      /* Baseline Demo Scroll Body */
       .demo-scroll-body {
           padding: 30px;
           padding-bottom: 300px; 
@@ -244,7 +314,7 @@
       }
 
       .demo-p {
-          font-size: 14px;
+          font-size: 15px;
           color: var(--text-body);
           margin-bottom: 18px;
           line-height: 1.7;
@@ -256,7 +326,7 @@
           padding: 20px;
           border-radius: 12px;
           margin: 30px 0;
-          font-size: 14px;
+          font-size: 15px;
           line-height: 1.7;
           color: var(--text-dark);
       }
@@ -272,6 +342,7 @@
           font-weight: 700;
       }
 
+      /* Desktop & Tablet Tooltip: 292px width, 15px font size */
       .demo-tooltip {
           position: absolute;
           bottom: calc(100% + 16px); 
@@ -287,7 +358,7 @@
           box-shadow: none;
           z-index: 50;
           box-sizing: border-box;
-          width: 300px;
+          width: 255px;
           max-width: 90vw;
           height: auto;
           padding: 14px;
@@ -311,18 +382,18 @@
       }
 
       .demo-tooltip p {
-          font-size: 13px;
-          font-weight: 700;
+          font-size: 15px;
+          font-weight: 500;
           margin: 0 0 10px 0;
           padding-right: 16px;
-          line-height: 1.4;
+          line-height: 1.55;
           color: #ffffff;
       }
 
       .demo-tooltip-img {
           width: 100%;
+          margin-top: 5px;
           height: auto;
-          max-height: 140px;
           object-fit: cover;
           border-radius: 6px;
           display: block;
@@ -343,7 +414,7 @@
       }
 
       /* ==========================================================================
-         5. PROBLEM & SOLUTION CARDS (MINIMALIST CLEAN LOOK)
+         5. PROBLEM & SOLUTION CARDS
          ========================================================================== */
       .problem-solution-stack {
           display: flex;
@@ -431,7 +502,6 @@
           margin-bottom: 60px;
       }
 
-      /* Clean transparent wrapper removing the enclosing white card */
       .expandable-card {
           background: transparent;
           border: none;
@@ -449,7 +519,6 @@
           transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* Seamless gradient fade blending into natural section background */
       .expandable-content::after {
           content: '';
           position: absolute;
@@ -532,15 +601,14 @@
       }
 
       /* ==========================================================================
-         7. HOW TO USE & FEATURES (SUBSTANTIAL VERTICAL GAPS)
+         7. HOW TO USE & FEATURES
          ========================================================================== */
       .vertical-stack {
           display: flex;
           flex-direction: column;
-          gap: 130px; /* Significant breathing room between each feature block */
+          gap: 130px;
       }
 
-      /* Desktop: Side-by-side without white card behind it */
       .step-card-centered,
       .feature-card-centered {
           background: transparent;
@@ -564,7 +632,6 @@
           box-shadow: none;
       }
 
-      /* Left-hand text information column */
       .step-info-centered,
       .feature-info-centered {
           flex: 1;
@@ -597,14 +664,14 @@
           line-height: 1.3;
       }
 
+      /* Enhanced Base Font Size for Desktop */
       .step-desc,
       .feature-desc {
-          font-size: 16px;
+          font-size: 18px;
           color: var(--text-body);
           line-height: 1.7;
       }
 
-      /* Right-hand image column without white card container */
       .step-screenshot-wrap {
           flex: 1.15;
           max-width: 540px;
@@ -612,7 +679,6 @@
           margin: 0;
       }
 
-      /* Screenshot retains crisp border & soft shadow so white webpages don't blend */
       .step-screenshot-img {
           width: 100%;
           height: auto;
@@ -850,7 +916,7 @@
       }
 
       /* ==========================================================================
-         9. LIFETIME PRO PLAN CARD (DEDICATED SEPARATE BLOCK)
+         9. LIFETIME PRO PLAN CARD
          ========================================================================== */
       .ss-lifetime-wrap {
           max-width: 1060px;
@@ -1095,28 +1161,140 @@
          ========================================================================== */
       footer {
           text-align: center;
-          padding: 35px 0;
+          padding: 40px 0;
           background: var(--text-dark);
           color: #94a3b8;
           font-size: 13px;
       }
 
+      .footer-links {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+          margin-bottom: 14px;
+      }
+
+      .footer-links a {
+          color: #cbd5e1;
+          transition: color 0.2s ease;
+          font-weight: 500;
+      }
+
+      .footer-links a:hover {
+          color: #ffffff;
+          text-decoration: underline;
+      }
+
       /* ==========================================================================
-         13. RESPONSIVE MEDIA QUERIES (TABLET & PHONE VIEW)
+         13. RESPONSIVE MEDIA QUERIES
          ========================================================================== */
-      /* Tablet & Large Tablet adjustment (covers iPad Pro up to 1100px) */
-      @media (max-width: 1100px) {
-          .vertical-stack {
-              gap: 110px; /* Significant separation on tablet */
+
+      /* --------------------------------------------------------------------------
+         A. DESKTOP VIEW (1101px and above)
+         -------------------------------------------------------------------------- */
+      @media (min-width: 1101px) {
+          .hero-interactive {
+              flex-direction: row;
+              align-items: center;
+              gap: 40px;
           }
 
-          /* Clean stacked presentation without white background card */
+          .hero-text-col {
+              text-align: left;
+              padding: 20px;
+          }
+
+          .hero-demo-col {
+              max-width: 600px;
+              width: 100%;
+          }
+
+          /* Desktop Demo Padding */
+          .demo-scroll-body {
+              padding: 30px;
+              padding-bottom: 300px;
+          }
+
+          .demo-p,
+          .demo-target-box {
+              font-size: 15px;
+          }
+
+          /* Desktop Feature & Step Description */
+          .step-desc,
+          .feature-desc {
+              font-size: 18px;
+              line-height: 1.7;
+          }
+
+          .step-card-centered,
+          .feature-card-centered {
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              text-align: left;
+          }
+
+          .step-screenshot-wrap {
+              max-width: 540px;
+              width: 100%;
+              margin: 0;
+          }
+      }
+
+      /* --------------------------------------------------------------------------
+         B. TABLET & PORTRAIT TABLET VIEW (768px to 1100px)
+         -------------------------------------------------------------------------- */
+      @media (min-width: 768px) and (max-width: 1100px) {
+          /* Hero Section: Text Top & Browser Demo Bottom */
+          .hero-interactive {
+              flex-direction: column;
+              align-items: center;
+              gap: 36px;
+              padding: 0;
+          }
+
+          .hero-text-col {
+              width: 100%;
+              max-width: 720px;
+              text-align: center;
+              padding: 0 16px;
+          }
+
+          .hero-demo-col {
+              width: 90%;
+              max-width: 600px;
+              margin: 0 auto;
+          }
+
+          /* Tablet Demo Padding & Typography */
+          .demo-scroll-body {
+              padding: 24px;
+              padding-bottom: 260px;
+          }
+
+          .demo-p,
+          .demo-target-box {
+              font-size: 15.5px;
+              line-height: 1.7;
+          }
+
+          .caption-text { 
+              font-size: 26px; 
+          }
+
+          .vertical-stack {
+              gap: 110px;
+          }
+
           .step-card-centered,
           .feature-card-centered {
               flex-direction: column;
               align-items: center;
               text-align: center;
-              gap: 40px; /* Ample vertical space between text and screenshot */
+              gap: 40px;
               padding: 10px 0;
           }
 
@@ -1127,9 +1305,17 @@
               margin: 0 auto;
           }
 
+          /* Tablet Feature & Step Description */
+          .step-desc,
+          .feature-desc {
+              font-size: 17px;
+              line-height: 1.7;
+          }
+
+          /* Tablet Screenshot View */
           .step-screenshot-wrap {
-              max-width: 680px;
-              width: 100%;
+              max-width: 620px;
+              width: 88%;
               margin: 0 auto;
           }
 
@@ -1141,7 +1327,7 @@
           .ss-lifetime-card {
               flex-direction: column;
               align-items: stretch;
-              padding: 36px 28px;
+              padding: 36px 30px;
           }
 
           .ss-lifetime-badge-pill {
@@ -1158,44 +1344,63 @@
           }
       }
 
-      @media (min-width: 768px) and (max-width: 1100px) {
-          .hero-interactive { gap: 25px; }
-          .caption-text { font-size: 26px; }
-          .demo-tooltip {
-              width: 330px !important;
-              max-width: 85vw;
-          }
-          .ss-lifetime-card {
-              padding: 36px 30px;
-          }
-      }
-
-      /* Mobile Phone Viewport (max-width: 767px) */
+      /* --------------------------------------------------------------------------
+         C. GENERAL PHONE VIEW (max-width: 767px)
+         -------------------------------------------------------------------------- */
       @media (max-width: 767px) {
-          .container { padding: 0 16px; }
+          /* Remove tablet frame styling on phone view */
+          .tablet-frame-wrapper {
+              background: transparent !important;
+              padding: 0 !important;
+              border-radius: 0 !important;
+              box-shadow: none !important;
+          }
+
+          .tablet-frame-top-bar {
+              display: none !important;
+          }
+
+          /* Show offwhite grey browser header with 3 dots & Live Blog Post label */
+          .browser-mockup-header {
+              display: flex !important;
+          }
+
+          /* 600px Height strictly on phone screens */
+          .browser-content-viewport {
+              height: 600px !important;
+          }
+
+          .container { 
+              padding: 0 16px; 
+          }
           
           .hero-header {
-              margin: 0 auto 50px auto;
+              margin: 0 auto 40px auto;
           }
 
-          .hero-title { font-size: 28px; }
+          .hero-title { 
+              font-size: 28px; 
+          }
           
           .hero-subtitle { 
               font-size: 17px; 
               line-height: 1.5;
           }
           
-          .hero-actions { flex-direction: column; }
+          .hero-actions { 
+              flex-direction: column; 
+          }
+
           .hero-actions .btn { 
               width: auto; 
-              margin-left: 10px;
-              margin-right: 10px;
+              display: inline-flex;
+              align-self: center;
           }
           
           .hero-interactive {
               flex-direction: column;
               padding: 0;
-              gap: 20px;
+              gap: 32px;
           }
 
           .hero-text-col {
@@ -1204,31 +1409,55 @@
               text-align: center;
           }
 
+          /* Phone Hero Demo Column: Added clean top margin gap */
           .hero-demo-col { 
               order: 2; 
-              width: 100%; 
+              width: 88%;
+              max-width: 520px;
+              margin: 20px auto 0 auto;
+          }
+
+          /* Medium Phone Demo Padding */
+          .demo-scroll-body {
+              padding: 18px;
+              padding-bottom: 240px;
           }
 
           .caption-text { 
               font-size: 22px; 
           }
 
-          .demo-card-container { border-radius: 12px; }
+          .demo-card-container { 
+              border-radius: 12px; 
+          }
 
           .demo-tooltip {
               width: calc(100vw - 48px) !important;
-              max-width: 320px;
+              max-width: 295px;
               left: 50%;
               transform: translateX(-50%) translateY(4px) scale(0.95);
+          }
+
+          .demo-tooltip p {
+              font-size: 15px !important;
           }
 
           .demo-tooltip.visible {
               transform: translateX(-50%) translateY(0) scale(1);
           }
 
-          .section-padding { padding: 60px 0; }
-          .section-title { font-size: 26px; margin-bottom: 40px; }
-          .problem-solution-stack { gap: 16px; }
+          .section-padding { 
+              padding: 60px 0; 
+          }
+
+          .section-title { 
+              font-size: 26px; 
+              margin-bottom: 40px; 
+          }
+
+          .problem-solution-stack { 
+              gap: 16px; 
+          }
 
           .ps-card {
               padding: 24px 16px;
@@ -1239,20 +1468,24 @@
               font-size: 19px;
           }
 
-          /* Clean, spacious mobile spacing with zero clutter */
           .vertical-stack { 
-              gap: 96px; /* Substantial gap between successive features on mobile */
+              gap: 96px;
           }
 
           .step-card-centered,
           .feature-card-centered {
-              gap: 32px; /* Distinct separation between feature description and image */
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              gap: 32px;
               padding: 0;
           }
 
           .step-info-centered,
           .feature-info-centered {
               padding: 0 4px;
+              text-align: center;
+              margin: 0 auto;
           }
 
           .step-title,
@@ -1263,29 +1496,76 @@
 
           .step-desc,
           .feature-desc { 
-              font-size: 14.5px; 
+              font-size: 16.5px; 
               line-height: 1.65;
           }
 
           .step-screenshot-wrap { 
-              width: 100%; 
+              width: 88%; 
+              max-width: 480px;
+              margin: 0 auto;
           }
 
           .step-screenshot-img { 
               border-radius: 12px; 
           }
 
-          .ss-features-matrix { grid-template-columns: 1fr; gap: 20px; }
-          .ss-matrix-card { padding: 28px 20px; border-radius: 16px; }
-          .ss-pricing-grid { grid-template-columns: 1fr; gap: 20px; }
-          .ss-pricing-card { padding: 28px 20px; border-radius: 16px; }
+          .ss-features-matrix { 
+              grid-template-columns: 1fr; 
+              gap: 20px; 
+          }
 
-          .ss-lifetime-wrap { margin-top: 24px; }
-          .ss-lifetime-card { padding: 28px 18px; border-radius: 18px; }
-          .ss-lifetime-title { font-size: 22px; }
-          .ss-lifetime-desc { font-size: 14px; }
-          .ss-lifetime-action { padding: 24px 18px; }
-          .ss-lifetime-amount { font-size: 40px; }
+          .ss-matrix-card { 
+              padding: 28px 20px; 
+              border-radius: 16px; 
+          }
+
+          .ss-pricing-grid { 
+              grid-template-columns: 1fr; 
+              gap: 20px; 
+          }
+
+          .ss-pricing-card { 
+              padding: 28px 20px; 
+              border-radius: 16px; 
+          }
+
+          .ss-lifetime-wrap { 
+              margin-top: 24px; 
+          }
+
+          .ss-lifetime-card { 
+              flex-direction: column;
+              align-items: stretch;
+              padding: 28px 18px; 
+              border-radius: 18px; 
+          }
+
+          .ss-lifetime-badge-pill {
+              position: static;
+              margin-bottom: 12px;
+          }
+
+          .ss-lifetime-content {
+              padding-top: 0;
+          }
+
+          .ss-lifetime-title { 
+              font-size: 22px; 
+          }
+
+          .ss-lifetime-desc { 
+              font-size: 14px; 
+          }
+
+          .ss-lifetime-action { 
+              min-width: 100%;
+              padding: 24px 18px; 
+          }
+
+          .ss-lifetime-amount { 
+              font-size: 40px; 
+          }
 
           .faq-card {
               padding: 20px 16px;
@@ -1307,6 +1587,59 @@
               left: 16px;
               text-align: center;
               box-shadow: none;
+          }
+      }
+
+      /* --------------------------------------------------------------------------
+         D. SPECIAL CASE: PHONES UP TO 500PX (max-width: 500px)
+         -------------------------------------------------------------------------- */
+      @media (max-width: 500px) {
+          .hero-actions .btn#mainHeroDownloadBtn {
+              width: 100%;
+              display: flex;
+              margin-left: 0;
+              margin-right: 0;
+          }
+
+          .hero-demo-col {
+              width: 100% !important;
+              max-width: 100% !important;
+          }
+
+          .demo-scroll-body {
+              padding: 10px !important;
+              padding-bottom: 220px !important;
+          }
+
+          .demo-p {
+              font-size: 16px !important;
+              line-height: 1.7 !important;
+              margin-bottom: 16px;
+          }
+
+          .demo-target-box {
+              padding: 14px 12px;
+              font-size: 16px !important;
+              line-height: 1.65 !important;
+              margin: 20px 0;
+          }
+
+          .demo-h3 {
+              font-size: 19px !important;
+              line-height: 1.35;
+          }
+
+          .step-desc,
+          .feature-desc {
+              font-size: 16px;
+              line-height: 1.65;
+          }
+
+          .step-screenshot-wrap {
+              width: 100% !important;
+              max-width: 100% !important;
+              padding: 0 4px;
+              margin: 0 auto;
           }
       }
     </style>
@@ -1342,72 +1675,90 @@
         </div>
       </div>
       <div class="hero-interactive container" style="padding-left:0; padding-right:0;">
-        <!-- Left Side (Top on Mobile): Changing Text -->
+        <!-- Left Side (Top on Tablet & Mobile): Changing Text -->
         <div class="hero-text-col">
           <p id="captionBox" class="caption-text"></p>
         </div>
-        <!-- Right Side (Bottom on Mobile): Demo Window -->
+        <!-- Right Side (Bottom on Tablet & Mobile): Demo Window -->
         <div class="hero-demo-col">
-          <div class="demo-card-container">
-            <div class="browser-content-viewport" id="demoViewport">
-              <div class="demo-scroll-body" id="demoScrollBody">
-                <div style="margin-bottom: 20px;">
-                  <span class="demo-meta">Home Decor Ideas</span>
-                  <h3 class="demo-h3">
-                    Best Things to Decorate Your Living Room
-                  </h3>
-                  <div class="demo-byline">
-                    By Sarah Jenkins • 5 Min Read
-                  </div>
+          <!-- TABLET FRAME MOCKUP (Visible on Tablet & Desktop) -->
+          <div class="tablet-frame-wrapper">
+            <div class="tablet-frame-top-bar">
+              <div class="tablet-camera-notch"></div>
+            </div>
+            
+            <div class="demo-card-container">
+              <!-- MOBILE BROWSER HEADER (Visible on Phone View) -->
+              <div class="browser-mockup-header">
+                <div class="mockup-dots">
+                  <span class="mockup-dot dot-red"></span>
+                  <span class="mockup-dot dot-yellow"></span>
+                  <span class="mockup-dot dot-green"></span>
                 </div>
-                <p class="demo-p">
-                  Transforming your living room into a cozy, welcoming sanctuary doesn&#39;t require knocking down walls or spending a fortune. Often, adding a few intentional statement pieces—like textured throw pillows, layered area rugs, and wall art—brings the whole room together.
-                </p>
-                <p class="demo-p">
-                  A well-designed living area balances comfort, natural warmth, and functional everyday aesthetics. Start by assessing how you use the room: is it a lively gathering spot for family movie nights, or a quiet haven for evening reading and morning coffee?
-                </p>
-                <p class="demo-p">
-                  Layering textures across your sofas with knit throws and velvet cushions adds depth. Complementing that with organic wooden coffee tables and indoor greenery softens sharp edges and breathes life into neutral palettes.
-                </p>
-                <p class="demo-p">
-                  One of the most overlooked areas in almost every living space is the empty room corner. Leaving corners completely bare makes an entire room feel cold, unfinished, and visually disconnected.
-                </p>
-                <!-- TARGET AFFILIATE BOX -->
-                <div class="demo-target-box" id="demoTargetBox">
-                  To easily fill awkward dead zones and add cozy, layered lighting to your seating area, check out our curated guide on the
-                  <span class="demo-affiliate-wrapper" id="demoTargetLinkWrap">
-                    <a class="demo-affiliate-link" href="#" onclick="return false;">15 Best Corner Floor Lamps for Living Room</a>
-                    <!-- Tooltip with Enlarged Triangle Arrow & No Box Shadow -->
-                    <div class="demo-tooltip" id="demoTooltip">
-                      <span class="demo-tooltip-close">✕</span>
-                      <p>
-                        Here you can see 15 best corner lamps for living room
-                      </p>
-                      <img src="media/asset/sample-image.png" alt="15 Best Corner Floor Lamps for Living Room" class="demo-tooltip-img" />
-                      <div class="demo-tooltip-arrow"></div>
+                <div class="mockup-title">Live Blog Post</div>
+                <div class="mockup-spacer"></div>
+              </div>
+
+              <div class="browser-content-viewport" id="demoViewport">
+                <div class="demo-scroll-body" id="demoScrollBody">
+                  <div style="margin-bottom: 20px;">
+                    <span class="demo-meta">Home Decor Ideas</span>
+                    <h3 class="demo-h3">
+                      Best Things to Decorate Your Living Room
+                    </h3>
+                    <div class="demo-byline">
+                      By Sarah Jenkins • 5 Min Read
                     </div>
-                  </span>
-                  which covers space-saving arc fixtures, dimmable ambient tree lights, and modern corner designs.
+                  </div>
+                  <p class="demo-p">
+                    Transforming your living room into a cozy, welcoming sanctuary doesn&#39;t require knocking down walls or spending a fortune. Often, adding a few intentional statement pieces—like textured throw pillows, layered area rugs, and wall art—brings the whole room together.
+                  </p>
+                  <p class="demo-p">
+                    A well-designed living area balances comfort, natural warmth, and functional everyday aesthetics. Start by assessing how you use the room: is it a lively gathering spot for family movie nights, or a quiet haven for evening reading and morning coffee?
+                  </p>
+                  <p class="demo-p">
+                    Layering textures across your sofas with knit throws and velvet cushions adds depth. Complementing that with organic wooden coffee tables and indoor greenery softens sharp edges and breathes life into neutral palettes.
+                  </p>
+                  <p class="demo-p">
+                    One of the most overlooked areas in almost every living space is the empty room corner. Leaving corners completely bare makes an entire room feel cold, unfinished, and visually disconnected.
+                  </p>
+                  <!-- TARGET AFFILIATE BOX -->
+                  <div class="demo-target-box" id="demoTargetBox">
+                    To easily fill awkward dead zones and add cozy, layered lighting to your seating area, check out our curated guide on the
+                    <span class="demo-affiliate-wrapper" id="demoTargetLinkWrap">
+                      <a class="demo-affiliate-link" href="#" onclick="return false;">15 Best Corner Floor Lamps for Living Room</a>
+                      <!-- Tooltip with Enlarged Triangle Arrow & No Box Shadow -->
+                      <div class="demo-tooltip" id="demoTooltip">
+                        <span class="demo-tooltip-close">✕</span>
+                        <p>
+                          Discover 15 top rated corner floor lamps for warm living room lighting.
+                        </p>
+                        <img src="media/asset/sample-image.png" alt="15 Best Corner Floor Lamps for Living Room" class="demo-tooltip-img" />
+                        <div class="demo-tooltip-arrow"></div>
+                      </div>
+                    </span>
+                    which covers space-saving arc fixtures, dimmable ambient tree lights, and modern corner designs.
+                  </div>
+                  <h4 class="demo-h3" style="font-size: 16px;">
+                    Top Living Room Decorating Items
+                  </h4>
+                  <p class="demo-p">
+                    <strong>1. Statement Floor Lamps:</strong>
+                    Fills empty corners and casts warm, comfortable evening light.
+                  </p>
+                  <p class="demo-p">
+                    <strong>2. Large Indoor Plants:</strong>
+                    Adds natural vibrancy with low-maintenance greenery like Fiddle Leaf Figs or Monsteras.
+                  </p>
+                  <p class="demo-p">
+                    <strong>3. Textured Area Rugs:</strong>
+                    Grounds your sofa and coffee table while adding soft underfoot comfort.
+                  </p>
+                  <p class="demo-p">
+                    <strong>4. Gallery Wall Prints:</strong>
+                    Showcases framed art and personal photography to express your unique style.
+                  </p>
                 </div>
-                <h4 class="demo-h3" style="font-size: 16px;">
-                  Top Living Room Decorating Items
-                </h4>
-                <p class="demo-p">
-                  <strong>1. Statement Floor Lamps:</strong>
-                  Fills empty corners and casts warm, comfortable evening light.
-                </p>
-                <p class="demo-p">
-                  <strong>2. Large Indoor Plants:</strong>
-                  Adds natural vibrancy with low-maintenance greenery like Fiddle Leaf Figs or Monsteras.
-                </p>
-                <p class="demo-p">
-                  <strong>3. Textured Area Rugs:</strong>
-                  Grounds your sofa and coffee table while adding soft underfoot comfort.
-                </p>
-                <p class="demo-p">
-                  <strong>4. Gallery Wall Prints:</strong>
-                  Showcases framed art and personal photography to express your unique style.
-                </p>
               </div>
             </div>
           </div>
@@ -1415,7 +1766,7 @@
       </div>
     </section>
 
-    <!-- SECTION 1: PROBLEM & SOLUTION (CLEAN MINIMALIST LOOK) -->
+    <!-- SECTION 1: PROBLEM & SOLUTION -->
     <section class="section-padding">
       <div class="container">
         <h2 class="section-title text-center">
@@ -1444,7 +1795,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2: FEATURES (EXPANDED AIRY SIDE-BY-SIDE ON DESKTOP) -->
+    <!-- SECTION 2: FEATURES -->
     <section class="section-padding bg-gray-section">
       <div class="container">
         <h2 class="section-title text-center">
@@ -1944,8 +2295,15 @@
       <span>Download Free ZIP</span>
     </a>
 
+    <!-- FOOTER WITH LEGAL & CONTACT LINKS -->
     <footer>
       <div class="container">
+        <div class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+          <a href="contact.html">Contact</a>
+        </div>
         <p>
           © 2026 ScrollStrike. Simple link highlighters for WordPress.
         </p>
@@ -2008,10 +2366,11 @@
               if (!demoViewport || !demoTargetLinkWrap || !demoScrollBody) return 0;
               
               const linkOffsetTop = demoTargetLinkWrap.offsetTop;
-              const linkHeight = demoTargetLinkWrap.offsetHeight;
               const viewportHeight = demoViewport.clientHeight;
               
-              const targetScroll = linkOffsetTop - (viewportHeight - linkHeight - 50);
+              // Pushes the target link further down into the lower portion of viewport (~64% down)
+              const desiredPositionFromTop = (viewportHeight * 0.64);
+              const targetScroll = linkOffsetTop - desiredPositionFromTop;
               return -Math.max(0, targetScroll);
           }
 
