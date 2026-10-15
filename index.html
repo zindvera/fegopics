@@ -162,6 +162,22 @@
       margin: 0 auto 50px auto;
     }
 
+    .hero-logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .hero-square-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      display: block;
+    }
+
     .hero-title {
       font-size: 42px;
       line-height: 1.2;
@@ -1778,6 +1794,11 @@
 
   <section class="hero-section">
     <div class="hero-header container">
+      <!-- Centered Square Logo -->
+      <div class="hero-logo-wrap">
+        <img src="media/ScrollStrike-logo.jpg" alt="ScrollStrike Logo" class="hero-square-logo" />
+      </div>
+
       <h1 class="hero-title">
         Increase Your Affiliate Link Clicks &amp; Revenue
       </h1>
