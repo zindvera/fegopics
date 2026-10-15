@@ -162,20 +162,43 @@
       margin: 0 auto 50px auto;
     }
 
-    .hero-logo-wrap {
-      display: flex;
-      justify-content: center;
+    /* Hero Brand & Plugin Label Group */
+    .hero-brand-wrap {
+      display: inline-flex;
       align-items: center;
-      margin-bottom: 24px;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 32px;
     }
 
     .hero-square-logo {
-      width: 80px;
-      height: 80px;
+      width: 82px;
+      height: 82px;
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: 14px;
       box-shadow: var(--shadow-md);
       display: block;
+    }
+
+    .wp-plugin-label {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .wp-label-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #334155;
+    }
+
+    .wp-label-sub {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
     }
 
     .hero-title {
@@ -1794,9 +1817,13 @@
 
   <section class="hero-section">
     <div class="hero-header container">
-      <!-- Centered Square Logo -->
-      <div class="hero-logo-wrap">
+      <!-- Centered Square Logo with Right WordPress Plugin Label -->
+      <div class="hero-brand-wrap">
         <img src="media/ScrollStrike-logo.jpg" alt="ScrollStrike Logo" class="hero-square-logo" />
+        <div class="wp-plugin-label">
+          <span class="wp-label-title">WordPress</span>
+          <span class="wp-label-sub">Plugin</span>
+        </div>
       </div>
 
       <h1 class="hero-title">
