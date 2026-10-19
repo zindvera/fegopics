@@ -1537,14 +1537,22 @@
       }
 
       .hero-interactive {
+        position: relative;
         flex-direction: column;
         padding: 0;
-        gap: 28px;
+        padding-top: 105px !important;
+        gap: 0 !important;
       }
 
       .hero-text-col {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        pointer-events: none;
         order: 1;
-        padding: 0 8px;
+        padding: 0 12px;
         text-align: center;
       }
 
