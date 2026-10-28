@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScrollStrike - Partner Visual Assets</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/media/favicons/fegopics-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/media/favicons/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/media/favicons/fegopics-180x180.png">
+  <link rel="manifest" href="/media/favicons/site.webmanifest">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --bg-body: #f8fafc;
+      --text-dark: #0f172a;
+      --text-body: #475569;
+      --border: #e2e8f0;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-body);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Header: Minimal & Clean */
+    .header-section {
+      text-align: center;
+      padding: 48px 0 36px 0;
+    }
+
+    .page-title {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .page-title span {
+      color: var(--primary);
+    }
+
+    .page-desc {
+      font-size: 16.5px;
+      color: var(--text-body);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Asset Grid */
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      padding-bottom: 70px;
+    }
+
+    .asset-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .asset-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .asset-img-link {
+      display: block;
+      background: #f1f5f9;
+      line-height: 0;
+    }
+
+    .asset-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .asset-footer {
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+    }
+
+    .asset-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-download:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 34px 0;
+      background: var(--text-dark);
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .header-section {
+        padding: 36px 0 24px 0;
+      }
+
+      .page-title {
+        font-size: 26px;
+      }
+
+      .page-desc {
+        font-size: 15px;
+      }
+
+      .assets-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-bottom: 40px;
+      }
+
+      .asset-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .btn-download {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Clean Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html">
+        <img src="media/fegopics-logo.png" alt="FegoPics Logo" class="logo-img" />
+      </a>
+      <a href="affiliate.html" class="nav-link">Affiliate Program (35%) →</a>
+    </div>
+  </header>
+
+  <!-- Title & Description Only -->
+  <section class="header-section">
+    <div class="container">
+      <h1 class="page-title">
+        Visual Assets for <span>ScrollStrike</span>
+      </h1>
+      <p class="page-desc">
+        High-resolution product mockups and screenshots for publishers, partners, and reviewers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Clean Mockup List -->
+  <main class="container">
+    <div class="assets-grid">
+
+      <!-- Image 1 -->
+      <div class="asset-card">
+        <a href="media/partner-assets/01-ScrollStrike-Hero-Cover.jpg" target="_blank" class="asset-img-link">
+          <img src="media/partner-assets/01-ScrollStrike-Hero-Cover.jpg" alt="ScrollStrike Hero Feature Cover" class="asset-img" />
+        </a>
+        <div class="asset-footer">
+          <span class="asset-name">01. Hero Feature Cover</span>
+          <a href="media/partner-assets/01-ScrollStrike-Hero-Cover.jpg" download class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="asset-card">
+        <a href="media/partner-assets/02-Story-1-Create-Highlighter.jpg" target="_blank" class="asset-img-link">
+          <img src="media/partner-assets/02-Story-1-Create-Highlighter.jpg" alt="Create Highlighter Notes" class="asset-img" />
+        </a>
+        <div class="asset-footer">
+          <span class="asset-name">02. WordPress Editor Studio</span>
+          <a href="media/partner-assets/02-Story-1-Create-Highlighter.jpg" download class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- Image 3 -->
+      <div class="asset-card">
+        <a href="media/partner-assets/03-Story-2-Highlighter-Visible.jpg" target="_blank" class="asset-img-link">
+          <img src="media/partner-assets/03-Story-2-Highlighter-Visible.jpg" alt="Highlighter Note Visible on Scroll" class="asset-img" />
+        </a>
+        <div class="asset-footer">
+          <span class="asset-name">03. Automatic Scroll Trigger</span>
+          <a href="media/partner-assets/03-Story-2-Highlighter-Visible.jpg" download class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- Image 4 -->
+      <div class="asset-card">
+        <a href="media/partner-assets/04-Story-3-Highlighter-Settings.jpg" target="_blank" class="asset-img-link">
+          <img src="media/partner-assets/04-Story-3-Highlighter-Settings.jpg" alt="Highlighter Notes Settings" class="asset-img" />
+        </a>
+        <div class="asset-footer">
+          <span class="asset-name">04. Highlighter Settings &amp; Colors</span>
+          <a href="media/partner-assets/04-Story-3-Highlighter-Settings.jpg" download class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- Image 5 -->
+      <div class="asset-card">
+        <a href="media/partner-assets/05-Story-4-Reuse-Highlighter.jpg" target="_blank" class="asset-img-link">
+          <img src="media/partner-assets/05-Story-4-Reuse-Highlighter.jpg" alt="Reuse Highlighter Notes" class="asset-img" />
+        </a>
+        <div class="asset-footer">
+          <span class="asset-name">05. Library &amp; 1-Click Reuse</span>
+          <a href="media/partner-assets/05-Story-4-Reuse-Highlighter.jpg" download class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- Image 6 -->
+      <div class="asset-card">
+        <a href="media/partner-assets/06-Story-5-Background-Blur-Focus.jpg" target="_blank" class="asset-img-link">
+          <img src="media/partner-assets/06-Story-5-Background-Blur-Focus.jpg" alt="Background Blur Focus Mode" class="asset-img" />
+        </a>
+        <div class="asset-footer">
+          <span class="asset-name">06. Focus Mode (Background Blur)</span>
+          <a href="media/partner-assets/06-Story-5-Background-Blur-Focus.jpg" download class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="contact.html">Contact</a>
+        <a href="affiliate.html">Affiliate</a>
+      </div>
+      <p>© 2026 FegoPics. Simple link highlighters for WordPress.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
