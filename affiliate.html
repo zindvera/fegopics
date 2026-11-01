@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Affiliate Program - ScrollStrike</title>
+  <title>Affiliate Partnership - ScrollStrike</title>
 
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -31,6 +31,7 @@
   <style>
     :root {
       --primary: #ea580c;
+      --primary-hover: #c2410c;
       --gumroad-pink: #ff90e8;
       --gumroad-pink-hover: #ff75e2;
       --bg-body: #f8fafc;
@@ -40,8 +41,6 @@
       --border: #e2e8f0;
       --border-subtle: #cbd5e1;
       --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.05);
     }
 
     * {
@@ -64,26 +63,36 @@
     }
 
     .container {
-      max-width: 680px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 24px;
     }
 
     .navbar {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
     }
 
-    .logo-img {
-      height: 30px;
-      width: auto;
-      display: block;
+    .navbar .container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
     }
 
-    /* Minimal Header */
+    .logo-img {
+      height: 32px;
+      width: auto;
+    }
+
+    /* Main Section with Generous Breathing Room */
     .affiliate-section {
-      padding: 56px 0 80px 0;
+      padding: 60px 0 100px 0;
       text-align: center;
     }
 
@@ -91,22 +100,22 @@
       display: inline-block;
       background: #ffedd5;
       color: #c2410c;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      padding: 5px 14px;
+      padding: 6px 18px;
       border-radius: 9999px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .affiliate-title {
       font-size: 38px;
       font-weight: 900;
-      line-height: 1.2;
+      line-height: 1.25;
       letter-spacing: -0.6px;
       color: var(--text-dark);
-      margin-bottom: 14px;
+      margin-bottom: 22px;
     }
 
     .affiliate-title span {
@@ -116,45 +125,94 @@
     .affiliate-subtitle {
       font-size: 17px;
       color: var(--text-body);
-      margin-bottom: 26px;
-      line-height: 1.6;
+      margin-bottom: 40px;
+      line-height: 1.65;
     }
 
-    /* Minimal Commission Pill */
-    .rate-badge {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 8px;
+    /* Clean Dual-Metric Commission Box (Zero Drop Shadows) */
+    .commission-box {
       background: #ffffff;
-      border: 1.5px solid var(--primary);
-      border-radius: 14px;
-      padding: 12px 28px;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-sm);
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 34px;
+      text-align: center;
     }
 
-    .rate-badge .big-percent {
-      font-size: 34px;
+    .commission-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #fed7aa;
+    }
+
+    .commission-rate {
+      font-size: 38px;
       font-weight: 900;
       color: var(--primary);
       line-height: 1;
     }
 
-    .rate-badge .rate-label {
-      font-size: 15px;
-      font-weight: 800;
+    .commission-text {
+      font-size: 19px;
+      font-weight: 900;
       color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
     }
 
-    /* Gumroad Buttons */
-    .gumroad-btn-wrap {
+    .pricing-split {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pricing-col {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 4px;
     }
 
-    .btn-gumroad-pink {
+    .pricing-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+    }
+
+    .pricing-value {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text-dark);
+    }
+
+    .pricing-payout {
+      color: #16a34a;
+      font-size: 22px;
+    }
+
+    .pricing-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    /* Gumroad CTA Buttons */
+    .gumroad-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 50px;
+    }
+
+    .btn-gumroad {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -169,15 +227,16 @@
       box-shadow: 3px 3px 0px #000000;
       transition: all 0.2s ease;
       cursor: pointer;
+      width: auto;
     }
 
-    .btn-gumroad-pink:hover {
+    .btn-gumroad:hover {
       background-color: var(--gumroad-pink-hover);
       transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0px #000000;
+      box-shadow: 4px 4px 0px #000000;
     }
 
-    .btn-gumroad-pink:active {
+    .btn-gumroad:active {
       transform: translate(2px, 2px);
       box-shadow: 1px 1px 0px #000000;
     }
@@ -187,14 +246,12 @@
       color: var(--text-muted);
     }
 
-    /* ==========================================================================
-       VISUAL STEP-BY-STEP FLOW
-       ========================================================================== */
-    .steps-container {
-      margin: 44px 0 40px 0;
+    /* 3-Step Walkthrough Cards */
+    .steps-stack {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 36px;
+      margin-bottom: 56px;
       text-align: left;
     }
 
@@ -202,18 +259,17 @@
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 28px 24px;
-      box-shadow: var(--shadow-sm);
+      padding: 30px 26px;
     }
 
-    .step-header {
+    .step-card-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
-    .step-num {
+    .step-badge {
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -227,43 +283,107 @@
       flex-shrink: 0;
     }
 
-    .step-title {
+    .step-heading {
       font-size: 19px;
       font-weight: 800;
       color: var(--text-dark);
       letter-spacing: -0.3px;
     }
 
-    .step-desc {
-      font-size: 15px;
+    .step-text {
+      font-size: 15.5px;
       color: var(--text-body);
-      line-height: 1.6;
-      margin-bottom: 16px;
+      line-height: 1.65;
+      margin-bottom: 20px;
     }
 
-    .step-desc:last-child {
+    .step-text:last-child {
       margin-bottom: 0;
     }
 
-    .step-image-wrap {
+    /* Clean, Flat UI Mockups (Zero Shadows) */
+    .mock-preview-wrap {
       width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
+      border-radius: 14px;
       border: 1px solid var(--border-subtle);
       background: #f8fafc;
-      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: none !important;
     }
 
-    .step-image-wrap img {
+    .mock-btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 26px;
+      border-radius: 9999px;
+      border: none;
+      box-shadow: none !important;
+    }
+
+    .mock-subtext {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .mock-plugin-upgrade-card {
       width: 100%;
-      height: auto;
-      display: block;
+      max-width: 380px;
+      background: #ffffff;
+      border: 1.5px solid var(--primary);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      box-shadow: none !important;
+    }
+
+    .mock-plugin-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .mock-plugin-price {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .mock-plugin-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .mock-btn-upgrade {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13.5px;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      border: none;
+      box-shadow: none !important;
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 32px 0;
+      padding: 36px 0;
       border-top: 1px solid var(--border);
       color: var(--text-muted);
       font-size: 13px;
@@ -272,8 +392,8 @@
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 18px;
-      margin-bottom: 10px;
+      gap: 20px;
+      margin-bottom: 12px;
     }
 
     .footer-links a {
@@ -287,20 +407,57 @@
     }
 
     @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .affiliate-section {
+        padding: 44px 0 70px 0;
+      }
+
       .affiliate-title {
-        font-size: 28px;
+        font-size: 30px;
+        line-height: 1.25;
+      }
+
+      .affiliate-subtitle {
+        font-size: 16px;
+        margin-bottom: 32px;
+      }
+
+      .commission-box {
+        padding: 20px 18px;
+        margin-bottom: 28px;
+      }
+
+      .commission-rate {
+        font-size: 34px;
+      }
+
+      .commission-text {
+        font-size: 17px;
+      }
+
+      .pricing-value {
+        font-size: 18px;
+      }
+
+      .pricing-payout {
+        font-size: 20px;
+      }
+
+      .steps-stack {
+        gap: 26px;
+        margin-bottom: 44px;
       }
 
       .step-card {
         padding: 22px 18px;
       }
 
-      .step-title {
-        font-size: 17px;
-      }
-
-      .btn-gumroad-pink {
+      .btn-gumroad {
         width: 100%;
+        padding: 15px 20px;
       }
     }
   </style>
@@ -308,7 +465,7 @@
 
 <body>
 
-  <header class="navbar">
+  <header class="navbar" id="siteNavbar">
     <div class="container">
       <a href="index.html">
         <img src="media/fegopics-logo.png" alt="ScrollStrike Logo" class="logo-img" />
@@ -318,82 +475,112 @@
 
   <main class="affiliate-section">
     <div class="container">
-      <span class="pill-badge">Affiliate Partner Program</span>
+      <span class="pill-badge">Affiliate Partnership</span>
 
       <h1 class="affiliate-title">
         Promote Free Downloads.<br><span>Earn 35% on LTD Upgrades.</span>
       </h1>
 
       <p class="affiliate-subtitle">
-        Recommend a 100% free plugin with zero sales friction. When users hit the 3-highlighter limit and upgrade inside WordPress, Gumroad pays you automatically.
+        Recommend a 100% free plugin with zero sales friction. When users hit the 3 highlighter notes limit and upgrade inside WordPress, Gumroad pays you automatically.
       </p>
 
-      <!-- 35% Commission Badge -->
-      <div class="rate-badge">
-        <span class="big-percent">35%</span>
-        <span class="rate-label">Commission (~$20.65 per upgrade)</span>
+      <!-- 35% Commission Box with Clean Dual Split -->
+      <div class="commission-box">
+        <div class="commission-header">
+          <span class="commission-rate">35%</span>
+          <span class="commission-text">Commission</span>
+        </div>
+        <div class="pricing-split">
+          <div class="pricing-col">
+            <span class="pricing-label">Lifetime Deal Price</span>
+            <span class="pricing-value">$59 USD</span>
+          </div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-col">
+            <span class="pricing-label">Your Payout</span>
+            <span class="pricing-value pricing-payout">$20.65 USD</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Upper Join Button Directly Below Commission Div -->
-      <div class="gumroad-btn-wrap">
-        <a class="btn-gumroad-pink" href="https://fegopics.gumroad.com/affiliates" target="_blank" rel="noopener noreferrer">
+      <!-- Upper Join Affiliate Button -->
+      <div class="gumroad-cta-wrap">
+        <a class="btn-gumroad" href="https://fegopics.gumroad.com/affiliates" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
           </svg>
           <span>Join Affiliate on Gumroad</span>
         </a>
-        <p class="micro-note">Instant setup • Automatic payouts via Gumroad</p>
+        <p class="micro-note">Instant setup &bull; Automatic payouts via Gumroad</p>
       </div>
 
-      <!-- VISUAL 3-STEP PROCESS -->
-      <div class="steps-container">
+      <!-- 3-Step Walkthrough Process -->
+      <div class="steps-stack">
 
-        <!-- 1. Free Download by User -->
+        <!-- Step 1: Free Download by User -->
         <div class="step-card">
-          <div class="step-header">
-            <span class="step-num">1</span>
-            <h2 class="step-title">Free Download by User</h2>
+          <div class="step-card-header">
+            <span class="step-badge">1</span>
+            <h2 class="step-heading">Free Download by User</h2>
           </div>
-          <p class="step-desc">
-            Your referral lands on our clean landing page and downloads the plugin 100% free.
+          <p class="step-text">
+            Your referral downloads the plugin 100% free instantly.
           </p>
-    
+          <div class="mock-preview-wrap">
+            <div class="mock-btn-download">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Free Download Plugin</span>
+            </div>
+            <span class="mock-subtext">Instant .zip download &bull; Compatible with WordPress 6.0+</span>
+          </div>
         </div>
 
-        <!-- 2. Upgrade Inside WordPress Plugin -->
+        <!-- Step 2: Natural Upgrade Inside WordPress Plugin -->
         <div class="step-card">
-          <div class="step-header">
-            <span class="step-num">2</span>
-            <h2 class="step-title">Natural Upgrade Inside WordPress Plugin</h2>
+          <div class="step-card-header">
+            <span class="step-badge">2</span>
+            <h2 class="step-heading">Natural Upgrade Inside WordPress Plugin</h2>
           </div>
-          <p class="step-desc">
- The free version lets users create up to 3 highlighter note. Once bloggers test it on their articles and want more notes, they naturally hit the 3-highlighter note limit and unlock the Lifetime Deal directly inside their WordPress admin dashboard.
+          <p class="step-text">
+            The free version caps usage at 3 highlighter notes. Once bloggers test it and need more highlighter notes, they naturally upgrade to the Lifetime Deal inside their WordPress dashboard.
           </p>
-    
+          <div class="mock-preview-wrap">
+            <div class="mock-plugin-upgrade-card">
+              <span class="mock-plugin-title">ScrollStrike Lifetime PRO</span>
+              <span class="mock-plugin-price">$59 USD</span>
+              <span class="mock-plugin-note">One-time payment &bull; Unlimited highlighter notes</span>
+              <div class="mock-btn-upgrade">Upgrade Inside Plugin &rarr;</div>
+            </div>
+          </div>
         </div>
 
-        <!-- 3. Gumroad 30-Day Tracking Policy (No Image) -->
+        <!-- Step 3: Gumroad 30-Day Tracking Guarantee -->
         <div class="step-card">
-          <div class="step-header">
-            <span class="step-num">3</span>
-            <h2 class="step-title">Gumroad 30-Day Tracking Guarantee</h2>
+          <div class="step-card-header">
+            <span class="step-badge">3</span>
+            <h2 class="step-heading">Gumroad 30-Day Tracking Guarantee</h2>
           </div>
-          <p class="step-desc">
-           Every referral includes a 30-day Gumroad tracking cookie. When they upgrade to the Lifetime Deal within 30 days, your 35% commission is credited automatically.
+          <p class="step-text">
+            Gumroad tracks referrals with a 30-day cookie. When your referral upgrades to the Lifetime Deal in their browser within 30 days, you automatically earn the full 35% commission ($20.65 USD).
           </p>
         </div>
 
       </div>
 
-      <!-- Bottom Join Button -->
-      <div class="gumroad-btn-wrap">
-        <a class="btn-gumroad-pink" href="https://fegopics.gumroad.com/affiliates" target="_blank" rel="noopener noreferrer">
+      <!-- Bottom Join Affiliate Button -->
+      <div class="gumroad-cta-wrap">
+        <a class="btn-gumroad" href="https://fegopics.gumroad.com/affiliates" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
           </svg>
           <span>Join Affiliate on Gumroad</span>
         </a>
-        <p class="micro-note">Start earning 35% commission on every referral upgrade</p>
+        <p class="micro-note">Start earning $20.65 USD on every referral upgrade</p>
       </div>
 
     </div>
@@ -408,7 +595,7 @@
         <a href="contact.html">Contact</a>
         <a href="affiliate.html">Affiliate</a>
       </div>
-      <p>© 2026 FegoPics. Simple link highlighters for WordPress.</p>
+      <p>&copy; 2026 FegoPics. Simple link highlighters for WordPress.</p>
     </div>
   </footer>
 
