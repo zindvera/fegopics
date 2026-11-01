@@ -808,411 +808,52 @@
     }
 
     /* ==========================================================================
-         8. FREE VS PRO MATRIX & PLANS SECTION
+         8. CLEAN DIRECT DOWNLOAD CTA BANNER (OPTION A)
          ========================================================================== */
-    .ss-features-matrix {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      max-width: 960px;
-      margin: 0 auto 60px auto;
-    }
-
-    .ss-matrix-card {
+    .cta-banner-card {
       background: #ffffff;
-      border-radius: 16px;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .ss-matrix-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .ss-matrix-free {
-      border: 2px solid #64748b;
-      box-shadow: 0 12px 35px rgba(100, 116, 139, 0.08);
-    }
-
-    .ss-matrix-pro {
-      border: 2px solid #ea580c;
-      box-shadow: 0 12px 40px rgba(234, 88, 12, 0.08);
-    }
-
-    .ss-matrix-card-title {
-      font-size: 20px;
-      margin: 0 0 30px 0;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 32px;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-sm);
       text-align: center;
-      font-weight: 700;
     }
 
-    .title-black {
-      color: #000000;
-    }
-
-    .title-green {
-      color: #16a34a;
-    }
-
-    .title-orange {
-      color: #ea580c;
-    }
-
-    .ss-text-green {
-      color: #16a34a;
-    }
-
-    .ss-text-orange {
-      color: #ea580c;
-    }
-
-    .ss-text-slate {
-      color: #475569;
-    }
-
-    .ss-text-dark {
-      color: #0f172a;
-      font-weight: 500;
-    }
-
-    .ss-matrix-features-list {
-      display: grid;
-      grid-auto-rows: minmax(42px, auto);
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-    }
-
-    .ss-feature-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .ss-feature-disabled {
-      color: #94a3b8;
-    }
-
-    .ss-check-green {
-      color: #10b981;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .ss-check-orange {
-      color: #ea580c;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .ss-cross-gray {
-      color: #cbd5e1;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .ss-bold-orange {
-      color: #ea580c;
-      font-weight: 700;
-    }
-
-    .ss-pricing-section {
-      margin-top: 20px;
-    }
-
-    .ss-pricing-heading {
-      font-size: 26px;
+    .cta-banner-title {
+      font-size: 32px;
       font-weight: 800;
       color: var(--text-dark);
-      margin: 0 0 10px 0;
-      text-align: center;
-      letter-spacing: -0.5px;
-    }
-
-    .ss-pricing-subheading {
-      font-size: 16px;
-      color: var(--text-body);
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .ss-pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 1060px;
-      margin: 0 auto;
-    }
-
-    .ss-pricing-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 36px 24px;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.03), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      text-align: left;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
-    }
-
-    .ss-pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 30px -5px rgba(15, 23, 42, 0.06), 0 10px 15px -3px rgba(15, 23, 42, 0.04);
-    }
-
-    .ss-pricing-card-free {
-      border: 2px solid #16a34a;
-      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.09);
-      background: #ffffff;
-    }
-
-    .ss-pricing-sub {
-      font-size: 11px;
-      font-weight: 700;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .ss-pricing-title-group {
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-
-    .ss-pricing-term {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .ss-term-green {
-      color: #16a34a;
-    }
-
-    .ss-term-orange {
-      color: #ea580c;
-    }
-
-    .ss-pricing-type {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e293b;
-      margin-left: 2px;
-    }
-
-    .ss-pricing-amount-wrap {
-      text-align: center;
-      margin-top: 16px;
-      margin-bottom: 16px;
-    }
-
-    .ss-pricing-amount {
-      font-size: 42px;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-
-    .ss-pricing-rate {
-      font-size: 15px;
-      text-align: center;
-      margin: 12px 0 24px 0;
-      font-weight: 700;
-    }
-
-    .ss-rate-green {
-      color: #16a34a;
-    }
-
-    .ss-pricing-desc {
-      font-size: 14px;
-      color: #475569;
-      line-height: 1.5;
-      text-align: center;
-      margin: 0;
-      font-weight: 500;
-    }
-
-    .ss-pricing-badge {
-      position: absolute;
-      top: -13px;
-      right: 16px;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 9999px;
-      letter-spacing: 0.5px;
-    }
-
-    .ss-badge-green-pill {
-      background: #dcfce7;
-      color: #15803d;
-      border: 1px solid #bbf7d0;
-      box-shadow: 0 2px 6px rgba(22, 163, 74, 0.1);
-    }
-
-    .ss-badge-orange {
-      background: #ffedd5;
-      color: #c2410c;
-      border: 1px solid #fed7aa;
-      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.08);
-    }
-
-    .ss-badge-green {
-      background: #dcfce7;
-      color: #15803d;
-      border: 1px solid #bbf7d0;
-      box-shadow: 0 2px 6px rgba(22, 163, 74, 0.08);
-    }
-
-    /* ==========================================================================
-         9. LIFETIME PRO PLAN CARD
-         ========================================================================== */
-    .ss-lifetime-wrap {
-      max-width: 1060px;
-      margin: 40px auto 0 auto;
-    }
-
-    .ss-lifetime-card {
-      background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
-      border: 2px solid #ea580c;
-      border-radius: 24px;
-      padding: 44px 48px;
-      box-shadow: 0 16px 40px -10px rgba(234, 88, 12, 0.15), 0 4px 12px rgba(15, 23, 42, 0.03);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .ss-lifetime-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 50px -10px rgba(234, 88, 12, 0.2);
-    }
-
-    .ss-lifetime-badge-pill {
-      position: absolute;
-      top: 20px;
-      left: 48px;
-      background: #ffedd5;
-      color: #c2410c;
-      border: 1px solid #fed7aa;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      display: inline-block;
-    }
-
-    .ss-lifetime-content {
-      flex: 1;
-      padding-top: 18px;
-    }
-
-    .ss-lifetime-title {
-      font-size: 30px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 12px;
       letter-spacing: -0.5px;
       line-height: 1.25;
+      margin-bottom: 12px;
     }
 
-    .ss-lifetime-title span {
-      color: #ea580c;
+    .cta-banner-sub {
+      font-size: 17px;
+      color: var(--text-body);
+      margin-bottom: 32px;
+      line-height: 1.5;
     }
 
-    .ss-lifetime-desc {
-      font-size: 16px;
-      color: #475569;
-      margin: 0;
-      line-height: 1.7;
-      max-width: 580px;
-    }
-
-    .ss-lifetime-action {
+    .cta-btn-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-width: 250px;
-      background: #ffffff;
-      border: 1px solid #fed7aa;
-      border-radius: 20px;
-      padding: 32px 28px;
-      box-shadow: 0 8px 24px rgba(234, 88, 12, 0.08);
-      text-align: center;
+      gap: 12px;
     }
 
-    .ss-lifetime-price-wrap {
-      margin-bottom: 6px;
+    .btn-summary-download {
+      padding: 16px 40px;
+      font-size: 17px;
+      font-weight: 800;
     }
 
-    .ss-lifetime-amount {
-      font-size: 48px;
-      font-weight: 900;
-      color: #0f172a;
-      letter-spacing: -1.5px;
-      line-height: 1;
-    }
-
-    .ss-lifetime-currency {
-      font-size: 20px;
-      font-weight: 700;
-      color: #64748b;
-      margin-left: 4px;
-    }
-
-    .ss-lifetime-term {
+    .summary-micro-copy {
       font-size: 13px;
-      font-weight: 800;
-      color: #16a34a;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 18px;
-    }
-
-    .btn-lifetime-gumroad {
-      background-color: #ea580c;
-      color: #ffffff;
-      width: 100%;
-      padding: 14px 22px;
-      font-size: 15px;
-      font-weight: 800;
-      border-radius: 9999px;
-      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-lifetime-gumroad:hover {
-      background-color: #c2410c;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.45);
-    }
-
-    .ss-lifetime-guarantee {
-      font-size: 11px;
-      font-weight: 600;
-      color: #64748b;
-      margin-top: 10px;
+      color: var(--text-muted);
+      margin: 0;
     }
 
     /* ==========================================================================
@@ -1471,30 +1112,6 @@
         margin: 0 auto;
       }
 
-      .ss-pricing-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-
-      .ss-lifetime-card {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 36px 30px;
-      }
-
-      .ss-lifetime-badge-pill {
-        position: static;
-        margin-bottom: 12px;
-      }
-
-      .ss-lifetime-content {
-        padding-top: 0;
-      }
-
-      .ss-lifetime-action {
-        min-width: 100%;
-      }
-
       /* Tablet FAQ Spacing & Typography */
       .faq-card {
         padding: 32px 30px;
@@ -1717,61 +1334,22 @@
         border-radius: 12px;
       }
 
-      .ss-features-matrix {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .ss-matrix-card {
-        padding: 28px 20px;
-        border-radius: 16px;
-      }
-
-      .ss-pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .ss-pricing-card {
-        padding: 28px 20px;
-        border-radius: 16px;
-      }
-
-      .ss-lifetime-wrap {
-        margin-top: 24px;
-      }
-
-      .ss-lifetime-card {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 28px 18px;
+      .cta-banner-card {
+        padding: 36px 20px;
         border-radius: 18px;
       }
 
-      .ss-lifetime-badge-pill {
-        position: static;
-        margin-bottom: 12px;
+      .cta-banner-title {
+        font-size: 24px;
       }
 
-      .ss-lifetime-content {
-        padding-top: 0;
+      .cta-banner-sub {
+        font-size: 15px;
+        margin-bottom: 24px;
       }
 
-      .ss-lifetime-title {
-        font-size: 22px;
-      }
-
-      .ss-lifetime-desc {
-        font-size: 14px;
-      }
-
-      .ss-lifetime-action {
-        min-width: 100%;
-        padding: 24px 18px;
-      }
-
-      .ss-lifetime-amount {
-        font-size: 40px;
+      .btn-summary-download {
+        width: 100%;
       }
 
       /* MOBILE FAQ: EDGE-TO-EDGE NO-GUTTER CARD & COMFORTABLE FONT SIZES */
@@ -2324,187 +1902,27 @@
     </div>
   </section>
 
-  <section class="section-padding bg-gray-section" id="pricing">
+  <!-- CLEAN DIRECT DOWNLOAD CTA BANNER -->
+  <section class="section-padding bg-gray-section" id="download-cta">
     <div class="container">
-      <h2 class="section-title text-center">
-        Plans
-      </h2>
-      <div class="ss-features-matrix">
-        <div class="ss-matrix-card ss-matrix-free">
-          <h3 class="ss-matrix-card-title">
-            <span class="title-black">ScrollStrike</span>
-            <span class="title-green">FREE</span>
-          </h3>
-          <div class="ss-matrix-features-list ss-text-slate">
-            <div class="ss-feature-row">
-              <span class="ss-check-green">✓</span>
-              <span>Max 3 unique highlighters</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-green">✓</span>
-              <span>Target only 3 elements</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-green">✓</span>
-              <span>8 basic color presets only</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-green">✓</span>
-              <span>Frequency &amp; Delay Control</span>
-            </div>
-            <div class="ss-feature-row ss-feature-disabled">
-              <span class="ss-cross-gray">✕</span>
-              <span>Focus Mode (Background Blur)</span>
-            </div>
-            <div class="ss-feature-row ss-feature-disabled">
-              <span class="ss-cross-gray">✕</span>
-              <span>Premium Customer Support</span>
-            </div>
-          </div>
-        </div>
-        <div class="ss-matrix-card ss-matrix-pro">
-          <h3 class="ss-matrix-card-title">
-            <span class="title-black">ScrollStrike</span>
-            <span class="title-orange">PRO</span>
-          </h3>
-          <div class="ss-matrix-features-list ss-text-dark">
-            <div class="ss-feature-row">
-              <span class="ss-check-orange">✓</span>
-              <span><span class="ss-bold-orange">Unlimited</span> unique highlighters</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-orange">✓</span>
-              <span><span class="ss-bold-orange">Unlimited</span> target elements</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-orange">✓</span>
-              <span>Pick Any Color</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-orange">✓</span>
-              <span>Frequency &amp; Delay Control</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-orange">✓</span>
-              <span>Focus Mode (Background Blur)</span>
-            </div>
-            <div class="ss-feature-row">
-              <span class="ss-check-orange">✓</span>
-              <span>Premium Customer Support</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pricing Packages Grid -->
-      <div class="ss-pricing-section">
-        <h3 class="ss-pricing-heading">
-          Start Free Today
-        </h3>
-        <p class="ss-pricing-subheading">
-          Download and use free forever, or upgrade anytime inside your WordPress dashboard.
+      <div class="cta-banner-card">
+        <h2 class="cta-banner-title">
+          Ready to Boost Your Affiliate Link Clicks?
+        </h2>
+        <p class="cta-banner-sub">
+          Download ScrollStrike and start highlighting your recommendations in minutes.
         </p>
-        <div class="ss-pricing-grid">
-          <div class="ss-pricing-card ss-pricing-card-free">
-            <span class="ss-pricing-badge ss-badge-green-pill">Recommended</span>
-            <div>
-              <div class="ss-pricing-sub">ScrollStrike</div>
-              <div class="ss-pricing-title-group">
-                <span class="ss-pricing-term ss-term-green">Free</span>
-                <span class="ss-pricing-type">Forever</span>
-              </div>
-              <div class="ss-pricing-amount-wrap">
-                <span class="ss-pricing-amount">$0</span>
-              </div>
-              <p class="ss-pricing-rate ss-rate-green">100% Free Forever</p>
-              <p class="ss-pricing-desc">
-                Start highlighting your affiliate links right away with zero cost.
-              </p>
-            </div>
-          </div>
-          <div class="ss-pricing-card">
-            <div>
-              <div class="ss-pricing-sub">ScrollStrike</div>
-              <div class="ss-pricing-title-group">
-                <span class="ss-pricing-term ss-term-orange">1 Month</span>
-                <span class="ss-pricing-type">Pro License</span>
-              </div>
-              <div class="ss-pricing-amount-wrap">
-                <span class="ss-pricing-amount">$3</span>
-              </div>
-              <p class="ss-pricing-rate ss-rate-green">$3 per month</p>
-              <p class="ss-pricing-desc">
-                Unlock PRO version for 1 month at $3.
-              </p>
-            </div>
-          </div>
-          <div class="ss-pricing-card">
-            <span class="ss-pricing-badge ss-badge-orange">Save 22%</span>
-            <div>
-              <div class="ss-pricing-sub">ScrollStrike</div>
-              <div class="ss-pricing-title-group">
-                <span class="ss-pricing-term ss-term-orange">6 Months</span>
-                <span class="ss-pricing-type">Pro License</span>
-              </div>
-              <div class="ss-pricing-amount-wrap">
-                <span class="ss-pricing-amount">$14</span>
-              </div>
-              <p class="ss-pricing-rate ss-rate-green">~$2.33 per month</p>
-              <p class="ss-pricing-desc">
-                Unlock PRO version for 6 months at $14.
-              </p>
-            </div>
-          </div>
-          <div class="ss-pricing-card">
-            <span class="ss-pricing-badge ss-badge-green">Save 50%</span>
-            <div>
-              <div class="ss-pricing-sub">ScrollStrike</div>
-              <div class="ss-pricing-title-group">
-                <span class="ss-pricing-term ss-term-orange">1 Year</span>
-                <span class="ss-pricing-type">Pro License</span>
-              </div>
-              <div class="ss-pricing-amount-wrap">
-                <span class="ss-pricing-amount">$18</span>
-              </div>
-              <p class="ss-pricing-rate ss-rate-green">$1.50 per month</p>
-              <p class="ss-pricing-desc">
-                Unlock PRO version for 1 year at $18.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- LIFETIME PRO PLAN CARD -->
-      <div class="ss-lifetime-wrap">
-        <div class="ss-lifetime-card">
-          <span class="ss-lifetime-badge-pill">Lifetime Deal • Pay Once Forever</span>
-          <div class="ss-lifetime-content">
-            <h3 class="ss-lifetime-title">
-              Get ScrollStrike <span>Lifetime PRO</span>
-            </h3>
-            <p class="ss-lifetime-desc">
-              Pay once and get the full PRO plugin forever. Includes instant direct PRO ZIP download, all future
-              updates, and unrestricted access with zero recurring fees.
-            </p>
-          </div>
-          <div class="ss-lifetime-action">
-            <div class="ss-lifetime-price-wrap">
-              <span class="ss-lifetime-amount">$59</span>
-              <span class="ss-lifetime-currency">USD</span>
-            </div>
-            <div class="ss-lifetime-term">One-Time Payment</div>
-            <a class="btn btn-lifetime-gumroad" href="https://fegopics.gumroad.com/l/scrollstrike-lifetime-license" rel="noopener noreferrer"
-              target="_blank">
-              <span>Get Lifetime PRO</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
-            </a>
-            <span class="ss-lifetime-guarantee">Secured checkout via Gumroad</span>
-          </div>
+        <div class="cta-btn-wrap">
+          <a class="btn btn-primary btn-summary-download" href="downloads/ScrollStrike.zip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Free Download Plugin</span>
+          </a>
+          <p class="summary-micro-copy">Instant .zip download • Compatible with WordPress 6.0+ • 100% Free</p>
         </div>
       </div>
     </div>
@@ -2522,10 +1940,10 @@
             <summary>What does ScrollStrike do?</summary>
             <div class="faq-answer">
               <p>
-              ScrollStrike automatically triggers a custom highlighter note directly over your target affiliate links the exact moment a visitor scrolls them into view. 
+              ScrollStrike automatically triggers a custom highlighter note directly over your target affiliate links the exact moment a visitor scrolls them into view[cite: 3]. 
               </p>
               <p>
-                 It helps capture reader attention on your recommendations and prevents hyperlink text from being ignored during blog reading.
+                 It helps capture reader attention on your recommendations and prevents hyperlink text from being ignored during blog reading[cite: 3].
               </p>
             </div>
           </details>
@@ -2536,14 +1954,14 @@
             <div class="faq-answer">
               <p>
                 Open any article or page inside the Gutenberg block editor, highlight your target link text, and click
-                the ScrollStrike icon on your toolbar.
+                the ScrollStrike icon on your toolbar[cite: 3].
               </p>
               <p>
                 This opens the live studio where you can write your message, insert an optional image preview, pick your
-                highlighter colors, and set trigger delays.
+                highlighter colors, and set trigger delays[cite: 3].
               </p>
               <p>
-                Click <strong>Deploy Highlighter</strong>, update your post, and you're good to go!
+                Click <strong>Deploy Highlighter</strong>, update your post, and you're good to go[cite: 3]!
               </p>
             </div>
           </details>
@@ -2553,11 +1971,11 @@
             <summary>Can I preview the highlighter note before publishing?</summary>
             <div class="faq-answer">
               <p>
-                Yes, absolutely. The built-in studio features a real-time Live Preview pane right beside your controls.
+                Yes, absolutely[cite: 3]. The built-in studio features a real-time Live Preview pane right beside your controls[cite: 3].
               </p>
               <p>
                 As you type copy, upload images, switch colors, or test Focus Mode, you see the exact appearance and
-                layout visitors will experience on your live website.
+                layout visitors will experience on your live website[cite: 3].
               </p>
             </div>
           </details>
@@ -2567,29 +1985,24 @@
             <summary>How do I see the highlighter note in action on my published post?</summary>
             <div class="faq-answer">
               <p>
-                Simply visit your published post URL in any standard browser window.
+                Simply visit your published post URL in any standard browser window[cite: 3].
               </p>
               <p>
                 As you scroll through the article content and cross the target link's position on the screen,
-                ScrollStrike triggers the highlighter note automatically.
+                ScrollStrike triggers the highlighter note automatically[cite: 3].
               </p>
             </div>
           </details>
 
           <!-- Question 5 -->
           <details>
-            <summary>What do I get with this lifetime deal?</summary>
+            <summary>Is ScrollStrike completely free to try?</summary>
             <div class="faq-answer">
               <p>
-                You receive unrestricted lifetime access to ScrollStrike PRO with zero recurring monthly or annual
-                subscription fees:
+                Yes[cite: 3]! You can download and install ScrollStrike completely free[cite: 3]. It lets you create and test highlighter notes directly on your site without any upfront payment or credit card required[cite: 3].
               </p>
               <p>
-                • Unlimited highlighter notes &amp; unlimited target links<br />
-                • Full custom color picker &amp; presets<br />
-                • Focus Mode (background blur &amp; dim)<br />
-                • Display frequency rules &amp; countdown timers<br />
-                • Direct PRO ZIP download and all future plugin updates
+                If you ever need unlimited highlighters or advanced features, you can easily upgrade to Pro right from inside your WordPress dashboard[cite: 3].
               </p>
             </div>
           </details>
@@ -2599,11 +2012,11 @@
             <summary>Will ScrollStrike slow down my website?</summary>
             <div class="faq-answer">
               <p>
-                Not at all. ScrollStrike is engineered for maximum performance and speed.
+                Not at all[cite: 3]. ScrollStrike is engineered for maximum performance and speed[cite: 3].
               </p>
               <p>
                 Its ultra-lightweight scripts only execute on specific posts where an active highlighter has been
-                configured. Every other page across your site remains completely untouched.
+                configured[cite: 3]. Every other page across your site remains completely untouched[cite: 3].
               </p>
             </div>
           </details>
@@ -2613,11 +2026,11 @@
             <summary>Which WordPress editors does ScrollStrike support?</summary>
             <div class="faq-answer">
               <p>
-                ScrollStrike is built natively for the WordPress Block Editor (Gutenberg).
+                ScrollStrike is built natively for the WordPress Block Editor (Gutenberg)[cite: 3].
               </p>
               <p>
                 You manage all your highlighters, links, images, and delays directly inside your natural post and page
-                editing screen without switching between menus.
+                editing screen without switching between menus[cite: 3].
               </p>
             </div>
           </details>
